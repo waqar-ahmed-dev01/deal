@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dealhub-v6';
+const CACHE_NAME = 'dealhub-v7';
 
 // Cache all assets
 self.addEventListener('install', (e) => {

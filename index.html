@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
-     <meta charset="UTF-8">
-    <link rel="icon" href="./image/favicon.jpg">
-    <link rel="manifest" href="./manifest.json">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="BiteRush">
-    <meta name="theme-color" content="#E4002B">
-    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="./image/favicon.jpeg">
+     <!-- BASIC META -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DealHub</title>
     
+    <!-- PWA META TAGS -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DealHub">
+    <link rel="apple-touch-icon" href="/image/favicon-192x192.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#F57224">
+    <meta name="msapplication-TileColor" content="#F57224">
+    <meta name="msapplication-TileImage" content="/image/favicon-192x192.png">
     
-    <!-- Favicon -->
-    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <!-- SEO -->
+    <meta name="description" content="DealHub - Best Online Shopping Store in Pakistan">
+    <meta name="keywords" content="shopping, dealhub, online store, ecommerce">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+      
     <style>
         :root {
             --daraz-orange: #F57224;
             --daraz-orange-dark: #d65c14;
             --bg-gray: #F5F5F5;
             --text-main: #212121;
+            --text-muted: #757575;
         }
 
         * {
@@ -41,13 +47,13 @@
             padding-bottom: 70px;
         }
 
-        /* ========== TOP BAR ========== */
         .top-bar {
             background-color: #f8f8f8;
             font-size: 12px;
             padding: 4px 0;
             border-bottom: 1px solid #e2e2e2;
         }
+
         .top-bar-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -56,13 +62,14 @@
             gap: 20px;
             padding: 0 15px;
         }
+
         .top-bar a {
             color: #666;
             text-decoration: none;
         }
+
         .top-bar a:hover { color: var(--daraz-orange); }
 
-        /* ========== HEADER ========== */
         header {
             background-color: var(--daraz-orange);
             position: sticky;
@@ -70,63 +77,67 @@
             z-index: 1000;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 15px;
-            gap: 10px;
+            padding: 12px 15px;
+            gap: 15px;
         }
+
         .logo {
             color: white;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            white-space: nowrap;
         }
-        .logo i { font-size: 22px; }
 
         .search-box {
             flex: 1;
-            max-width: 600px;
+            max-width: 650px;
             display: flex;
             background: white;
             border-radius: 4px;
             overflow: hidden;
         }
+
         .search-box input {
             width: 100%;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border: none;
             outline: none;
             font-size: 14px;
         }
+
         .search-box button {
             background: #FFE1D2;
             border: none;
-            padding: 0 14px;
+            padding: 0 18px;
             color: var(--daraz-orange);
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             color: white;
         }
+
         .cart-icon {
             position: relative;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 22px;
         }
+
         .cart-badge {
             position: absolute;
             top: -8px;
@@ -134,124 +145,119 @@
             background: white;
             color: var(--daraz-orange);
             font-weight: bold;
-            font-size: 10px;
+            font-size: 11px;
             border-radius: 50%;
-            padding: 1px 6px;
-            min-width: 18px;
-            text-align: center;
+            padding: 2px 6px;
         }
 
         .user-avatar {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             background: rgba(255,255,255,0.25);
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: white;
             text-transform: uppercase;
-            margin-right: 4px;
+            margin-right: 6px;
         }
+
         .user-pill {
             background: rgba(255,255,255,0.2);
-            padding: 3px 10px 3px 4px;
+            padding: 4px 12px 4px 6px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 3px;
-        }
-        .user-pill .user-name-text {
-            font-size: 12px;
-            font-weight: 500;
-            max-width: 80px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            gap: 4px;
         }
 
-        /* ========== MAIN ========== */
+        .user-pill .user-name-text {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
         .main-container {
             max-width: 1200px;
-            margin: 12px auto;
-            padding: 0 12px;
+            margin: 15px auto;
+            padding: 0 15px;
         }
+
         .page-view { display: none; }
         .page-view.active { display: block; }
 
-        /* ========== HERO ========== */
         .hero-section {
             display: grid;
-            grid-template-columns: 1fr 250px;
-            gap: 12px;
-            margin-bottom: 15px;
+            grid-template-columns: 1fr 280px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
+
         .banner-slider {
             background: linear-gradient(135deg, #FF512F, #DD2476);
             border-radius: 8px;
-            height: 200px;
+            height: 250px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 25px;
+            padding: 30px;
             color: white;
         }
-        .banner-text h2 { font-size: 28px; font-weight: 800; }
-        .banner-text p { font-size: 14px; opacity: 0.9; }
+
+        .banner-text h2 { font-size: 32px; font-weight: 800; }
 
         .app-download-card {
             background: white;
             border-radius: 8px;
-            padding: 12px;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
-        .app-download-card h4 { font-size: 14px; margin-top: 4px; }
-        .app-download-card p { font-size: 11px; color: #777; }
 
-        /* ========== CATEGORIES ========== */
         .categories-bar {
             background: white;
             border-radius: 8px;
-            padding: 12px;
+            padding: 15px;
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 15px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         .category-item {
             cursor: pointer;
             text-decoration: none;
             color: var(--text-main);
             transition: transform 0.2s;
         }
-        .category-item:hover { transform: translateY(-2px); }
+
+        .category-item:hover { transform: translateY(-3px); }
+
         .category-icon {
-            width: 44px;
-            height: 44px;
+            width: 50px;
+            height: 50px;
             background: #FFF3ED;
             color: var(--daraz-orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 6px auto;
-            font-size: 18px;
+            margin: 0 auto 8px auto;
+            font-size: 20px;
         }
-        .category-item span { font-size: 11px; }
 
-        /* ========== PRODUCTS ========== */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
+
         .product-card {
             background: white;
             border-radius: 6px;
@@ -260,175 +266,70 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .product-card:hover { transform: translateY(-3px); }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
         .product-img {
             width: 100%;
-            height: 140px;
+            height: 150px;
             object-fit: cover;
             background: #f0f0f0;
         }
-        .product-info { padding: 8px; }
-        .product-title {
-            font-size: 12px;
-            height: 32px;
-            overflow: hidden;
-            line-height: 1.3;
+
+        .product-info { padding: 10px; }
+        .product-title { 
+            font-size: 13px; 
+            height: 36px; 
+            overflow: hidden; 
+            line-height: 1.3; 
             font-weight: 600;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
-        .product-price {
-            color: var(--daraz-orange);
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 4px;
+        .product-price { 
+            color: var(--daraz-orange); 
+            font-size: 15px; 
+            font-weight: bold; 
+            margin-top: 5px; 
         }
+
         .add-btn {
             width: 100%;
             background: var(--daraz-orange);
             color: white;
             border: none;
-            padding: 7px;
+            padding: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 12px;
             transition: background 0.2s;
         }
+
         .add-btn:hover { background: var(--daraz-orange-dark); }
 
-        /* ========== CARD PANEL ========== */
         .card-panel {
             background: white;
-            padding: 18px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
+
         .back-btn {
             background: #e0e0e0;
             border: none;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 4px;
             cursor: pointer;
-            margin-bottom: 12px;
-            font-weight: bold;
-            font-size: 13px;
-        }
-
-        /* ========== LOGIN FORM ========== */
-        .login-form-container { max-width: 420px; margin: 0 auto; }
-        .login-title {
-            text-align: center;
-            color: var(--daraz-orange);
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-        .form-group { margin-bottom: 15px; }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 13px;
-            color: #333;
-        }
-        .form-group label i { color: var(--daraz-orange); width: 20px; }
-        .form-group input {
-            width: 100%;
-            padding: 10px 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--daraz-orange);
-        }
-        .login-btn {
-            width: 100%;
-            background: var(--daraz-orange);
-            color: white;
-            border: none;
-            padding: 12px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        .login-btn:hover { background: var(--daraz-orange-dark); }
-        .login-footer {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 13px;
-            color: #666;
-        }
-        .login-footer a { color: var(--daraz-orange); text-decoration: none; font-weight: 600; }
-
-        /* ========== USER PROFILE ========== */
-        .user-profile-card {
-            max-width: 420px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 25px;
-        }
-        .profile-avatar {
-            width: 70px;
-            height: 70px;
-            background: var(--daraz-orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 32px;
-            color: white;
+            margin-bottom: 15px;
             font-weight: bold;
         }
-        .user-full-name { font-size: 22px; font-weight: bold; margin-bottom: 3px; }
-        .user-email { color: #666; font-size: 14px; margin-bottom: 3px; }
-        .user-status {
-            background: #e8f5e9;
-            padding: 8px;
-            border-radius: 6px;
-            margin: 12px 0 16px;
-            color: #2e7d32;
-            font-size: 12px;
-            border-left: 4px solid #4caf50;
-        }
-        .logout-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 28px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-            transition: background 0.3s;
-        }
-        .logout-btn:hover { background: #c0392b; }
-        .logout-btn i { margin-right: 8px; }
 
-        /* ========== CART ========== */
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .cart-item-title { font-size: 13px; font-weight: 600; }
-        .cart-item-remove {
-            color: #e74c3c;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        /* ========== MODALS ========== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -438,24 +339,68 @@
             align-items: center;
             justify-content: center;
         }
+
         .modal-card {
             background: white;
             padding: 25px;
             border-radius: 12px;
             width: 90%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
         }
+
         .status-box {
             background: #FFF3ED;
             border: 1px dashed var(--daraz-orange);
             border-radius: 8px;
-            padding: 12px;
-            margin: 12px 0;
-            font-size: 16px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
             font-weight: bold;
             color: var(--daraz-orange);
         }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-title { font-size: 14px; font-weight: 600; }
+        .cart-item-remove {
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            padding: 8px 0;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .mobile-nav-item.active { color: var(--daraz-orange); }
+        .mobile-nav-item i { font-size: 18px; margin-bottom: 3px; }
 
         .login-required-modal {
             display: none;
@@ -466,128 +411,279 @@
             align-items: center;
             justify-content: center;
         }
-        .login-required-modal .modal-card { padding: 30px; }
+
+        .login-required-modal .modal-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+        }
+
         .login-required-modal .modal-card i {
-            font-size: 50px;
+            font-size: 55px;
             color: var(--daraz-orange);
             margin-bottom: 10px;
         }
-        .login-required-modal .modal-card h3 { font-size: 20px; margin-bottom: 6px; }
-        .login-required-modal .modal-card p { color: #666; margin-bottom: 16px; font-size: 14px; }
-        .btn-group { display: flex; gap: 10px; justify-content: center; }
+
+        .login-required-modal .modal-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .login-required-modal .modal-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .login-required-modal .modal-card .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
         .btn-login-now {
             background: var(--daraz-orange);
             color: white;
             border: none;
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
         }
+
         .btn-login-now:hover { background: var(--daraz-orange-dark); }
+
         .btn-cancel-login {
             background: #e0e0e0;
             color: #333;
             border: none;
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
         }
+
         .btn-cancel-login:hover { background: #ccc; }
 
-        /* ========== MOBILE NAV ========== */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            padding: 6px 0;
-            justify-content: space-around;
-            z-index: 1000;
+        /* ========== LOGIN FORM STYLES ========== */
+        .login-form-container {
+            max-width: 450px;
+            margin: 0 auto;
         }
-        .mobile-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: #666;
-            font-size: 10px;
+
+        .login-form-container .login-title {
+            text-align: center;
+            color: var(--daraz-orange);
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .login-form-container .login-title i {
+            margin-right: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group label i {
+            color: var(--daraz-orange);
+            width: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--daraz-orange);
+            box-shadow: 0 0 0 4px rgba(245, 114, 36, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--daraz-orange);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 5px;
         }
-        .mobile-nav-item.active { color: var(--daraz-orange); }
-        .mobile-nav-item i { font-size: 18px; margin-bottom: 2px; }
+
+        .login-btn:hover {
+            background: var(--daraz-orange-dark);
+        }
+
+        .login-btn i {
+            margin-right: 8px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .login-footer a {
+            color: var(--daraz-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== USER PROFILE STYLES ========== */
+        .user-profile-card {
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 30px 25px;
+        }
+
+        .user-profile-card .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--daraz-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-profile-card .user-full-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+
+        .user-profile-card .user-email {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .user-profile-card .user-status {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0 20px;
+            color: #2e7d32;
+            font-size: 13px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .user-profile-card .user-status i {
+            margin-right: 8px;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        .logout-btn i {
+            margin-right: 8px;
+        }
+
+        /* ========== WELCOME TOAST ========== */
+        .welcome-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideInRight 0.5s ease;
+            max-width: 350px;
+            font-size: 14px;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
 
         /* ========== PWA INSTALL BANNER ========== */
         #pwa-install-banner {
             position: fixed;
-            bottom: 75px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
             background: white;
             border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-            padding: 10px 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            padding: 12px 16px;
             z-index: 9999;
             display: flex;
             align-items: center;
-            gap: 10px;
-            max-width: 380px;
-            width: 92%;
-            animation: slideUp 0.4s ease;
-            border: 1px solid #eee;
+            gap: 12px;
+            max-width: 400px;
+            width: 90%;
+            animation: slideUp 0.5s ease;
         }
+
         @keyframes slideUp {
-            from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+            from { transform: translateX(-50%) translateY(30px); opacity: 0; }
             to { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
 
-        /* ========== TOAST ========== */
-        .welcome-toast {
-            position: fixed;
-            top: 75px;
-            right: 15px;
-            background: #27ae60;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            z-index: 9999;
-            animation: slideInRight 0.4s ease;
-            max-width: 280px;
-            font-size: 13px;
-        }
-        @keyframes slideInRight {
-            from { transform: translateX(80px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .products-grid { grid-template-columns: repeat(4, 1fr); }
             .hero-section { grid-template-columns: 1fr; }
             .app-download-card { display: none; }
         }
+
         @media (max-width: 768px) {
             .desktop-only { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .mobile-nav { display: flex; }
-            .categories-bar { grid-template-columns: repeat(3, 1fr); }
-            .logo { font-size: 20px; }
-            .logo i { font-size: 18px; }
-            .header-container { padding: 8px 10px; }
-            .search-box input { padding: 6px 10px; font-size: 13px; }
-            .search-box button { padding: 0 10px; font-size: 13px; }
-            .banner-slider { height: 150px; padding: 15px 20px; }
-            .banner-text h2 { font-size: 20px; }
-            .banner-text p { font-size: 12px; }
-        }
-        @media (max-width: 400px) {
-            .header-actions { gap: 8px; }
-            .user-pill .user-name-text { max-width: 50px; }
         }
     </style>
 </head>
@@ -607,17 +703,11 @@
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
-                <i class="fa-solid fa-bag-shopping"></i> <span class="desktop-only">DealHub</span>
+                <i class="fa-solid fa-bag-shopping"></i> DealHub
             </div>
 
-
-    <div id="installBanner">
-        <div class="install-banner-left">
-            <div class="install-banner-icon">
-                <i class="fa-solid fa-utensils"></i>
-            
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch(event)">
+                <input type="text" id="search-input" placeholder="Search in DealHub..." onkeyup="handleSearch(event)">
                 <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
@@ -633,30 +723,26 @@
             </div>
         </div>
     </header>
-</div>
-            <div class="install-banner-info">
-                <h4>Install BiteRush</h4>
-                <p>Get faster access & offline mode</p>
-            </div>
-        </div>
-    <!-- MAIN -->
+
+    <!-- MAIN CONTENT -->
     <div class="main-container">
 
-        <!-- HOME -->
+        <!-- HOME PAGE -->
         <div id="home-page" class="page-view active">
             <div class="hero-section">
                 <div class="banner-slider">
                     <div class="banner-text">
                         <h2>FLASH SALE</h2>
-                        <p>Limited Time Offer | Mega Discounts</p>
+                        <p>Limited Time Offer | Mega Discounts Available</p>
                     </div>
-                    <i class="fa-solid fa-bolt" style="font-size:60px;opacity:0.2;"></i>
+                    <i class="fa-solid fa-bolt" style="font-size: 90px; opacity: 0.2;"></i>
                 </div>
+
                 <div class="app-download-card">
-                    <i class="fa-solid fa-mobile-screen-button" style="font-size:30px;color:var(--daraz-orange);"></i>
-                    <h4>TRY DealHub APP</h4>
-                    <p style="font-size:10px;color:#777;">Exclusive Vouchers</p>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://daraz.pk" alt="QR" style="margin-top:4px;width:80px;height:80px;">
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size: 36px; color: var(--daraz-orange);"></i>
+                    <h4 style="margin-top: 5px;">TRY DealHub APP</h4>
+                    <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
                 </div>
             </div>
 
@@ -688,16 +774,16 @@
                 </div>
             </div>
 
-            <h3 style="font-size:16px;margin-bottom:12px;">Featured Products (<span id="total-count">0</span> Items)</h3>
+            <h3 style="margin-bottom: 15px;">Featured Products (Total <span id="total-count">0</span> Items)</h3>
             <div class="products-grid" id="home-products-container"></div>
         </div>
 
         <!-- CATEGORIES PAGE -->
         <div id="categories-page" class="page-view">
             <div class="card-panel">
-                <h2>All Categories</h2>
-                <p style="color:#666;margin-bottom:15px;font-size:13px;">Browse products by category</p>
-                <div class="categories-bar" style="box-shadow:none;padding:0;">
+                <h2>All Product Categories</h2>
+                <p style="color: #666; margin-bottom: 20px;">Browse products by clicking on any category (50 Items each!)</p>
+                <div class="categories-bar" style="box-shadow: none;">
                     <div class="category-item" onclick="openCategoryPage('Mobiles')">
                         <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
                         <span>Mobiles</span>
@@ -726,73 +812,98 @@
             </div>
         </div>
 
-        <!-- SINGLE CATEGORY -->
+        <!-- SINGLE CATEGORY PAGE -->
         <div id="single-category-page" class="page-view">
             <button class="back-btn" onclick="showPage('categories-page')"><i class="fa-solid fa-arrow-left"></i> All Categories</button>
             <div class="card-panel">
-                <h2 id="category-page-title" style="color:var(--daraz-orange);font-size:18px;"></h2>
-                <p style="color:#666;margin-bottom:15px;font-size:13px;">Showing items in this category</p>
+                <h2 id="category-page-title" style="color: var(--daraz-orange); margin-bottom: 5px;"></h2>
+                <p style="color: #666; margin-bottom: 20px;">Showing items available in this category</p>
                 <div class="products-grid" id="category-products-container"></div>
             </div>
         </div>
 
-        <!-- CART -->
+        <!-- CART PAGE -->
         <div id="cart-page" class="page-view">
             <div class="card-panel">
-                <h2>Your Cart</h2>
-                <div id="cart-items-list" style="margin-top:12px;">
-                    <p style="color:#888;font-size:14px;">Your cart is empty.</p>
+                <h2>Your Shopping Cart</h2>
+                <div id="cart-items-list" style="margin-top: 15px;">
+                    <p style="color: #888;">Your cart is empty.</p>
                 </div>
-                <div style="margin-top:16px;text-align:right;">
-                    <h3>Total: <span id="cart-total" style="color:var(--daraz-orange);">Rs. 0</span></h3>
-                    <button id="checkout-btn" onclick="startOrderProcess()" style="background:var(--daraz-orange);color:white;border:none;padding:10px 20px;font-weight:bold;border-radius:4px;margin-top:8px;cursor:pointer;font-size:14px;">
+                <div style="margin-top: 20px; text-align: right;">
+                    <h3>Total: <span id="cart-total" style="color: var(--daraz-orange);">Rs. 0</span></h3>
+                    <button id="checkout-btn" onclick="startOrderProcess()" style="background: var(--daraz-orange); color: white; border: none; padding: 12px 24px; font-weight: bold; border-radius: 4px; margin-top: 10px; cursor: pointer;">
                         Proceed to Checkout
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ACCOUNT - Login Form -->
+        <!-- ========== ACCOUNT PAGE WITH LOGIN FORM ========== -->
         <div id="account-page" class="page-view">
-            <!-- Login Form -->
+
+            <!-- LOGIN FORM -->
             <div class="card-panel login-form-container" id="login-box">
-                <h2 class="login-title"><i class="fa-solid fa-user-circle"></i> Login</h2>
+                <h2 class="login-title">
+                    <i class="fa-solid fa-user-circle"></i> Login
+                </h2>
+                
                 <form onsubmit="performLogin(event)">
+                    <!-- Full Name -->
                     <div class="form-group">
                         <label for="login-name"><i class="fa-solid fa-user"></i> Full Name</label>
                         <input type="text" id="login-name" placeholder="Enter your full name" required>
                     </div>
+                    
+                    <!-- Email -->
                     <div class="form-group">
                         <label for="login-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
-                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                        <input type="email" id="login-email" placeholder="Enter your email address" required>
                     </div>
+                    
+                    <!-- Password -->
                     <div class="form-group">
                         <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
                         <input type="password" id="login-password" placeholder="Enter your password" required minlength="4">
                     </div>
-                    <button type="submit" class="login-btn"><i class="fa-solid fa-sign-in-alt"></i> Login</button>
-                    <div class="login-footer">Don't have an account? <a href="#" onclick="alert('Sign up coming soon!')">Sign Up</a></div>
+                    
+                    <button type="submit" class="login-btn">
+                        <i class="fa-solid fa-sign-in-alt"></i> Login
+                    </button>
+                    
+                    <div class="login-footer">
+                        Don't have an account? <a href="#" onclick="alert('Sign up feature coming soon!')">Sign Up</a>
+                    </div>
                 </form>
             </div>
 
-            <!-- User Profile -->
-            <div class="card-panel user-profile-card" id="user-profile-box" style="display:none;">
+            <!-- USER PROFILE - Shows Name, Email, and Logout Button -->
+            <div class="card-panel user-profile-card" id="user-profile-box" style="display: none;">
                 <div class="profile-avatar" id="profile-avatar-letter">U</div>
+                
                 <div class="user-full-name" id="logged-user-name">User Name</div>
                 <div class="user-email" id="logged-user-email">user@email.com</div>
-                <div class="user-status"><i class="fa-solid fa-check-circle"></i> Account active in LocalStorage</div>
-                <button onclick="performLogout()" class="logout-btn"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+                
+                <div class="user-status">
+                    <i class="fa-solid fa-check-circle"></i> 
+                    Account is active and saved in LocalStorage
+                </div>
+                
+                <button onclick="performLogout()" class="logout-btn">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </button>
             </div>
         </div>
+
     </div>
 
     <!-- ORDER MODAL -->
     <div class="modal-overlay" id="order-modal">
         <div class="modal-card">
-            <i class="fa-solid fa-box-open" id="order-icon" style="font-size:40px;color:var(--daraz-orange);"></i>
-            <h3 style="margin-top:8px;">Order Status</h3>
-            <div class="status-box" id="order-status-text">Processing...</div>
-            <button id="close-modal-btn" onclick="closeOrderModal()" style="display:none;background:var(--daraz-orange);color:white;border:none;padding:10px;font-weight:bold;border-radius:4px;margin-top:12px;cursor:pointer;width:100%;">
+            <i class="fa-solid fa-box-open" id="order-icon" style="font-size: 50px; color: var(--daraz-orange);"></i>
+            <h3 style="margin-top: 10px;">Order Status</h3>
+            <div class="status-box" id="order-status-text">Order process ho raha hai...</div>
+            <p style="font-size: 12px; color: #777;" id="order-subtext">Khabrayen nahi, aapka order tayyar ho raha hai!</p>
+            <button id="close-modal-btn" onclick="closeOrderModal()" style="display: none; background: var(--daraz-orange); color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; margin-top: 15px; cursor: pointer; width: 100%;">
                 Done / Complete
             </button>
         </div>
@@ -803,7 +914,7 @@
         <div class="modal-card">
             <i class="fa-solid fa-lock"></i>
             <h3>Login Required!</h3>
-            <p>Please login first to add products to cart.</p>
+            <p>Product add karne ke liye pehle login karna zaroori hai. Kripya login karein.</p>
             <div class="btn-group">
                 <button class="btn-login-now" onclick="redirectToLogin()">Login Now</button>
                 <button class="btn-cancel-login" onclick="closeLoginRequiredModal()">Cancel</button>
@@ -814,22 +925,28 @@
     <!-- MOBILE NAV -->
     <div class="mobile-nav">
         <div class="mobile-nav-item active" id="nav-home" onclick="showPage('home-page')">
-            <i class="fa-solid fa-house"></i><span>Home</span>
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
         </div>
         <div class="mobile-nav-item" id="nav-categories" onclick="showPage('categories-page')">
-            <i class="fa-solid fa-list-check"></i><span>Categories</span>
+            <i class="fa-solid fa-list-check"></i>
+            <span>Categories</span>
         </div>
         <div class="mobile-nav-item" id="nav-cart" onclick="showPage('cart-page')">
-            <i class="fa-solid fa-cart-shopping"></i><span>Cart</span>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Cart</span>
         </div>
         <div class="mobile-nav-item" id="nav-account" onclick="showPage('account-page')">
-            <i class="fa-solid fa-user"></i><span>Account</span>
+            <i class="fa-solid fa-user"></i>
+            <span>Account</span>
         </div>
     </div>
 
+
     <script>
+        
         // ============================================================
-        // PRODUCT DATA
+        // CATEGORY DATA
         // ============================================================
         const categoriesData = [
             {
@@ -900,13 +1017,17 @@
             }
         ];
 
-        // Generate Products
+        // ============================================================
+        // GENERATE PRODUCTS
+        // ============================================================
         let products = [];
         let globalId = 1;
+
         categoriesData.forEach(cat => {
-            for (let i = 1; i <= 30; i++) {
+            for (let i = 1; i <= 50; i++) {
                 const productData = cat.products[(i - 1) % cat.products.length];
-                const price = Math.floor(Math.random() * 4000) + 299;
+                const price = Math.floor(Math.random() * 4500) + 299;
+                
                 products.push({
                     id: globalId++,
                     title: productData.name,
@@ -917,11 +1038,11 @@
             }
         });
 
-        // Cart
+        // LocalStorage
         let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
 
         // ============================================================
-        // INIT
+        // INITIALIZE APP
         // ============================================================
         window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('total-count').innerText = products.length;
@@ -930,49 +1051,29 @@
             renderHomeProducts();
             registerServiceWorker();
             setupPWAInstall();
-            checkInstallable();
         });
 
         // ============================================================
-        // PWA SERVICE WORKER
+        // SERVICE WORKER
         // ============================================================
         function registerServiceWorker() {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('service-worker.js', { scope: '/' })
-                    .then(registration => {
-                        console.log('✅ Service Worker registered!', registration);
-                    })
-                    .catch(error => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
-            } else {
-                console.log('❌ Service Worker not supported');
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker registered!'))
+                    .catch(err => console.log('SW Error:', err));
             }
         }
 
         // ============================================================
-        // PWA INSTALL - CRITICAL FIX
+        // PWA INSTALL
         // ============================================================
-        let deferredPrompt = null;
+        let deferredPrompt;
 
         function setupPWAInstall() {
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
-                console.log('✅ Install prompt captured');
                 showInstallBanner();
-            });
-
-            // For iOS
-            if (navigator.standalone) {
-                console.log('📱 Running as iOS PWA');
-            }
-
-            // Check if already installed
-            window.addEventListener('appinstalled', () => {
-                console.log('✅ App installed!');
-                const banner = document.getElementById('pwa-install-banner');
-                if (banner) banner.remove();
             });
         }
 
@@ -982,15 +1083,15 @@
             const banner = document.createElement('div');
             banner.id = 'pwa-install-banner';
             banner.innerHTML = `
-                <div style="display:flex;align-items:center;gap:8px;flex:1;">
-                    <i class="fa-solid fa-mobile-screen-button" style="font-size:22px;color:#F57224;"></i>
+                <div style="display:flex;align-items:center;gap:10px;flex:1;">
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size:24px;color:#F57224;"></i>
                     <div>
-                        <div style="font-weight:bold;font-size:12px;">Install DealHub App</div>
-                        <div style="font-size:10px;color:#666;">Faster shopping experience</div>
+                        <div style="font-weight:bold;font-size:13px;">Install DealHub App</div>
+                        <div style="font-size:11px;color:#666;">Get faster shopping experience</div>
                     </div>
                 </div>
-                <button onclick="installPWA()" style="background:#F57224;color:white;border:none;padding:5px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:12px;">Install</button>
-                <button onclick="this.parentElement.remove()" style="background:transparent;border:none;font-size:18px;cursor:pointer;color:#999;padding:0 4px;">&times;</button>
+                <button onclick="installPWA()" style="background:#F57224;color:white;border:none;padding:6px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px;">Install</button>
+                <button onclick="this.parentElement.remove()" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 4px;">&times;</button>
             `;
             document.body.appendChild(banner);
         }
@@ -998,42 +1099,20 @@
         function installPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('✅ User accepted install');
-                    } else {
-                        console.log('❌ User dismissed install');
-                    }
+                deferredPrompt.userChoice.then(() => {
                     deferredPrompt = null;
                     const banner = document.getElementById('pwa-install-banner');
                     if (banner) banner.remove();
                 });
-            } else {
-                alert('Install prompt not available. Please use Chrome or Edge browser.\n\nسفارش: Chrome یا Edge براؤزر استعمال کریں۔');
-                console.log('❌ No install prompt available');
-            }
-        }
-
-        // Check if PWA is installable
-        function checkInstallable() {
-            if ('getInstalledRelatedApps' in navigator) {
-                navigator.getInstalledRelatedApps().then(relatedApps => {
-                    const isInstalled = relatedApps.some(app => app.platform === 'webapp');
-                    console.log('📱 Is installed:', isInstalled);
-                    if (isInstalled) {
-                        const banner = document.getElementById('pwa-install-banner');
-                        if (banner) banner.remove();
-                    }
-                });
             }
         }
 
         // ============================================================
-        // LOGIN FUNCTIONS
+        // LOGIN FUNCTIONS - FULL NAME + EMAIL + PASSWORD
         // ============================================================
         function checkLoginStatus() {
             const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
-            const avatar = document.getElementById('user-avatar-letter');
+            const avatarElement = document.getElementById('user-avatar-letter');
             const userNameText = document.getElementById('header-user-text');
             const topLoginBtn = document.getElementById('top-login-btn');
             const loginBox = document.getElementById('login-box');
@@ -1041,9 +1120,9 @@
 
             if (userData && userData.name) {
                 const firstLetter = userData.name.charAt(0).toUpperCase();
-                avatar.textContent = firstLetter;
+                avatarElement.textContent = firstLetter;
                 userNameText.textContent = userData.name;
-                if (topLoginBtn) topLoginBtn.textContent = userData.name + " (Account)";
+                topLoginBtn.textContent = userData.name + " (Account)";
                 
                 document.getElementById('profile-avatar-letter').textContent = firstLetter;
                 document.getElementById('logged-user-name').textContent = userData.name;
@@ -1054,9 +1133,9 @@
                 
                 showWelcomeToast(userData.name);
             } else {
-                avatar.textContent = "👤";
+                avatarElement.textContent = "👤";
                 userNameText.textContent = "Login";
-                if (topLoginBtn) topLoginBtn.textContent = "LOGIN / SIGN UP";
+                topLoginBtn.textContent = "LOGIN / SIGN UP";
                 loginBox.style.display = 'block';
                 profileBox.style.display = 'none';
             }
@@ -1064,6 +1143,7 @@
 
         function performLogin(event) {
             event.preventDefault();
+            
             const name = document.getElementById('login-name').value.trim();
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
@@ -1073,17 +1153,18 @@
                 return;
             }
             
-            localStorage.setItem('dealhub_user', JSON.stringify({ name, email, password }));
+            const userData = { name, email, password };
+            localStorage.setItem('dealhub_user', JSON.stringify(userData));
             checkLoginStatus();
             showPage('home-page');
-            alert('✅ Welcome ' + name + '! You are now logged in.');
+            alert('✅ Welcome ' + name + '! You have successfully logged in.');
         }
 
         function performLogout() {
             localStorage.removeItem('dealhub_user');
             checkLoginStatus();
             showPage('home-page');
-            alert('You have been logged out.');
+            alert('You have been logged out successfully.');
         }
 
         function showWelcomeToast(name) {
@@ -1092,13 +1173,14 @@
             
             const toast = document.createElement('div');
             toast.className = 'welcome-toast';
-            toast.innerHTML = `👋 Welcome back, <strong>${name}</strong>!`;
+            toast.innerHTML = `<i class="fa-solid fa-hand-wave" style="margin-right:10px;"></i> Welcome back, <strong>${name}</strong>! 👋`;
             document.body.appendChild(toast);
+            
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.5s';
                 setTimeout(() => toast.remove(), 500);
-            }, 3500);
+            }, 4000);
         }
 
         function showLoginRequiredModal() {
@@ -1135,17 +1217,19 @@
         function showCartToast(title) {
             const toast = document.createElement('div');
             toast.style.cssText = `
-                position:fixed;bottom:140px;right:15px;background:#27ae60;color:white;
-                padding:8px 14px;border-radius:8px;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,0.2);
-                z-index:9999;animation:slideInRight 0.4s ease;max-width:250px;
+                position: fixed; bottom: 150px; right: 20px;
+                background: #27ae60; color: white;
+                padding: 10px 16px; border-radius: 8px; font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
+                animation: slideInRight 0.5s ease; max-width: 300px;
             `;
-            toast.innerHTML = `🛒 ${title} added!`;
+            toast.innerHTML = `🛒 ${title} added to cart!`;
             document.body.appendChild(toast);
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.5s';
                 setTimeout(() => toast.remove(), 500);
-            }, 2500);
+            }, 3000);
         }
 
         function startOrderProcess() {
@@ -1154,33 +1238,28 @@
                 showLoginRequiredModal();
                 return;
             }
-            if (cartItems.length === 0) {
-                alert('Please add items to cart first!');
+            if(cartItems.length === 0) {
+                alert('Pehle cart me koi item add karein!');
                 return;
             }
-            
             const modal = document.getElementById('order-modal');
             const statusText = document.getElementById('order-status-text');
             const closeBtn = document.getElementById('close-modal-btn');
             const icon = document.getElementById('order-icon');
-            
             modal.style.display = 'flex';
             closeBtn.style.display = 'none';
-            statusText.innerText = "Processing order...";
+            statusText.innerText = "Order process ho raha hai...";
             icon.className = "fa-solid fa-gear fa-spin";
-            
             setTimeout(() => {
-                statusText.innerText = "Packing...";
+                statusText.innerText = "Packing ho rahi hai...";
                 icon.className = "fa-solid fa-box-open";
             }, 2500);
-            
             setTimeout(() => {
-                statusText.innerText = "On the way...";
+                statusText.innerText = "Aapka order raste me hai...";
                 icon.className = "fa-solid fa-truck-fast";
             }, 5000);
-            
             setTimeout(() => {
-                statusText.innerText = "Order ready! 🎉";
+                statusText.innerText = "Apna order le jao! 🎉";
                 icon.className = "fa-solid fa-circle-check";
                 icon.style.color = "#27ae60";
                 closeBtn.style.display = 'block';
@@ -1203,13 +1282,11 @@
         function updateCartUI() {
             document.getElementById('cart-count').innerText = cartItems.length;
             const cartList = document.getElementById('cart-items-list');
-            
-            if (cartItems.length === 0) {
-                cartList.innerHTML = '<p style="color:#888;font-size:14px;">Your cart is empty.</p>';
+            if(cartItems.length === 0) {
+                cartList.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
                 document.getElementById('cart-total').innerText = 'Rs. 0';
                 return;
             }
-            
             cartList.innerHTML = '';
             let total = 0;
             cartItems.forEach((item, idx) => {
@@ -1217,16 +1294,16 @@
                 const row = document.createElement('div');
                 row.className = 'cart-item';
                 row.innerHTML = `
-                    <div style="display:flex;align-items:center;gap:8px;">
-                        <img src="${item.img}" style="width:40px;height:40px;object-fit:cover;border-radius:4px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.img}" style="width:45px; height:45px; object-fit:cover; border-radius:4px;">
                         <div>
                             <div class="cart-item-title">${item.title}</div>
-                            <span style="font-size:10px;color:#777;">${item.category}</span>
+                            <span style="font-size:11px; color:#777;">Category: ${item.category}</span>
                         </div>
                     </div>
-                    <div style="display:flex;align-items:center;">
-                        <div style="font-weight:bold;color:var(--daraz-orange);font-size:13px;">Rs. ${item.price}</div>
-                        <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})"></i>
+                    <div style="display:flex; align-items:center;">
+                        <div style="font-weight:bold; color: var(--daraz-orange);">Rs. ${item.price}</div>
+                        <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})" title="Remove Item"></i>
                     </div>
                 `;
                 cartList.appendChild(row);
@@ -1234,15 +1311,12 @@
             document.getElementById('cart-total').innerText = `Rs. ${total}`;
         }
 
-        // ============================================================
-        // RENDER FUNCTIONS
-        // ============================================================
         function renderHomeProducts() {
-            const container = document.getElementById('home-products-container');
-            container.innerHTML = '';
-            const featured = products.slice(0, 18);
+            const homeContainer = document.getElementById('home-products-container');
+            homeContainer.innerHTML = '';
+            const featured = products.slice(0, 24);
             featured.forEach(product => {
-                container.appendChild(createProductCard(product));
+                homeContainer.appendChild(createProductCard(product));
             });
         }
 
@@ -1251,8 +1325,7 @@
             card.className = 'product-card';
             card.innerHTML = `
                 <div>
-                    <img src="${product.img}" class="product-img" alt="${product.title}" 
-                         onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
+                    <img src="${product.img}" class="product-img" alt="${product.title}" onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
                     <div class="product-info">
                         <div class="product-title">${product.title}</div>
                         <div class="product-price">Rs. ${product.price}</div>
@@ -1267,7 +1340,7 @@
             document.getElementById('category-page-title').innerText = catName + " Category";
             const container = document.getElementById('category-products-container');
             container.innerHTML = '';
-            const filtered = products.filter(p => p.category === catName);
+            const filtered = products.filter(p => p.category.toLowerCase() === catName.toLowerCase());
             filtered.forEach(product => {
                 container.appendChild(createProductCard(product));
             });
@@ -1275,40 +1348,29 @@
         }
 
         function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            const map = {
-                'home-page': 'nav-home',
-                'categories-page': 'nav-categories',
-                'single-category-page': 'nav-categories',
-                'cart-page': 'nav-cart',
-                'account-page': 'nav-account'
-            };
-            if (map[pageId]) document.getElementById(map[pageId]).classList.add('active');
-            window.scrollTo(0, 0);
+            if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
+            if(pageId === 'categories-page' || pageId === 'single-category-page') document.getElementById('nav-categories').classList.add('active');
+            if(pageId === 'cart-page') document.getElementById('nav-cart').classList.add('active');
+            if(pageId === 'account-page') document.getElementById('nav-account').classList.add('active');
+            window.scrollTo(0,0);
         }
 
         function handleSearch(e) {
-            if (e.key === 'Enter') triggerSearch();
+            if(e.key === 'Enter') triggerSearch();
         }
 
         function triggerSearch() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
-            if (!query) return;
-            
-            const filtered = products.filter(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.category.toLowerCase().includes(query)
-            );
-            
-            document.getElementById('category-page-title').innerText = `Search: "${query}" (${filtered.length} found)`;
+            if(!query) return;
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            document.getElementById('category-page-title').innerText = `Search Results for "${query}" (${filtered.length} found)`;
             const container = document.getElementById('category-products-container');
             container.innerHTML = '';
-            
-            if (filtered.length === 0) {
-                container.innerHTML = '<p style="color:#888;font-size:14px;">No products found.</p>';
+            if(filtered.length === 0) {
+                container.innerHTML = '<p style="color:#888;">Koi product nahi mila.</p>';
             } else {
                 filtered.forEach(product => {
                     container.appendChild(createProductCard(product));
@@ -1322,46 +1384,8 @@
             showPage('home-page');
         }
         
-        // ==================== INIT ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUser = loadUser();
-            if (savedUser) {
-                updateAuthUI();
-            }
-
-            renderCategories();
-            renderProducts(products);
-
-            setTimeout(() => {
-                showInstallBanner();
-            }, 1000);
-
-            document.getElementById('installBtn').addEventListener('click', handleInstall);
-
-            document.getElementById('modal-overlay').addEventListener('click', closeLoginModal);
-        });
-
-        // ==================== PWA EVENTS ====================
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
-                document.getElementById('installBanner').classList.add('show');
-            }
-        });
-
-        window.addEventListener('appinstalled', () => {
-            document.getElementById('installBanner').classList.remove('show');
-            deferredPrompt = null;
-            showToast('✅ BiteRush installed successfully!', 'success');
-        });
-
-        // ==================== SERVICE WORKER ====================
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('✅ SW registered'))
-                .catch(err => console.log('❌ SW failed'));
-        }
+    
     </script>
+    
 </body>
 </html>
