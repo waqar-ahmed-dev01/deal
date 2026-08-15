@@ -1,0 +1,52 @@
+{
+  "name": "Daraz Clone - Multi-Category Store",
+  "short_name": "Daraz Store",
+  "description": "Online shopping store with multiple categories",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F57224",
+  "theme_color": "#F57224",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "business"],
+  "lang": "ur",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url": ".",
+      "description": "Go to Home Page"
+    },
+    {
+      "name": "Categories",
+      "url": "?page=categories",
+      "description": "Browse Categories"
+    },
+    {
+      "name": "Cart",
+      "url": "?page=cart",
+      "description": "View Your Cart"
+    }
+  ]
+}
