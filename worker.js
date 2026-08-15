@@ -17,7 +17,7 @@ const STATIC_ASSETS = [
 ];
 
 // Dynamic cache for product images and API data
-const DYNAMIC_CACHE = 'dealhub-dynamic-v1';
+const DYNAMIC_CACHE = 'dealhub-dynamic-v2';
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
