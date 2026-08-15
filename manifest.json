@@ -1,52 +1,16 @@
 {
   "name": "DealHub - Shopping App",
   "short_name": "DealHub",
-  "description": "DealHub Shopping App - Buy products online",
+  "description": "DealHub - Best Online Shopping Store",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F57224",
   "theme_color": "#F57224",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "icons": [
-    {
-      "src": "/image/favicon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/image/favicon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/image/favicon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/image/favicon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/image/favicon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
     {
       "src": "/image/favicon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/image/favicon-384x384.png",
-      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -56,24 +20,5 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "shortcuts": [
-    {
-      "name": "Home",
-      "short_name": "Home",
-      "description": "Go to Home",
-      "url": "/",
-      "icons": [{ "src": "/image/favicon-96x96.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Cart",
-      "short_name": "Cart",
-      "description": "View Shopping Cart",
-      "url": "/?page=cart",
-      "icons": [{ "src": "/image/favicon-96x96.png", "sizes": "96x96" }]
-    }
-  ],
-  "categories": ["shopping", "ecommerce"],
-  "lang": "ur",
-  "dir": "rtl"
+  ]
 }
