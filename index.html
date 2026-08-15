@@ -40,6 +40,59 @@
             padding-bottom: 70px;
         }
 
+        /* ===== TOP BAR WITH INSTALL OPTION ===== */
+        .top-bar {
+            background-color: #f8f8f8;
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 0 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover { color: var(--daraz-orange); }
+
+        /* ===== PWA INSTALL BUTTON IN TOP BAR ===== */
+        .pwa-install-top-btn {
+            background: var(--daraz-orange);
+            color: white !important;
+            border: none;
+            border-radius: 20px;
+            padding: 4px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+            text-decoration: none !important;
+        }
+
+        .pwa-install-top-btn:hover {
+            background: var(--daraz-orange-dark) !important;
+            transform: scale(1.05);
+            color: white !important;
+        }
+
+        .pwa-install-top-btn i {
+            font-size: 13px;
+        }
+
         /* ===== PWA INSTALL BUTTON IN HEADER ===== */
         .pwa-install-header-btn {
             background: rgba(255, 255, 255, 0.2);
@@ -209,30 +262,6 @@
         }
 
         /* ===== ORIGINAL STYLES ===== */
-        .top-bar {
-            background-color: #f8f8f8;
-            font-size: 12px;
-            padding: 4px 0;
-            border-bottom: 1px solid #e2e2e2;
-        }
-
-        .top-bar-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: flex-end;
-            gap: 20px;
-            padding: 0 15px;
-            align-items: center;
-        }
-
-        .top-bar a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        .top-bar a:hover { color: var(--daraz-orange); }
-
         header {
             background-color: var(--daraz-orange);
             position: sticky;
@@ -813,7 +842,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* ========== PWA INSTALL BANNER (old style) ========== */
+        /* ===== BOTTOM INSTALL BANNER (old style) ===== */
         #pwa-install-banner {
             position: fixed;
             bottom: 80px;
@@ -854,6 +883,8 @@
             .mobile-nav { display: flex; }
             .pwa-install-header-btn span { display: none; }
             .pwa-install-header-btn { padding: 5px 10px; }
+            .pwa-install-top-btn span { display: none; }
+            .pwa-install-top-btn { padding: 4px 10px; }
             .install-banner-home {
                 flex-direction: column;
                 text-align: center;
@@ -867,21 +898,28 @@
 </head>
 <body>
 
-    <!-- TOP BAR -->
+    <!-- TOP BAR with Install Button -->
     <div class="top-bar desktop-only">
         <div class="top-bar-container">
             <a href="#">SAVE MORE ON APP</a>
             <a href="#">SELL ON DARAZ</a>
             <a href="#">HELP & SUPPORT</a>
             <a href="#" id="top-login-btn" onclick="showPage('account-page')">LOGIN / SIGN UP</a>
-            <!-- Installed Badge (hidden by default) -->
+            
+            <!-- PWA INSTALL BUTTON IN TOP BAR -->
+            <button id="pwa-top-btn" class="pwa-install-top-btn" onclick="installPWA()" style="display:none;">
+                <i class="fa-solid fa-download"></i>
+                <span>Install App</span>
+            </button>
+            
+            <!-- Installed Badge -->
             <span id="installed-badge-top" class="installed-badge" style="display:none;">
                 <i class="fa-solid fa-check-circle"></i> Installed
             </span>
         </div>
     </div>
 
-    <!-- HEADER -->
+    <!-- HEADER with Install Button -->
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
@@ -894,7 +932,7 @@
             </div>
 
             <div class="header-actions">
-                <!-- PWA Install Button in Header -->
+                <!-- PWA INSTALL BUTTON IN HEADER -->
                 <button id="pwa-header-btn" class="pwa-install-header-btn" onclick="installPWA()" style="display:none;">
                     <i class="fa-solid fa-download"></i>
                     <span>Install App</span>
@@ -918,7 +956,13 @@
         <span class="tooltip">Install DealHub</span>
     </button>
 
-    <!-- PWA Install Banner on Home Page -->
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+
+        <!-- HOME PAGE -->
+        <div id="home-page" class="page-view active">
+            
+            <!-- PWA Install Banner on Home Page -->
             <div id="install-banner-home" class="install-banner-home">
                 <div class="banner-left">
                     <div class="banner-icon">
@@ -934,14 +978,6 @@
                 </button>
             </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="main-container">
-
-        <!-- HOME PAGE -->
-        <div id="home-page" class="page-view active">
-            
-            
-
             <div class="hero-section">
                 <div class="banner-slider">
                     <div class="banner-text">
@@ -956,10 +992,7 @@
                     <h4 style="margin-top: 5px;">TRY DealHub APP</h4>
                     <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
-                    <br>
-                    <button onclick="installPWA()" style="margin-top:10px; background:var(--daraz-orange); color:white; border:none; padding:6px 18px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:12px;">
-                        <i class="fa-solid fa-download"></i> Install
-                    </button>
+                    <!-- NO INSTALL BUTTON HERE - Removed as requested -->
                 </div>
             </div>
 
@@ -1288,6 +1321,8 @@
         }
 
         function hideAllInstallButtons() {
+            // Hide all install buttons
+            document.getElementById('pwa-top-btn').style.display = 'none';
             document.getElementById('pwa-header-btn').style.display = 'none';
             document.getElementById('pwa-fab').classList.remove('show');
             document.getElementById('install-banner-home').classList.remove('show');
@@ -1333,6 +1368,9 @@
         function showInstallButtons() {
             if (isAppInstalled) return;
             
+            // Show top bar button
+            document.getElementById('pwa-top-btn').style.display = 'inline-flex';
+            
             // Show header button
             document.getElementById('pwa-header-btn').style.display = 'flex';
             
@@ -1364,7 +1402,7 @@
                     deferredPrompt = null;
                 });
             } else {
-                // Fallback: Show instructions or open in new tab
+                // Fallback: Show instructions
                 showToast('📱 To install: Open Chrome menu > "Add to Home Screen"');
                 // Also try to show the native install if available
                 if ('install' in navigator) {

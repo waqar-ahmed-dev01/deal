@@ -1,7 +1,7 @@
 // service-worker.js - DealHub PWA Service Worker
 
 // Cache name with version
-const CACHE_NAME = 'dealhub-v3.0.0';
+const CACHE_NAME = 'dealhub-v4.0.0';
 
 // Files to cache on install
 const STATIC_ASSETS = [
