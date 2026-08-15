@@ -57,22 +57,6 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/image/screenshot-mobile.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "DealHub Home Page"
-    },
-    {
-      "src": "/image/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "DealHub Desktop View"
-    }
-  ],
   "shortcuts": [
     {
       "name": "Home",
@@ -87,17 +71,9 @@
       "description": "View Shopping Cart",
       "url": "/?page=cart",
       "icons": [{ "src": "/image/favicon-96x96.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Categories",
-      "short_name": "Categories",
-      "description": "Browse Categories",
-      "url": "/?page=categories",
-      "icons": [{ "src": "/image/favicon-96x96.png", "sizes": "96x96" }]
     }
   ],
-  "categories": ["shopping", "ecommerce", "lifestyle"],
+  "categories": ["shopping", "ecommerce"],
   "lang": "ur",
-  "dir": "rtl",
-  "prefer_related_applications": false
+  "dir": "rtl"
 }
