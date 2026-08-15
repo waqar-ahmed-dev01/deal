@@ -3,18 +3,18 @@
 <head>
     <link rel="icon" href="./image/favicon.jpeg">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>DealHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- ===== PWA META TAGS - COMPLETE ===== -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkRlYWxIdWIgLSBPbmxpbmUgU2hvcHBpbmciLAogICJzaG9ydF9uYW1lIjogIkRlYWxIdWIiLAogICJkZXNjcmlwdGlvbiI6ICJTaG9wIHRoZSBiZXN0IGRlYWxzIG9uIG1vYmlsZXMsIGZhc2hpb24sIGVsZWN0cm9uaWNzLCBhbmQgbW9yZSEiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0Y1RjVGNyIsCiAgInRoZW1lX2NvbG9yIjogIiNGNTcyMjQiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgInNjb3BlIjogIi8iLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9JzUwJyBmaWxsPSclMjNGNTcyMjQnLyUzRSUzQ3RleHQgeD0nMjU2JyB5PScyNTYnIGZvbnQtc2l6ZT0nMjUwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkeT0nLjNlbScgZm9udC1mYW1pbHk9J0FyaWFsJyBmb250LXdlaWdodD0nYm9sZCcgZmlsbD0nJTIzZmZmJz5EPC90ZXh0JTNFJTNDL3N2ZyUzRQogICAgfQogIF0sCiAgInNob3J0Y3V0cyI6IFsKICAgIHsKICAgICAgIm5hbWUiOiAiSG9tZSIsCiAgICAgICJzaG9ydF9uYW1lIjogIkhvbWUiLAogICAgICAiZGVzY3JpcHRpb24iOiAiR28gdG8gaG9tZXBhZ2UiLAogICAgICAidXJsIjogIi8iLAogICAgICAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyUzRSUzQ3JlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PSc1MCcgZmlsbD0nJTIzRjU3MjI0Jy8lM0UlM0N0ZXh0IHg9JzI1NicgeT0nMjU2JyBmb250LXNpemU9JzI1MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZHk9Jy4zZW0nIGZvbnQtZmFtaWx5PSdBcmlhbCcgZm9udC13ZWlnaHQ9J2JvbGQnIGZpbGw9JyUyM2ZmZic+SDwvdGV4dCUzRSUzQy9zdmclM0UifV0KICAgIH0KICBdCn0=">
-    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="DealHub">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='50' fill='%23F57224'/%3E%3Ctext x='256' y='256' font-size='250' text-anchor='middle' dy='.3em' font-family='Arial' font-weight='bold' fill='%23fff'%3ED%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="/image/favicon-192x192.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#F57224">
+    
+    <title>DealHub</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,14 +33,196 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-gray);
             color: var(--text-main);
             padding-bottom: 70px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* ========== SPLASH SCREEN ========== */
+        #splashScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #2d1a0e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #splashScreen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            background: var(--daraz-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(245, 114, 36, 0.4);
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .splash-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .splash-title span {
+            color: var(--daraz-orange);
+        }
+
+        .splash-loader {
+            margin-top: 30px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .splash-loader span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--daraz-orange);
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .splash-loader span:nth-child(1) { animation-delay: -0.32s; }
+        .splash-loader span:nth-child(2) { animation-delay: -0.16s; }
+        .splash-loader span:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* ========== INSTALL BANNER ========== */
+        #installBanner {
+            display: none;
+            background: white;
+            margin: 10px 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: 1px solid #e8e8e8;
+            animation: slideDown 0.5s ease;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            gap: 10px;
+        }
+
+        #installBanner.show {
+            display: flex;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .install-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .install-banner-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--daraz-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(245, 114, 36, 0.3);
+        }
+
+        .install-banner-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .install-banner-info h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .install-banner-info p {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .install-banner-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-install-native {
+            background: var(--daraz-orange);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-install-native:active {
+            transform: scale(0.95);
+            background: var(--daraz-orange-dark);
+        }
+
+        .btn-dismiss-native {
+            background: transparent;
+            border: none;
+            color: #999;
+            padding: 6px 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* ========== TOP BAR ========== */
         .top-bar {
             background-color: #f8f8f8;
             font-size: 12px;
@@ -55,8 +237,6 @@
             justify-content: flex-end;
             gap: 20px;
             padding: 0 15px;
-            align-items: center;
-            flex-wrap: wrap;
         }
 
         .top-bar a {
@@ -66,215 +246,7 @@
 
         .top-bar a:hover { color: var(--daraz-orange); }
 
-        /* ======================================================
-           PWA INSTALL BUTTON - HEADER (WHITE + NEW BADGE)
-           ====================================================== */
-        .pwa-install-header-btn {
-            background: white;
-            color: var(--daraz-orange);
-            border: none;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .pwa-install-header-btn.show {
-            display: flex;
-        }
-
-        .pwa-install-header-btn:hover {
-            background: #fff5ed;
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-        }
-
-        .pwa-install-header-btn .badge-new {
-            background: #e74c3c;
-            color: white;
-            font-size: 9px;
-            padding: 2px 7px;
-            border-radius: 10px;
-            font-weight: 800;
-            animation: pulse-badge 1.5s ease-in-out infinite;
-            text-transform: uppercase;
-        }
-
-        @keyframes pulse-badge {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* ======================================================
-           PWA INSTALL BUTTON - HEADER (GLASS MORPHISM)
-           ====================================================== */
-        .pwa-install-header-btn-alt {
-            background: rgba(255,255,255,0.15);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.35);
-            border-radius: 20px;
-            padding: 5px 14px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            gap: 7px;
-            transition: all 0.3s;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            animation: fadeInUp 0.6s ease;
-        }
-
-        .pwa-install-header-btn-alt.show {
-            display: flex;
-        }
-
-        .pwa-install-header-btn-alt:hover {
-            background: rgba(255,255,255,0.25);
-            border-color: rgba(255,255,255,0.6);
-            transform: scale(1.05);
-        }
-
-        /* ======================================================
-           HOME PAGE INSTALL BANNER
-           ====================================================== */
-        .install-banner-home {
-            background: linear-gradient(135deg, #F57224, #FF8A5C);
-            border-radius: 12px;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
-            box-shadow: 0 4px 15px rgba(245, 114, 36, 0.3);
-            animation: fadeInUp 0.7s ease;
-        }
-
-        .install-banner-home.show {
-            display: flex;
-        }
-
-        .install-banner-home .banner-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .install-banner-home .banner-icon {
-            font-size: 40px;
-            background: rgba(255,255,255,0.2);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .install-banner-home .banner-text h3 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .install-banner-home .banner-text p {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-top: 2px;
-        }
-
-        .install-banner-home .install-btn-main {
-            background: white;
-            color: var(--daraz-orange);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .install-banner-home .install-btn-main:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* ======================================================
-           FLOATING INSTALL FAB
-           ====================================================== */
-        .pwa-fab {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: var(--daraz-orange);
-            color: white;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: none;
-            box-shadow: 0 4px 20px rgba(245, 114, 36, 0.4);
-            cursor: pointer;
-            font-size: 24px;
-            z-index: 9998;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .pwa-fab.show {
-            display: flex;
-        }
-
-        .pwa-fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(245, 114, 36, 0.6);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* ======================================================
-           INSTALLED BADGE
-           ====================================================== */
-        .installed-badge {
-            background: #27ae60;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* ======================================================
-           HEADER
-           ====================================================== */
+        /* ========== HEADER ========== */
         header {
             background-color: var(--daraz-orange);
             position: sticky;
@@ -333,7 +305,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             color: white;
         }
 
@@ -386,6 +358,7 @@
             font-weight: 500;
         }
 
+        /* ========== MAIN ========== */
         .main-container {
             max-width: 1200px;
             margin: 15px auto;
@@ -395,9 +368,6 @@
         .page-view { display: none; }
         .page-view.active { display: block; }
 
-        /* ======================================================
-           HERO & PRODUCTS
-           ====================================================== */
         .hero-section {
             display: grid;
             grid-template-columns: 1fr 280px;
@@ -676,9 +646,7 @@
 
         .btn-cancel-login:hover { background: #ccc; }
 
-        /* ======================================================
-           LOGIN FORM
-           ====================================================== */
+        /* ========== LOGIN FORM ========== */
         .login-form-container {
             max-width: 450px;
             margin: 0 auto;
@@ -770,9 +738,7 @@
             text-decoration: underline;
         }
 
-        /* ======================================================
-           USER PROFILE
-           ====================================================== */
+        /* ========== USER PROFILE ========== */
         .user-profile-card {
             max-width: 450px;
             margin: 0 auto;
@@ -841,32 +807,41 @@
             margin-right: 8px;
         }
 
-        /* ======================================================
-           TOAST
-           ====================================================== */
-        .welcome-toast {
+        /* ========== TOAST ========== */
+        .toast {
             position: fixed;
-            top: 80px;
-            right: 20px;
-            background: #27ae60;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
             color: white;
-            padding: 14px 22px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            z-index: 9999;
-            animation: slideInRight 0.5s ease;
-            max-width: 350px;
-            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 400;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            font-size: 0.8rem;
+            max-width: 90%;
         }
 
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
-        /* ======================================================
-           RESPONSIVE
-           ====================================================== */
+        .toast.success {
+            background: #27ae60;
+        }
+
+        .toast.warning {
+            background: #d9534f;
+        }
+
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .products-grid { grid-template-columns: repeat(4, 1fr); }
             .hero-section { grid-template-columns: 1fr; }
@@ -877,71 +852,65 @@
             .desktop-only { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .mobile-nav { display: flex; }
-            
-            .pwa-install-header-btn .btn-text,
-            .pwa-install-header-btn-alt .btn-text {
-                display: none;
-            }
-            .pwa-install-header-btn { 
-                padding: 6px 10px; 
-            }
-            .pwa-install-header-btn-alt { 
-                padding: 5px 10px; 
-            }
-            
-            .install-banner-home {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            .install-banner-home .banner-left {
-                flex-direction: column;
-            }
-            .header-container {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .search-box {
-                order: 3;
-                flex-basis: 100%;
-                max-width: 100%;
-            }
         }
 
-        @media (max-width: 480px) {
-            .header-actions {
-                gap: 6px;
+        @media all and (display-mode: standalone) {
+            #installBanner {
+                display: none !important;
             }
-            .user-pill .user-name-text {
-                display: none;
-            }
-            .user-pill {
-                padding: 4px 8px;
-            }
-            .pwa-install-header-btn .badge-new {
-                font-size: 7px;
-                padding: 1px 5px;
+            .toast {
+                bottom: 80px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR -->
+    <!-- ========== SPLASH SCREEN ========== -->
+    <div id="splashScreen">
+        <div class="splash-icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div class="splash-title">Deal<span>Hub</span></div>
+        <div class="splash-loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- ========== INSTALL BANNER ========== -->
+    <div id="installBanner">
+        <div class="install-banner-left">
+            <div class="install-banner-icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <div class="install-banner-info">
+                <h4>Install DealHub</h4>
+                <p>Get faster access & offline mode</p>
+            </div>
+        </div>
+        <div class="install-banner-right">
+            <button class="btn-install-native" id="installBtn">
+                <i class="fa-solid fa-download"></i> Install
+            </button>
+            <button class="btn-dismiss-native" onclick="dismissInstallBanner()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== TOP BAR ========== -->
     <div class="top-bar desktop-only">
         <div class="top-bar-container">
             <a href="#">SAVE MORE ON APP</a>
             <a href="#">SELL ON DARAZ</a>
             <a href="#">HELP & SUPPORT</a>
             <a href="#" id="top-login-btn" onclick="showPage('account-page')">LOGIN / SIGN UP</a>
-            <!-- Installed Badge (hidden by default) -->
-            <span id="installed-badge-top" class="installed-badge" style="display:none;">
-                <i class="fa-solid fa-check-circle"></i> Installed
-            </span>
         </div>
     </div>
 
-    <!-- HEADER -->
+    <!-- ========== HEADER ========== -->
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
@@ -954,19 +923,6 @@
             </div>
 
             <div class="header-actions">
-                <!-- ===== PWA BUTTON 1: White with NEW Badge ===== -->
-                <button id="pwa-header-btn" class="pwa-install-header-btn" onclick="installPWA()">
-                    <i class="fa-solid fa-download"></i>
-                    <span class="btn-text">Install App</span>
-                    <span class="badge-new">NEW</span>
-                </button>
-
-                <!-- ===== PWA BUTTON 2: Glass-morphism ===== -->
-                <button id="pwa-header-btn-alt" class="pwa-install-header-btn-alt" onclick="installPWA()">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <span class="btn-text">Install</span>
-                </button>
-
                 <div class="cart-icon" onclick="showPage('cart-page')">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-badge" id="cart-count">0</span>
@@ -979,33 +935,11 @@
         </div>
     </header>
 
-    <!-- FLOATING INSTALL FAB -->
-    <button id="pwa-fab" class="pwa-fab" onclick="installPWA()">
-        <i class="fa-solid fa-download"></i>
-    </button>
-
-    <!-- MAIN CONTENT -->
+    <!-- ========== MAIN CONTENT ========== -->
     <div class="main-container">
 
         <!-- HOME PAGE -->
         <div id="home-page" class="page-view active">
-            
-            <!-- PWA Install Banner on Home Page -->
-            <div id="install-banner-home" class="install-banner-home">
-                <div class="banner-left">
-                    <div class="banner-icon">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <div class="banner-text">
-                        <h3>🚀 Get DealHub App</h3>
-                        <p>Faster shopping, offline access, and exclusive deals!</p>
-                    </div>
-                </div>
-                <button class="install-btn-main" onclick="installPWA()">
-                    <i class="fa-solid fa-download"></i> Install Now
-                </button>
-            </div>
-
             <div class="hero-section">
                 <div class="banner-slider">
                     <div class="banner-text">
@@ -1115,9 +1049,8 @@
             </div>
         </div>
 
-        <!-- ========== ACCOUNT PAGE WITH LOGIN FORM ========== -->
+        <!-- ACCOUNT PAGE -->
         <div id="account-page" class="page-view">
-
             <!-- LOGIN FORM -->
             <div class="card-panel login-form-container" id="login-box">
                 <h2 class="login-title">
@@ -1129,23 +1062,19 @@
                         <label for="login-name"><i class="fa-solid fa-user"></i> Full Name</label>
                         <input type="text" id="login-name" placeholder="Enter your full name" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="login-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
                         <input type="email" id="login-email" placeholder="Enter your email address" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
                         <input type="password" id="login-password" placeholder="Enter your password" required minlength="4">
                     </div>
-                    
                     <button type="submit" class="login-btn">
                         <i class="fa-solid fa-sign-in-alt"></i> Login
                     </button>
-                    
                     <div class="login-footer">
-                        Don't have an account? <a href="#" onclick="alert('Sign up feature coming soon!')">Sign Up</a>
+                        Don't have an account? <a href="#" onclick="showToast('Sign up feature coming soon!', 'warning')">Sign Up</a>
                     </div>
                 </form>
             </div>
@@ -1153,21 +1082,17 @@
             <!-- USER PROFILE -->
             <div class="card-panel user-profile-card" id="user-profile-box" style="display: none;">
                 <div class="profile-avatar" id="profile-avatar-letter">U</div>
-                
                 <div class="user-full-name" id="logged-user-name">User Name</div>
                 <div class="user-email" id="logged-user-email">user@email.com</div>
-                
                 <div class="user-status">
                     <i class="fa-solid fa-check-circle"></i> 
                     Account is active and saved in LocalStorage
                 </div>
-                
                 <button onclick="performLogout()" class="logout-btn">
                     <i class="fa-solid fa-sign-out-alt"></i> Logout
                 </button>
             </div>
         </div>
-
     </div>
 
     <!-- ORDER MODAL -->
@@ -1196,6 +1121,12 @@
         </div>
     </div>
 
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check" id="toast-icon"></i>
+        <span id="toast-msg">Item added!</span>
+    </div>
+
     <!-- MOBILE NAV -->
     <div class="mobile-nav">
         <div class="mobile-nav-item active" id="nav-home" onclick="showPage('home-page')">
@@ -1217,9 +1148,91 @@
     </div>
 
     <script>
-        // ============================================================
-        // CATEGORY DATA
-        // ============================================================
+        // ==================== SPLASH SCREEN ====================
+        function hideSplashScreen() {
+            const splash = document.getElementById('splashScreen');
+            splash.classList.add('hide');
+            document.body.classList.add('loaded');
+            setTimeout(() => { splash.style.display = 'none'; }, 800);
+        }
+        window.addEventListener('load', () => { setTimeout(hideSplashScreen, 2000); });
+
+        // ==================== TOAST ====================
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-msg');
+            
+            msg.innerText = message;
+            toast.className = 'toast';
+            
+            if (type === 'warning') {
+                icon.className = 'fa-solid fa-triangle-exclamation';
+                toast.classList.add('warning');
+            } else {
+                icon.className = 'fa-solid fa-circle-check';
+                toast.classList.add('success');
+            }
+            
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ==================== INSTALL BANNER ====================
+        let deferredPrompt = null;
+
+        function isAppInstalled() {
+            return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        }
+
+        function showInstallBanner() {
+            const banner = document.getElementById('installBanner');
+            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
+                banner.classList.add('show');
+            }
+        }
+
+        function dismissInstallBanner() {
+            document.getElementById('installBanner').classList.remove('show');
+            localStorage.setItem('dismissedInstall', 'true');
+        }
+
+        async function handleInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const choiceResult = await deferredPrompt.userChoice;
+                if (choiceResult.outcome === 'accepted') {
+                    document.getElementById('installBanner').classList.remove('show');
+                }
+                deferredPrompt = null;
+            } else {
+                showToast('Please use "Add to Home Screen" from browser menu', 'warning');
+            }
+        }
+
+        // ==================== SERVICE WORKER ====================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log('✅ Service Worker registered'))
+                .catch(err => console.log('❌ SW Error:', err));
+        }
+
+        // ==================== PWA EVENTS ====================
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
+                document.getElementById('installBanner').classList.add('show');
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installBanner').classList.remove('show');
+            deferredPrompt = null;
+            showToast('✅ DealHub installed successfully!', 'success');
+        });
+
+        // ==================== CATEGORY DATA ====================
         const categoriesData = [
             {
                 category: "Mobiles",
@@ -1289,9 +1302,7 @@
             }
         ];
 
-        // ============================================================
-        // GENERATE PRODUCTS
-        // ============================================================
+        // ==================== GENERATE PRODUCTS ====================
         let products = [];
         let globalId = 1;
 
@@ -1310,234 +1321,20 @@
             }
         });
 
-        // LocalStorage
+        // ==================== LOCAL STORAGE ====================
         let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
 
-        // ============================================================
-        // PWA INSTALL STATE - FIXED
-        // ============================================================
-        let deferredPrompt = null;
-        let isAppInstalled = false;
-
-        // ============================================================
-        // INITIALIZE APP
-        // ============================================================
-        window.addEventListener('DOMContentLoaded', function() {
+        // ==================== INIT ====================
+        window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('total-count').innerText = products.length;
             checkLoginStatus();
             updateCartUI();
             renderHomeProducts();
-            setupPWAInstall();
-            checkIfInstalled();
-            registerServiceWorker();
+            document.getElementById('installBtn').addEventListener('click', handleInstall);
+            setTimeout(showInstallBanner, 1000);
         });
 
-        // ============================================================
-        // CHECK IF APP IS ALREADY INSTALLED
-        // ============================================================
-        function checkIfInstalled() {
-            // Check if running in standalone mode
-            if (window.matchMedia('(display-mode: standalone)').matches || 
-                window.navigator.standalone === true) {
-                isAppInstalled = true;
-                hideAllInstallButtons();
-                showInstalledBadge();
-                console.log('✅ App is already installed');
-            }
-        }
-
-        function hideAllInstallButtons() {
-            document.getElementById('pwa-header-btn').classList.remove('show');
-            document.getElementById('pwa-header-btn-alt').classList.remove('show');
-            document.getElementById('pwa-fab').classList.remove('show');
-            document.getElementById('install-banner-home').classList.remove('show');
-        }
-
-        function showInstalledBadge() {
-            const badge = document.getElementById('installed-badge-top');
-            if (badge) badge.style.display = 'inline-flex';
-        }
-
-        // ============================================================
-        // SERVICE WORKER - COMPLETE WITH CACHE
-        // ============================================================
-        function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                // Complete service worker code with caching
-                const swCode = `
-                    const CACHE_NAME = 'dealhub-v2';
-                    const urlsToCache = [
-                        '/',
-                        '/index.html'
-                    ];
-
-                    self.addEventListener('install', function(event) {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(function(cache) {
-                                    console.log('Opened cache');
-                                    return cache.addAll(urlsToCache);
-                                })
-                                .then(function() {
-                                    return self.skipWaiting();
-                                })
-                        );
-                    });
-
-                    self.addEventListener('activate', function(event) {
-                        event.waitUntil(
-                            caches.keys().then(function(cacheNames) {
-                                return Promise.all(
-                                    cacheNames.filter(function(cacheName) {
-                                        return cacheName !== CACHE_NAME;
-                                    }).map(function(cacheName) {
-                                        return caches.delete(cacheName);
-                                    })
-                                );
-                            }).then(function() {
-                                return self.clients.claim();
-                            })
-                        );
-                    });
-
-                    self.addEventListener('fetch', function(event) {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(function(response) {
-                                    if (response) {
-                                        return response;
-                                    }
-                                    return fetch(event.request).then(function(response) {
-                                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                                            return response;
-                                        }
-                                        var responseToCache = response.clone();
-                                        caches.open(CACHE_NAME)
-                                            .then(function(cache) {
-                                                cache.put(event.request, responseToCache);
-                                            });
-                                        return response;
-                                    });
-                                })
-                        );
-                    });
-                `;
-                
-                try {
-                    // Create service worker from blob
-                    const blob = new Blob([swCode], { type: 'application/javascript' });
-                    const swUrl = URL.createObjectURL(blob);
-                    
-                    navigator.serviceWorker.register(swUrl)
-                        .then(function(registration) {
-                            console.log('✅ Service Worker registered successfully!');
-                        })
-                        .catch(function(err) {
-                            console.log('❌ Service Worker registration failed:', err);
-                        });
-                } catch (e) {
-                    console.log('Service Worker registration skipped:', e);
-                }
-            } else {
-                console.log('Service Worker not supported in this browser');
-            }
-        }
-
-        // ============================================================
-        // PWA INSTALL - SETUP AND HANDLERS - FIXED
-        // ============================================================
-        function setupPWAInstall() {
-            // Listen for beforeinstallprompt event
-            window.addEventListener('beforeinstallprompt', function(e) {
-                e.preventDefault();
-                deferredPrompt = e;
-                showInstallButtons();
-                console.log('✅ beforeinstallprompt event fired');
-            });
-
-            // Listen for app installed event
-            window.addEventListener('appinstalled', function() {
-                isAppInstalled = true;
-                hideAllInstallButtons();
-                showInstalledBadge();
-                showToast('✅ DealHub App installed successfully!');
-                console.log('✅ App installed successfully');
-            });
-
-            // Show buttons after 2 seconds if not already shown
-            setTimeout(function() {
-                if (!isAppInstalled) {
-                    showInstallButtons();
-                    // Show a helpful message
-                    if (!document.querySelector('.welcome-toast')) {
-                        showToast('📱 Tap "Install App" to add DealHub to home screen');
-                    }
-                }
-            }, 2000);
-
-            console.log('PWA Install setup complete');
-        }
-
-        function showInstallButtons() {
-            if (isAppInstalled) return;
-            document.getElementById('pwa-header-btn').classList.add('show');
-            document.getElementById('pwa-header-btn-alt').classList.add('show');
-            document.getElementById('pwa-fab').classList.add('show');
-            document.getElementById('install-banner-home').classList.add('show');
-        }
-
-        function installPWA() {
-            console.log('installPWA() called');
-            
-            if (deferredPrompt) {
-                // Show the install prompt
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(function(choiceResult) {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('✅ User accepted the install prompt');
-                        isAppInstalled = true;
-                        hideAllInstallButtons();
-                        showInstalledBadge();
-                        showToast('🎉 DealHub installed successfully!');
-                    } else {
-                        console.log('❌ User dismissed the install prompt');
-                        showToast('📱 Open Chrome menu → "Add to Home Screen"');
-                    }
-                    deferredPrompt = null;
-                });
-            } else {
-                // Fallback: Try to show native install or manual instructions
-                showToast('📱 Open browser menu → "Add to Home Screen"');
-                
-                // Try native install if available
-                if (navigator.install && typeof navigator.install === 'function') {
-                    navigator.install();
-                }
-            }
-        }
-
-        // ============================================================
-        // TOAST FUNCTION
-        // ============================================================
-        function showToast(message) {
-            const existing = document.querySelector('.welcome-toast');
-            if (existing) existing.remove();
-            
-            const toast = document.createElement('div');
-            toast.className = 'welcome-toast';
-            toast.innerHTML = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(function() {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.5s';
-                setTimeout(function() { toast.remove(); }, 500);
-            }, 5000);
-        }
-
-        // ============================================================
-        // LOGIN FUNCTIONS
-        // ============================================================
+        // ==================== LOGIN FUNCTIONS ====================
         function checkLoginStatus() {
             const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
             const avatarElement = document.getElementById('user-avatar-letter');
@@ -1558,8 +1355,7 @@
                 
                 loginBox.style.display = 'none';
                 profileBox.style.display = 'block';
-                
-                showWelcomeToast(userData.name);
+                showToast('Welcome back, ' + userData.name + '! 👋', 'success');
             } else {
                 avatarElement.textContent = "👤";
                 userNameText.textContent = "Login";
@@ -1571,44 +1367,26 @@
 
         function performLogin(event) {
             event.preventDefault();
-            
             const name = document.getElementById('login-name').value.trim();
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
             
             if (!name || !email || !password) {
-                alert('Please fill all fields!');
+                showToast('Please fill all fields!', 'warning');
                 return;
             }
             
-            const userData = { name, email, password };
-            localStorage.setItem('dealhub_user', JSON.stringify(userData));
+            localStorage.setItem('dealhub_user', JSON.stringify({ name, email, password }));
             checkLoginStatus();
             showPage('home-page');
-            alert('✅ Welcome ' + name + '! You have successfully logged in.');
+            showToast('✅ Welcome ' + name + '!', 'success');
         }
 
         function performLogout() {
             localStorage.removeItem('dealhub_user');
             checkLoginStatus();
             showPage('home-page');
-            alert('You have been logged out successfully.');
-        }
-
-        function showWelcomeToast(name) {
-            const existing = document.querySelector('.welcome-toast');
-            if (existing) existing.remove();
-            
-            const toast = document.createElement('div');
-            toast.className = 'welcome-toast';
-            toast.innerHTML = `<i class="fa-solid fa-hand-wave" style="margin-right:10px;"></i> Welcome back, <strong>${name}</strong>! 👋`;
-            document.body.appendChild(toast);
-            
-            setTimeout(function() {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.5s';
-                setTimeout(function() { toast.remove(); }, 500);
-            }, 4000);
+            showToast('Logged out successfully!', 'warning');
         }
 
         function showLoginRequiredModal() {
@@ -1624,9 +1402,7 @@
             showPage('account-page');
         }
 
-        // ============================================================
-        // CART FUNCTIONS
-        // ============================================================
+        // ==================== CART FUNCTIONS ====================
         function addToCartDirect(id) {
             const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
             if (!userData) {
@@ -1638,26 +1414,8 @@
                 cartItems.push(item);
                 saveCart();
                 updateCartUI();
-                showCartToast(item.title);
+                showToast('🛒 ' + item.title + ' added to cart!', 'success');
             }
-        }
-
-        function showCartToast(title) {
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed; bottom: 150px; right: 20px;
-                background: #27ae60; color: white;
-                padding: 10px 16px; border-radius: 8px; font-size: 14px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
-                animation: slideInRight 0.5s ease; max-width: 300px;
-            `;
-            toast.innerHTML = `🛒 ${title} added to cart!`;
-            document.body.appendChild(toast);
-            setTimeout(function() {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.5s';
-                setTimeout(function() { toast.remove(); }, 500);
-            }, 3000);
         }
 
         function startOrderProcess() {
@@ -1667,7 +1425,7 @@
                 return;
             }
             if(cartItems.length === 0) {
-                alert('Pehle cart me koi item add karein!');
+                showToast('Pehle cart me koi item add karein!', 'warning');
                 return;
             }
             const modal = document.getElementById('order-modal');
@@ -1678,15 +1436,15 @@
             closeBtn.style.display = 'none';
             statusText.innerText = "Order process ho raha hai...";
             icon.className = "fa-solid fa-gear fa-spin";
-            setTimeout(function() {
+            setTimeout(() => {
                 statusText.innerText = "Packing ho rahi hai...";
                 icon.className = "fa-solid fa-box-open";
             }, 2500);
-            setTimeout(function() {
+            setTimeout(() => {
                 statusText.innerText = "Aapka order raste me hai...";
                 icon.className = "fa-solid fa-truck-fast";
             }, 5000);
-            setTimeout(function() {
+            setTimeout(() => {
                 statusText.innerText = "Apna order le jao! 🎉";
                 icon.className = "fa-solid fa-circle-check";
                 icon.style.color = "#27ae60";
@@ -1694,6 +1452,7 @@
                 cartItems = [];
                 saveCart();
                 updateCartUI();
+                showToast('🎉 Order placed successfully!', 'success');
             }, 7500);
         }
 
@@ -1717,7 +1476,7 @@
             }
             cartList.innerHTML = '';
             let total = 0;
-            cartItems.forEach(function(item, idx) {
+            cartItems.forEach((item, idx) => {
                 total += item.price;
                 const row = document.createElement('div');
                 row.className = 'cart-item';
@@ -1739,11 +1498,12 @@
             document.getElementById('cart-total').innerText = `Rs. ${total}`;
         }
 
+        // ==================== RENDER FUNCTIONS ====================
         function renderHomeProducts() {
             const homeContainer = document.getElementById('home-products-container');
             homeContainer.innerHTML = '';
             const featured = products.slice(0, 24);
-            featured.forEach(function(product) {
+            featured.forEach(product => {
                 homeContainer.appendChild(createProductCard(product));
             });
         }
@@ -1768,16 +1528,16 @@
             document.getElementById('category-page-title').innerText = catName + " Category";
             const container = document.getElementById('category-products-container');
             container.innerHTML = '';
-            const filtered = products.filter(function(p) { return p.category.toLowerCase() === catName.toLowerCase(); });
-            filtered.forEach(function(product) {
+            const filtered = products.filter(p => p.category.toLowerCase() === catName.toLowerCase());
+            filtered.forEach(product => {
                 container.appendChild(createProductCard(product));
             });
             showPage('single-category-page');
         }
 
         function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(function(page) { page.classList.remove('active'); });
-            document.querySelectorAll('.mobile-nav-item').forEach(function(item) { item.classList.remove('active'); });
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
             if(pageId === 'categories-page' || pageId === 'single-category-page') document.getElementById('nav-categories').classList.add('active');
@@ -1793,16 +1553,14 @@
         function triggerSearch() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
             if(!query) return;
-            const filtered = products.filter(function(p) { 
-                return p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query); 
-            });
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
             document.getElementById('category-page-title').innerText = `Search Results for "${query}" (${filtered.length} found)`;
             const container = document.getElementById('category-products-container');
             container.innerHTML = '';
             if(filtered.length === 0) {
                 container.innerHTML = '<p style="color:#888;">Koi product nahi mila.</p>';
             } else {
-                filtered.forEach(function(product) {
+                filtered.forEach(product => {
                     container.appendChild(createProductCard(product));
                 });
             }
@@ -1813,13 +1571,6 @@
             document.getElementById('order-modal').style.display = 'none';
             showPage('home-page');
         }
-
-        // ============================================================
-        // LOG FOR DEBUGGING
-        // ============================================================
-        console.log('🛒 DealHub App Loaded');
-        console.log('📱 PWA Install ready - Look for Install buttons');
-        console.log('ℹ️  If buttons not visible, open Chrome menu → "Add to Home Screen"');
     </script>
 </body>
 </html>
