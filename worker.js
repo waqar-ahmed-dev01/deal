@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bite-rush-v3';
+const CACHE_NAME = 'bite-rush-v4';
 const urlsToCache = [
   '.',
   './index.html',
