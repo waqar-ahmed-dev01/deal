@@ -4,7 +4,7 @@
     <link rel="icon" href="./image/favicon.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealHub</title>
+    <title>Daraz Clone - Multi-Category Store</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -132,7 +132,6 @@
             padding: 2px 6px;
         }
 
-        /* ========== USER AVATAR ========== */
         .user-avatar {
             width: 32px;
             height: 32px;
@@ -427,15 +426,6 @@
             justify-content: center;
         }
 
-        .login-required-modal .modal-card .btn-group button {
-            padding: 10px 24px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
         .btn-login-now {
             background: var(--daraz-orange);
             color: white;
@@ -477,7 +467,7 @@
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
-                <i class="fa-solid fa-bag-shopping"></i> DealHub 
+                <i class="fa-solid fa-bag-shopping"></i> Daraz
             </div>
 
             <div class="search-box">
@@ -512,13 +502,13 @@
 
                 <div class="app-download-card">
                     <i class="fa-solid fa-mobile-screen-button" style="font-size: 36px; color: var(--daraz-orange);"></i>
-                    <h4 style="margin-top: 5px;">TRY DealHub  APP</h4>
+                    <h4 style="margin-top: 5px;">TRY DARAZ APP</h4>
                     <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
                 </div>
             </div>
 
-            <!-- CATEGORIES WITH ICONS -->
+            <!-- CATEGORIES -->
             <div class="categories-bar">
                 <div class="category-item" onclick="openCategoryPage('Mobiles')">
                     <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
@@ -587,7 +577,7 @@
             <button class="back-btn" onclick="showPage('categories-page')"><i class="fa-solid fa-arrow-left"></i> All Categories</button>
             <div class="card-panel">
                 <h2 id="category-page-title" style="color: var(--daraz-orange); margin-bottom: 5px;"></h2>
-                <p style="color: #666; margin-bottom: 20px;">Showing 50 items available in this category</p>
+                <p style="color: #666; margin-bottom: 20px;">Showing items available in this category</p>
                 <div class="products-grid" id="category-products-container"></div>
             </div>
         </div>
@@ -676,7 +666,7 @@
 
     <script>
         // ============================================================
-        // CATEGORY DATA WITH SPECIFIC IMAGES FOR EACH PRODUCT
+        // CATEGORY DATA - HAR PRODUCT KI APNI SPECIFIC IMAGE
         // ============================================================
         const categoriesData = [
             {
@@ -685,7 +675,7 @@
                     { name: "Samsung Galaxy S24 Ultra", img: "https://images.unsplash.com/photo-1610945265297-0e5f25b1ad69?w=300" },
                     { name: "Apple iPhone 15 Pro Max", img: "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=300" },
                     { name: "OnePlus 12 5G", img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300" },
-                    { name: "Xiaomi Redmi Note 13 Pro", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Xiaomi Redmi Note 13", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
                     { name: "Vivo V30 5G", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
                     { name: "Realme 12 Pro+", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" },
                     { name: "Google Pixel 8 Pro", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
@@ -772,7 +762,7 @@
         ];
 
         // ============================================================
-        // GENERATE PRODUCTS
+        // GENERATE PRODUCTS - HAR PRODUCT KI APNI IMAGE
         // ============================================================
         let products = [];
         let globalId = 1;
@@ -784,7 +774,7 @@
                 
                 products.push({
                     id: globalId++,
-                    title: `${productData.name}`,
+                    title: productData.name,
                     price: price,
                     category: cat.category,
                     img: productData.img
