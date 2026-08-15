@@ -1,16 +1,59 @@
 {
-  "name": "DealHub - Shopping App",
+  "name": "DealHub - Online Shopping",
   "short_name": "DealHub",
-  "description": "Best online shopping experience with DealHub",
+  "description": "Shop the best deals on mobiles, fashion, electronics, and more!",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F57224",
+  "background_color": "#F5F5F5",
   "theme_color": "#F57224",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
+  "scope": "/",
   "icons": [
+    {
+      "src": "/image/favicon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/image/favicon-192x192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/image/favicon-384x384.png",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -23,34 +66,59 @@
   ],
   "screenshots": [
     {
-      "src": "/image/screenshot1.png",
+      "src": "/screenshots/home.png",
       "sizes": "1080x1920",
-      "type": "image/png"
+      "type": "image/png",
+      "platform": "android",
+      "label": "Home page with products"
+    },
+    {
+      "src": "/screenshots/cart.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "platform": "android",
+      "label": "Shopping cart"
     }
   ],
-  "categories": ["shopping", "ecommerce", "lifestyle"],
-  "prefer_related_applications": false,
   "shortcuts": [
     {
       "name": "Home",
       "short_name": "Home",
-      "description": "Go to Home",
-      "url": "/?source=home",
-      "icons": [{ "src": "/image/home-icon.png", "sizes": "96x96" }]
+      "description": "Go to homepage",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/image/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Categories",
       "short_name": "Categories",
-      "description": "Browse Categories",
-      "url": "/?source=categories",
-      "icons": [{ "src": "/image/categories-icon.png", "sizes": "96x96" }]
+      "description": "Browse all categories",
+      "url": "/?page=categories",
+      "icons": [
+        {
+          "src": "/image/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Cart",
       "short_name": "Cart",
-      "description": "View Cart",
-      "url": "/?source=cart",
-      "icons": [{ "src": "/image/cart-icon.png", "sizes": "96x96" }]
+      "description": "View your shopping cart",
+      "url": "/?page=cart",
+      "icons": [
+        {
+          "src": "/image/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }

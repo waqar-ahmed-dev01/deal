@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
-    
     <link rel="icon" href="./image/favicon.jpeg">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealHub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>DealHub - PWA Install</title>
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="/manifest.json">
@@ -661,6 +660,7 @@
             max-width: 400px;
             width: 90%;
             animation: slideUp 0.5s ease;
+            border: 1px solid #eee;
         }
 
         @keyframes slideUp {
@@ -938,808 +938,443 @@
 
     <script>
         // ============================================================
-// CATEGORY DATA
-// ============================================================
-const categoriesData = [
-    {
-        category: "Mobiles",
-        products: [
-            { name: "Samsung Galaxy S24 Ultra", img: "https://cellmart.pk/wp-content/uploads/2024/07/S24-Ultra-Yellow-cellmart.jpg" },
-            { name: "Apple iPhone 15 Pro Max", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhTZ-efkLzcxE6fa6Vpjh4UcUoNDXyp8Qs-NV7_CemCFy0EXzYyPK7L6FJ&s=10" },
-            { name: "OnePlus 12 5G", img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300" },
-            { name: "Xiaomi Redmi Note 13", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
-            { name: "Vivo V30 5G", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
-            { name: "Realme 12 Pro+", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" }
-        ]
-    },
-    {
-        category: "Fashion",
-        products: [
-            { name: "Designer Cotton T-Shirt", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
-            { name: "Premium Denim Jeans", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" },
-            { name: "Leather Jacket Men", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" },
-            { name: "Sports Running Shoes", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
-            { name: "Polarized Sunglasses", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300" },
-            { name: "Leather Wallet", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300" }
-        ]
-    },
-    {
-        category: "Electronics",
-        products: [
-            { name: "Smart Watch Series 9", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300" },
-            { name: "Gaming Mouse RGB", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300" },
-            { name: "Mechanical Keyboard", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
-            { name: "Bluetooth Speaker", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" },
-            { name: "HD Web Camera", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS27-CTIn782c2kFjbOYgyrMH-5vABnFh1kwR8-xAt8PQ&s=10" },
-            { name: "USB Flash Drive 128GB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PR-Y87RvL2A7pP7EEcYWzF1o7u6CcNbGEhARIOQa2U7fBaV3pRRTdM0&s=10" }
-        ]
-    },
-    {
-        category: "Home",
-        products: [
-            { name: "Stainless Steel Flask", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
-            { name: "LED Desk Lamp", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" },
-            { name: "Non-Stick Frying Pan", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2bimFGy209k7n_K65pEpvqRY-KW_YK16QhhtzYjBSg&s=10w=300" },
-            { name: "Cotton Bed Sheet Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlafai2V0B_EC7i5YYCSkvqnOTFf9yGzQX_iwbNbEwNqF8Q469FR3YV6kL&s=10w=300" },
-            { name: "LED Strip Lights RGB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiVEPcYk83qZdyR66MBIsPYvtgGzwqI8rvTkJYbjFolyFgX7crF1fvQOCV&s=10w=300" },
-            { name: "Kitchen Knife Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEizYz_-xBZclybmN6QUXb4-Hl3vBN8F9NlElTsvtWowGXOc3NFY2JIF5i&s=10" }
-        ]
-    },
-    {
-        category: "Beauty",
-        products: [
-            { name: "Organic Face Wash", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwSd9ARkXWUcZj_EDf82MKOq8LIL94WCwCtEBsxxI2wgqQCsP0PQWBt8uh&s=10w=300" },
-            { name: "Moisturizing Cream", img: "https://saeedghani.pk/cdn/shop/files/Cream50g_1024x1024.webp?v=1776061512w=300" },
-            { name: "Hair Serum Shine", img: "https://springs.com.pk/cdn/shop/files/8961014263428.gif?v=1767202216w=300" },
-            { name: "Matte Lipstick Set", img: "https://zenixstore.pk/cdn/shop/files/6_1756301435.webp?v=1757067909&width=1946w=300" },
-            { name: "Perfume 100ml", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO6MKROU9SOJ4dtorhiJ6VbRUzWG-WW8BCjlp8v2VZF-JsXrhI71fRQBDN&s=10w=300" },
-            { name: "Sunscreen SPF 50", img: "https://bbabysuleman.com/cdn/shop/files/vitamincsunscreenwebpic_a7d0e4b1-bb7a-4726-8c60-57bb211f791b.jpg?v=1775907206&width=1946" }
-        ]
-    },
-    {
-        category: "Sports",
-        products: [
-            { name: "Leather Football", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
-            { name: "Non-Slip Yoga Mat", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
-            { name: "Badminton Racket", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
-            { name: "Dumbbell Set 5kg", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=300" },
-            { name: "Speed Skipping Rope", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
-            { name: "Resistance Bands", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" }
-        ]
-    }
-];
+        // CATEGORY DATA
+        // ============================================================
+        const categoriesData = [
+            {
+                category: "Mobiles",
+                products: [
+                    { name: "Samsung Galaxy S24 Ultra", img: "https://cellmart.pk/wp-content/uploads/2024/07/S24-Ultra-Yellow-cellmart.jpg" },
+                    { name: "Apple iPhone 15 Pro Max", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhTZ-efkLzcxE6fa6Vpjh4UcUoNDXyp8Qs-NV7_CemCFy0EXzYyPK7L6FJ&s=10" },
+                    { name: "OnePlus 12 5G", img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300" },
+                    { name: "Xiaomi Redmi Note 13", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Vivo V30 5G", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
+                    { name: "Realme 12 Pro+", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" }
+                ]
+            },
+            {
+                category: "Fashion",
+                products: [
+                    { name: "Designer Cotton T-Shirt", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
+                    { name: "Premium Denim Jeans", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" },
+                    { name: "Leather Jacket Men", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" },
+                    { name: "Sports Running Shoes", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
+                    { name: "Polarized Sunglasses", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300" },
+                    { name: "Leather Wallet", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300" }
+                ]
+            },
+            {
+                category: "Electronics",
+                products: [
+                    { name: "Smart Watch Series 9", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300" },
+                    { name: "Gaming Mouse RGB", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300" },
+                    { name: "Mechanical Keyboard", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
+                    { name: "Bluetooth Speaker", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" },
+                    { name: "HD Web Camera", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS27-CTIn782c2kFjbOYgyrMH-5vABnFh1kwR8-xAt8PQ&s=10" },
+                    { name: "USB Flash Drive 128GB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PR-Y87RvL2A7pP7EEcYWzF1o7u6CcNbGEhARIOQa2U7fBaV3pRRTdM0&s=10" }
+                ]
+            },
+            {
+                category: "Home",
+                products: [
+                    { name: "Stainless Steel Flask", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
+                    { name: "LED Desk Lamp", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" },
+                    { name: "Non-Stick Frying Pan", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2bimFGy209k7n_K65pEpvqRY-KW_YK16QhhtzYjBSg&s=10w=300" },
+                    { name: "Cotton Bed Sheet Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlafai2V0B_EC7i5YYCSkvqnOTFf9yGzQX_iwbNbEwNqF8Q469FR3YV6kL&s=10w=300" },
+                    { name: "LED Strip Lights RGB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiVEPcYk83qZdyR66MBIsPYvtgGzwqI8rvTkJYbjFolyFgX7crF1fvQOCV&s=10w=300" },
+                    { name: "Kitchen Knife Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEizYz_-xBZclybmN6QUXb4-Hl3vBN8F9NlElTsvtWowGXOc3NFY2JIF5i&s=10" }
+                ]
+            },
+            {
+                category: "Beauty",
+                products: [
+                    { name: "Organic Face Wash", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwSd9ARkXWUcZj_EDf82MKOq8LIL94WCwCtEBsxxI2wgqQCsP0PQWBt8uh&s=10w=300" },
+                    { name: "Moisturizing Cream", img: "https://saeedghani.pk/cdn/shop/files/Cream50g_1024x1024.webp?v=1776061512w=300" },
+                    { name: "Hair Serum Shine", img: "https://springs.com.pk/cdn/shop/files/8961014263428.gif?v=1767202216w=300" },
+                    { name: "Matte Lipstick Set", img: "https://zenixstore.pk/cdn/shop/files/6_1756301435.webp?v=1757067909&width=1946w=300" },
+                    { name: "Perfume 100ml", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO6MKROU9SOJ4dtorhiJ6VbRUzWG-WW8BCjlp8v2VZF-JsXrhI71fRQBDN&s=10w=300" },
+                    { name: "Sunscreen SPF 50", img: "https://bbabysuleman.com/cdn/shop/files/vitamincsunscreenwebpic_a7d0e4b1-bb7a-4726-8c60-57bb211f791b.jpg?v=1775907206&width=1946" }
+                ]
+            },
+            {
+                category: "Sports",
+                products: [
+                    { name: "Leather Football", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Non-Slip Yoga Mat", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Badminton Racket", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Dumbbell Set 5kg", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=300" },
+                    { name: "Speed Skipping Rope", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Resistance Bands", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" }
+                ]
+            }
+        ];
 
-// ============================================================
-// GENERATE PRODUCTS
-// ============================================================
-let products = [];
-let globalId = 1;
+        // ============================================================
+        // GENERATE PRODUCTS
+        // ============================================================
+        let products = [];
+        let globalId = 1;
 
-categoriesData.forEach(cat => {
-    for (let i = 1; i <= 50; i++) {
-        const productData = cat.products[(i - 1) % cat.products.length];
-        const price = Math.floor(Math.random() * 4500) + 299;
-        
-        products.push({
-            id: globalId++,
-            title: productData.name,
-            price: price,
-            category: cat.category,
-            img: productData.img
+        categoriesData.forEach(cat => {
+            for (let i = 1; i <= 50; i++) {
+                const productData = cat.products[(i - 1) % cat.products.length];
+                const price = Math.floor(Math.random() * 4500) + 299;
+                
+                products.push({
+                    id: globalId++,
+                    title: productData.name,
+                    price: price,
+                    category: cat.category,
+                    img: productData.img
+                });
+            }
         });
-    }
-});
 
-// LocalStorage
-let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
+        // LocalStorage
+        let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
 
-// ============================================================
-// PWA FEATURES
-// ============================================================
-function registerServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then(() => console.log('Service Worker registered!'))
-            .catch(err => console.log('SW Error:', err));
-    }
-}
+        // ============================================================
+        // INITIALIZE APP
+        // ============================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('total-count').innerText = products.length;
+            checkLoginStatus();
+            updateCartUI();
+            renderHomeProducts();
+            registerServiceWorker();
+            setupPWAInstall();
+        });
 
-function setupPWAInstall() {
-    let deferredPrompt;
-    
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        showInstallBanner();
-    });
+        // ============================================================
+        // SERVICE WORKER (PWA)
+        // ============================================================
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker registered!'))
+                    .catch(err => console.log('SW Error:', err));
+            }
+        }
 
-    window.addEventListener('appinstalled', () => {
-        console.log('App installed successfully!');
-        showInstallSuccessToast();
-    });
+        // ============================================================
+        // PWA INSTALL
+        // ============================================================
+        let deferredPrompt;
 
-    function showInstallBanner() {
-        if (document.getElementById('pwa-install-banner')) return;
-        
-        const banner = document.createElement('div');
-        banner.id = 'pwa-install-banner';
-        banner.innerHTML = `
-            <div style="display:flex;align-items:center;gap:10px;flex:1;">
-                <i class="fa-solid fa-mobile-screen-button" style="font-size:24px;color:#F57224;"></i>
-                <div>
-                    <div style="font-weight:bold;font-size:13px;">Install DealHub App</div>
-                    <div style="font-size:11px;color:#666;">Get faster shopping experience</div>
-                </div>
-            </div>
-            <button onclick="installPWA()" style="background:#F57224;color:white;border:none;padding:6px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px;">Install</button>
-            <button onclick="this.parentElement.remove()" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 4px;">&times;</button>
-        `;
-        document.body.appendChild(banner);
-    }
-
-    function installPWA() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((result) => {
-                if (result.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-                const banner = document.getElementById('pwa-install-banner');
-                if (banner) banner.remove();
+        function setupPWAInstall() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallBanner();
             });
         }
-    }
 
-    window.installPWA = installPWA;
-}
-
-function showInstallSuccessToast() {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
-        background: #27ae60; color: white; padding: 15px 25px;
-        border-radius: 12px; font-size: 16px; font-weight: bold;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 9999;
-        animation: slideUp 0.5s ease; max-width: 90%;
-        text-align: center;
-    `;
-    toast.innerHTML = '🎉 DealHub App Successfully Installed!';
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.5s';
-        setTimeout(() => toast.remove(), 500);
-    }, 4000);
-}
-
-// ============================================================
-// DOWNLOAD OPTION
-// ============================================================
-function createDownloadOption() {
-    const downloadContainer = document.createElement('div');
-    downloadContainer.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9998;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    `;
-
-    // Download App Button
-    const downloadBtn = document.createElement('button');
-    downloadBtn.innerHTML = `
-        <i class="fa-solid fa-download" style="margin-right: 8px;"></i>
-        Download App
-    `;
-    downloadBtn.style.cssText = `
-        background: linear-gradient(135deg, #F57224, #FF6B35);
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 50px;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(245, 114, 36, 0.4);
-        font-size: 14px;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        animation: pulse 2s infinite;
-    `;
-    
-    downloadBtn.onmouseover = () => {
-        downloadBtn.style.transform = 'scale(1.05)';
-        downloadBtn.style.boxShadow = '0 6px 25px rgba(245, 114, 36, 0.6)';
-    };
-    downloadBtn.onmouseout = () => {
-        downloadBtn.style.transform = 'scale(1)';
-        downloadBtn.style.boxShadow = '0 4px 15px rgba(245, 114, 36, 0.4)';
-    };
-    
-    downloadBtn.onclick = () => {
-        showDownloadModal();
-    };
-
-    downloadContainer.appendChild(downloadBtn);
-    document.body.appendChild(downloadContainer);
-
-    // Add pulse animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-function showDownloadModal() {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.7);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeIn 0.3s ease;
-    `;
-
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        background: white;
-        border-radius: 16px;
-        padding: 30px;
-        max-width: 400px;
-        width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-        animation: slideUp 0.3s ease;
-    `;
-
-    modal.innerHTML = `
-        <div style="text-align: center; margin-bottom: 20px;">
-            <i class="fa-solid fa-mobile-screen-button" style="font-size: 48px; color: #F57224;"></i>
-            <h2 style="margin-top: 10px; color: #212121;">Download DealHub App</h2>
-            <p style="color: #666; font-size: 14px;">Choose your download option below</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Direct Download -->
-            <button onclick="downloadApp()" style="
-                background: #F57224;
-                color: white;
-                border: none;
-                padding: 15px;
-                border-radius: 8px;
-                font-weight: bold;
-                cursor: pointer;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='#d65c14'" onmouseout="this.style.background='#F57224'">
-                <i class="fa-solid fa-download"></i>
-                Direct Download (APK)
-            </button>
-
-            <!-- PWA Install -->
-            <button onclick="installPWAFromModal()" style="
-                background: #2ecc71;
-                color: white;
-                border: none;
-                padding: 15px;
-                border-radius: 8px;
-                font-weight: bold;
-                cursor: pointer;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='#27ae60'" onmouseout="this.style.background='#2ecc71'">
-                <i class="fa-solid fa-mobile-screen"></i>
-                Install PWA
-            </button>
-
-            <!-- QR Code -->
-            <button onclick="showQRCode()" style="
-                background: #3498db;
-                color: white;
-                border: none;
-                padding: 15px;
-                border-radius: 8px;
-                font-weight: bold;
-                cursor: pointer;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='#2980b9'" onmouseout="this.style.background='#3498db'">
-                <i class="fa-solid fa-qrcode"></i>
-                Scan QR Code
-            </button>
-
-            <!-- Share -->
-            <button onclick="shareApp()" style="
-                background: #9b59b6;
-                color: white;
-                border: none;
-                padding: 15px;
-                border-radius: 8px;
-                font-weight: bold;
-                cursor: pointer;
-                font-size: 16px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='#8e44ad'" onmouseout="this.style.background='#9b59b6'">
-                <i class="fa-solid fa-share-nodes"></i>
-                Share App
-            </button>
-
-            <!-- Close -->
-            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-                background: #e74c3c;
-                color: white;
-                border: none;
-                padding: 12px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                margin-top: 5px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
-                <i class="fa-solid fa-times"></i> Close
-            </button>
-        </div>
-
-        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: center;">
-            <p style="font-size: 12px; color: #999;">
-                <i class="fa-solid fa-shield-halved"></i>
-                Secure & Free Download
-            </p>
-        </div>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Add animation styles if not exists
-    if (!document.getElementById('download-modal-styles')) {
-        const style = document.createElement('style');
-        style.id = 'download-modal-styles';
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            @keyframes slideUp {
-                from { transform: translateY(50px); opacity: 0; }
-                to { transform: translateY(0); opacity: 1; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
-
-function downloadApp() {
-    // Create a zip or direct download
-    const link = document.createElement('a');
-    link.href = '/download/dealhub-app.apk';
-    link.download = 'dealhub-app.apk';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Show success message
-    showToast('Download started!');
-}
-
-function installPWAFromModal() {
-    const installBtn = document.querySelector('#pwa-install-banner button');
-    if (installBtn) {
-        installBtn.click();
-        // Close modal
-        const modal = document.querySelector('[style*="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7);"]');
-        if (modal) modal.remove();
-    } else {
-        showToast('Please use the install button at the bottom of the page');
-    }
-}
-
-function showQRCode() {
-    const modal = document.querySelector('[style*="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7);"]');
-    if (modal) {
-        // Update modal content to show QR
-        const content = modal.querySelector('div[style*="background: white; border-radius: 16px;"]');
-        if (content) {
-            content.innerHTML = `
-                <div style="text-align: center;">
-                    <h3 style="margin-bottom: 15px;">Scan to Download</h3>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(window.location.href)}" 
-                         alt="QR Code" 
-                         style="width: 200px; height: 200px; margin: 10px auto; border-radius: 8px;">
-                    <p style="color: #666; margin: 10px 0;">Scan this QR code with your phone's camera</p>
-                    <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-                        background: #F57224;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 6px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        margin-top: 10px;
-                    ">Close</button>
+        function showInstallBanner() {
+            if (document.getElementById('pwa-install-banner')) return;
+            
+            const banner = document.createElement('div');
+            banner.id = 'pwa-install-banner';
+            banner.innerHTML = `
+                <div style="display:flex;align-items:center;gap:10px;flex:1;">
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size:24px;color:#F57224;"></i>
+                    <div>
+                        <div style="font-weight:bold;font-size:13px;">Install DealHub App</div>
+                        <div style="font-size:11px;color:#666;">Get faster shopping experience</div>
+                    </div>
                 </div>
+                <button onclick="installPWA()" style="background:#F57224;color:white;border:none;padding:6px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px;">Install</button>
+                <button onclick="this.parentElement.remove()" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 4px;">&times;</button>
             `;
+            document.body.appendChild(banner);
         }
-    }
-}
 
-function shareApp() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'DealHub - Shopping App',
-            text: 'Check out DealHub - Best online shopping experience!',
-            url: window.location.href
-        }).catch(() => {});
-    } else {
-        // Fallback - copy link
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            showToast('Link copied to clipboard!');
-        }).catch(() => {
-            // Manual copy
-            const textArea = document.createElement('textarea');
-            textArea.value = window.location.href;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            showToast('Link copied to clipboard!');
-        });
-    }
-}
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    const banner = document.getElementById('pwa-install-banner');
+                    if (banner) banner.remove();
+                });
+            }
+        }
 
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #333;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 14px;
-        z-index: 10000;
-        animation: slideUp 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        max-width: 90%;
-        text-align: center;
-    `;
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.5s';
-        setTimeout(() => toast.remove(), 500);
-    }, 3000);
-}
+        // ============================================================
+        // LOGIN FUNCTIONS - FULL NAME + EMAIL + PASSWORD
+        // ============================================================
+        function checkLoginStatus() {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            const avatarElement = document.getElementById('user-avatar-letter');
+            const userNameText = document.getElementById('header-user-text');
+            const topLoginBtn = document.getElementById('top-login-btn');
+            const loginBox = document.getElementById('login-box');
+            const profileBox = document.getElementById('user-profile-box');
 
-// ============================================================
-// LOGIN FUNCTIONS
-// ============================================================
-function checkLoginStatus() {
-    const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
-    const avatarElement = document.getElementById('user-avatar-letter');
-    const userNameText = document.getElementById('header-user-text');
-    const topLoginBtn = document.getElementById('top-login-btn');
-    const loginBox = document.getElementById('login-box');
-    const profileBox = document.getElementById('user-profile-box');
+            if (userData && userData.name) {
+                const firstLetter = userData.name.charAt(0).toUpperCase();
+                avatarElement.textContent = firstLetter;
+                userNameText.textContent = userData.name;
+                topLoginBtn.textContent = userData.name + " (Account)";
+                
+                document.getElementById('profile-avatar-letter').textContent = firstLetter;
+                document.getElementById('logged-user-name').textContent = userData.name;
+                document.getElementById('logged-user-email').textContent = userData.email;
+                
+                loginBox.style.display = 'none';
+                profileBox.style.display = 'block';
+                
+                showWelcomeToast(userData.name);
+            } else {
+                avatarElement.textContent = "👤";
+                userNameText.textContent = "Login";
+                topLoginBtn.textContent = "LOGIN / SIGN UP";
+                loginBox.style.display = 'block';
+                profileBox.style.display = 'none';
+            }
+        }
 
-    if (userData && userData.name) {
-        const firstLetter = userData.name.charAt(0).toUpperCase();
-        avatarElement.textContent = firstLetter;
-        userNameText.textContent = userData.name;
-        topLoginBtn.textContent = userData.name + " (Account)";
-        
-        document.getElementById('profile-avatar-letter').textContent = firstLetter;
-        document.getElementById('logged-user-name').textContent = userData.name;
-        document.getElementById('logged-user-email').textContent = userData.email;
-        
-        loginBox.style.display = 'none';
-        profileBox.style.display = 'block';
-        
-        showWelcomeToast(userData.name);
-    } else {
-        avatarElement.textContent = "👤";
-        userNameText.textContent = "Login";
-        topLoginBtn.textContent = "LOGIN / SIGN UP";
-        loginBox.style.display = 'block';
-        profileBox.style.display = 'none';
-    }
-}
+        function performLogin(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('login-name').value.trim();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            if (!name || !email || !password) {
+                alert('Please fill all fields!');
+                return;
+            }
+            
+            const userData = { name, email, password };
+            localStorage.setItem('dealhub_user', JSON.stringify(userData));
+            checkLoginStatus();
+            showPage('home-page');
+            alert('✅ Welcome ' + name + '! You have successfully logged in.');
+        }
 
-function performLogin(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('login-name').value.trim();
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-    
-    if (!name || !email || !password) {
-        alert('Please fill all fields!');
-        return;
-    }
-    
-    const userData = { name, email, password };
-    localStorage.setItem('dealhub_user', JSON.stringify(userData));
-    checkLoginStatus();
-    showPage('home-page');
-    alert('✅ Welcome ' + name + '! You have successfully logged in.');
-}
+        function performLogout() {
+            localStorage.removeItem('dealhub_user');
+            checkLoginStatus();
+            showPage('home-page');
+            alert('You have been logged out successfully.');
+        }
 
-function performLogout() {
-    localStorage.removeItem('dealhub_user');
-    checkLoginStatus();
-    showPage('home-page');
-    alert('You have been logged out successfully.');
-}
+        function showWelcomeToast(name) {
+            const existing = document.querySelector('.welcome-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'welcome-toast';
+            toast.innerHTML = `<i class="fa-solid fa-hand-wave" style="margin-right:10px;"></i> Welcome back, <strong>${name}</strong>! 👋`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        }
 
-function showWelcomeToast(name) {
-    const existing = document.querySelector('.welcome-toast');
-    if (existing) existing.remove();
-    
-    const toast = document.createElement('div');
-    toast.className = 'welcome-toast';
-    toast.innerHTML = `<i class="fa-solid fa-hand-wave" style="margin-right:10px;"></i> Welcome back, <strong>${name}</strong>! 👋`;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.5s';
-        setTimeout(() => toast.remove(), 500);
-    }, 4000);
-}
+        function showLoginRequiredModal() {
+            document.getElementById('login-required-modal').style.display = 'flex';
+        }
 
-function showLoginRequiredModal() {
-    document.getElementById('login-required-modal').style.display = 'flex';
-}
+        function closeLoginRequiredModal() {
+            document.getElementById('login-required-modal').style.display = 'none';
+        }
 
-function closeLoginRequiredModal() {
-    document.getElementById('login-required-modal').style.display = 'none';
-}
+        function redirectToLogin() {
+            closeLoginRequiredModal();
+            showPage('account-page');
+        }
 
-function redirectToLogin() {
-    closeLoginRequiredModal();
-    showPage('account-page');
-}
+        // ============================================================
+        // CART FUNCTIONS
+        // ============================================================
+        function addToCartDirect(id) {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            if (!userData) {
+                showLoginRequiredModal();
+                return;
+            }
+            const item = products.find(p => p.id === id);
+            if (item) {
+                cartItems.push(item);
+                saveCart();
+                updateCartUI();
+                showCartToast(item.title);
+            }
+        }
 
-// ============================================================
-// CART FUNCTIONS
-// ============================================================
-function addToCartDirect(id) {
-    const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
-    if (!userData) {
-        showLoginRequiredModal();
-        return;
-    }
-    const item = products.find(p => p.id === id);
-    if (item) {
-        cartItems.push(item);
-        saveCart();
-        updateCartUI();
-        showCartToast(item.title);
-    }
-}
+        function showCartToast(title) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; bottom: 150px; right: 20px;
+                background: #27ae60; color: white;
+                padding: 10px 16px; border-radius: 8px; font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
+                animation: slideInRight 0.5s ease; max-width: 300px;
+            `;
+            toast.innerHTML = `🛒 ${title} added to cart!`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
 
-function showCartToast(title) {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed; bottom: 150px; right: 20px;
-        background: #27ae60; color: white;
-        padding: 10px 16px; border-radius: 8px; font-size: 14px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
-        animation: slideInRight 0.5s ease; max-width: 300px;
-    `;
-    toast.innerHTML = `🛒 ${title} added to cart!`;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.5s';
-        setTimeout(() => toast.remove(), 500);
-    }, 3000);
-}
+        function startOrderProcess() {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            if (!userData) {
+                showLoginRequiredModal();
+                return;
+            }
+            if(cartItems.length === 0) {
+                alert('Pehle cart me koi item add karein!');
+                return;
+            }
+            const modal = document.getElementById('order-modal');
+            const statusText = document.getElementById('order-status-text');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const icon = document.getElementById('order-icon');
+            modal.style.display = 'flex';
+            closeBtn.style.display = 'none';
+            statusText.innerText = "Order process ho raha hai...";
+            icon.className = "fa-solid fa-gear fa-spin";
+            setTimeout(() => {
+                statusText.innerText = "Packing ho rahi hai...";
+                icon.className = "fa-solid fa-box-open";
+            }, 2500);
+            setTimeout(() => {
+                statusText.innerText = "Aapka order raste me hai...";
+                icon.className = "fa-solid fa-truck-fast";
+            }, 5000);
+            setTimeout(() => {
+                statusText.innerText = "Apna order le jao! 🎉";
+                icon.className = "fa-solid fa-circle-check";
+                icon.style.color = "#27ae60";
+                closeBtn.style.display = 'block';
+                cartItems = [];
+                saveCart();
+                updateCartUI();
+            }, 7500);
+        }
 
-function startOrderProcess() {
-    const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
-    if (!userData) {
-        showLoginRequiredModal();
-        return;
-    }
-    if(cartItems.length === 0) {
-        alert('Pehle cart me koi item add karein!');
-        return;
-    }
-    const modal = document.getElementById('order-modal');
-    const statusText = document.getElementById('order-status-text');
-    const closeBtn = document.getElementById('close-modal-btn');
-    const icon = document.getElementById('order-icon');
-    modal.style.display = 'flex';
-    closeBtn.style.display = 'none';
-    statusText.innerText = "Order process ho raha hai...";
-    icon.className = "fa-solid fa-gear fa-spin";
-    setTimeout(() => {
-        statusText.innerText = "Packing ho rahi hai...";
-        icon.className = "fa-solid fa-box-open";
-    }, 2500);
-    setTimeout(() => {
-        statusText.innerText = "Aapka order raste me hai...";
-        icon.className = "fa-solid fa-truck-fast";
-    }, 5000);
-    setTimeout(() => {
-        statusText.innerText = "Apna order le jao! 🎉";
-        icon.className = "fa-solid fa-circle-check";
-        icon.style.color = "#27ae60";
-        closeBtn.style.display = 'block';
-        cartItems = [];
-        saveCart();
-        updateCartUI();
-    }, 7500);
-}
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            saveCart();
+            updateCartUI();
+        }
 
-function removeFromCart(index) {
-    cartItems.splice(index, 1);
-    saveCart();
-    updateCartUI();
-}
+        function saveCart() {
+            localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
+        }
 
-function saveCart() {
-    localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
-}
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cartItems.length;
+            const cartList = document.getElementById('cart-items-list');
+            if(cartItems.length === 0) {
+                cartList.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
+                document.getElementById('cart-total').innerText = 'Rs. 0';
+                return;
+            }
+            cartList.innerHTML = '';
+            let total = 0;
+            cartItems.forEach((item, idx) => {
+                total += item.price;
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.img}" style="width:45px; height:45px; object-fit:cover; border-radius:4px;">
+                        <div>
+                            <div class="cart-item-title">${item.title}</div>
+                            <span style="font-size:11px; color:#777;">Category: ${item.category}</span>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center;">
+                        <div style="font-weight:bold; color: var(--daraz-orange);">Rs. ${item.price}</div>
+                        <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})" title="Remove Item"></i>
+                    </div>
+                `;
+                cartList.appendChild(row);
+            });
+            document.getElementById('cart-total').innerText = `Rs. ${total}`;
+        }
 
-function updateCartUI() {
-    document.getElementById('cart-count').innerText = cartItems.length;
-    const cartList = document.getElementById('cart-items-list');
-    if(cartItems.length === 0) {
-        cartList.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
-        document.getElementById('cart-total').innerText = 'Rs. 0';
-        return;
-    }
-    cartList.innerHTML = '';
-    let total = 0;
-    cartItems.forEach((item, idx) => {
-        total += item.price;
-        const row = document.createElement('div');
-        row.className = 'cart-item';
-        row.innerHTML = `
-            <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${item.img}" style="width:45px; height:45px; object-fit:cover; border-radius:4px;">
+        function renderHomeProducts() {
+            const homeContainer = document.getElementById('home-products-container');
+            homeContainer.innerHTML = '';
+            const featured = products.slice(0, 24);
+            featured.forEach(product => {
+                homeContainer.appendChild(createProductCard(product));
+            });
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
                 <div>
-                    <div class="cart-item-title">${item.title}</div>
-                    <span style="font-size:11px; color:#777;">Category: ${item.category}</span>
+                    <img src="${product.img}" class="product-img" alt="${product.title}" onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">Rs. ${product.price}</div>
+                    </div>
                 </div>
-            </div>
-            <div style="display:flex; align-items:center;">
-                <div style="font-weight:bold; color: var(--daraz-orange);">Rs. ${item.price}</div>
-                <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})" title="Remove Item"></i>
-            </div>
-        `;
-        cartList.appendChild(row);
-    });
-    document.getElementById('cart-total').innerText = `Rs. ${total}`;
-}
+                <button class="add-btn" onclick="addToCartDirect(${product.id})">Add To Cart</button>
+            `;
+            return card;
+        }
 
-function renderHomeProducts() {
-    const homeContainer = document.getElementById('home-products-container');
-    homeContainer.innerHTML = '';
-    const featured = products.slice(0, 24);
-    featured.forEach(product => {
-        homeContainer.appendChild(createProductCard(product));
-    });
-}
+        function openCategoryPage(catName) {
+            document.getElementById('category-page-title').innerText = catName + " Category";
+            const container = document.getElementById('category-products-container');
+            container.innerHTML = '';
+            const filtered = products.filter(p => p.category.toLowerCase() === catName.toLowerCase());
+            filtered.forEach(product => {
+                container.appendChild(createProductCard(product));
+            });
+            showPage('single-category-page');
+        }
 
-function createProductCard(product) {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.innerHTML = `
-        <div>
-            <img src="${product.img}" class="product-img" alt="${product.title}" onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
-            <div class="product-info">
-                <div class="product-title">${product.title}</div>
-                <div class="product-price">Rs. ${product.price}</div>
-            </div>
-        </div>
-        <button class="add-btn" onclick="addToCartDirect(${product.id})">Add To Cart</button>
-    `;
-    return card;
-}
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
+            if(pageId === 'categories-page' || pageId === 'single-category-page') document.getElementById('nav-categories').classList.add('active');
+            if(pageId === 'cart-page') document.getElementById('nav-cart').classList.add('active');
+            if(pageId === 'account-page') document.getElementById('nav-account').classList.add('active');
+            window.scrollTo(0,0);
+        }
 
-function openCategoryPage(catName) {
-    document.getElementById('category-page-title').innerText = catName + " Category";
-    const container = document.getElementById('category-products-container');
-    container.innerHTML = '';
-    const filtered = products.filter(p => p.category.toLowerCase() === catName.toLowerCase());
-    filtered.forEach(product => {
-        container.appendChild(createProductCard(product));
-    });
-    showPage('single-category-page');
-}
+        function handleSearch(e) {
+            if(e.key === 'Enter') triggerSearch();
+        }
 
-function showPage(pageId) {
-    document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
-    document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
-    if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
-    if(pageId === 'categories-page' || pageId === 'single-category-page') document.getElementById('nav-categories').classList.add('active');
-    if(pageId === 'cart-page') document.getElementById('nav-cart').classList.add('active');
-    if(pageId === 'account-page') document.getElementById('nav-account').classList.add('active');
-    window.scrollTo(0,0);
-}
+        function triggerSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if(!query) return;
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            document.getElementById('category-page-title').innerText = `Search Results for "${query}" (${filtered.length} found)`;
+            const container = document.getElementById('category-products-container');
+            container.innerHTML = '';
+            if(filtered.length === 0) {
+                container.innerHTML = '<p style="color:#888;">Koi product nahi mila.</p>';
+            } else {
+                filtered.forEach(product => {
+                    container.appendChild(createProductCard(product));
+                });
+            }
+            showPage('single-category-page');
+        }
 
-function handleSearch(e) {
-    if(e.key === 'Enter') triggerSearch();
-}
-
-function triggerSearch() {
-    const query = document.getElementById('search-input').value.toLowerCase().trim();
-    if(!query) return;
-    const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-    document.getElementById('category-page-title').innerText = `Search Results for "${query}" (${filtered.length} found)`;
-    const container = document.getElementById('category-products-container');
-    container.innerHTML = '';
-    if(filtered.length === 0) {
-        container.innerHTML = '<p style="color:#888;">Koi product nahi mila.</p>';
-    } else {
-        filtered.forEach(product => {
-            container.appendChild(createProductCard(product));
-        });
-    }
-    showPage('single-category-page');
-}
-
-function closeOrderModal() {
-    document.getElementById('order-modal').style.display = 'none';
-    showPage('home-page');
-}
-
-// ============================================================
-// INITIALIZE APP
-// ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('total-count').innerText = products.length;
-    checkLoginStatus();
-    updateCartUI();
-    renderHomeProducts();
-    
-    // Initialize PWA features
-    registerServiceWorker();
-    setupPWAInstall();
-    createDownloadOption();
-    
-    // Network status
-    window.addEventListener('online', () => showToast('🟢 Back Online'));
-    window.addEventListener('offline', () => showToast('🔴 You are offline'));
-});
-
+        function closeOrderModal() {
+            document.getElementById('order-modal').style.display = 'none';
+            showPage('home-page');
+        }
     </script>
 </body>
 </html>
