@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
+    <link rel="icon" href="./image/favicon.jpeg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>DealHub - PWA</title>
+    <title>DealHub</title>
     
-    <!-- ===== CRITICAL PWA META TAGS ===== -->
+    <!-- ===== PWA Meta Tags - FIXED ===== -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkRlYWxIdWIiLAogICJzaG9ydF9uYW1lIjogIkRlYWxIdWIiLAogICJkZXNjcmlwdGlvbiI6ICJTaG9wIHRoZSBiZXN0IGRlYWxzIG9uIG1vYmlsZXMsIGZhc2hpb24sIGFuZCBlbGVjdHJvbmljcyEiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0Y1RjVGNyIsCiAgInRoZW1lX2NvbG9yIjogIiNGNTcyMjQiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgZmlsbD0nJTIzRjU3MjI0Jy8lM0UlM0N0ZXh0IHg9JzI1NicgeT0nMjU2JyBmb250LXNpemU9JzIwMCcgdGV4dC1hbmNob3I9J21pZGRsZScgZHk9Jy4zZW0nIGZvbnQtZmFtaWx5PSdBcmlhbCcgZmlsbD0nJTIzZmZmJz5EPC90ZXh0JTNFJTNDL3N2ZyUzRQogICAgICB9CiAgXQp9">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="DealHub">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23F57224'/%3E%3Ctext x='256' y='256' font-size='200' text-anchor='middle' dy='.3em' font-family='Arial' fill='%23fff'%3ED%3C/text%3E%3C/svg%3E">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#F57224">
     
@@ -23,6 +25,7 @@
             --daraz-orange-dark: #d65c14;
             --bg-gray: #F5F5F5;
             --text-main: #212121;
+            --text-muted: #757575;
         }
 
         * {
@@ -38,7 +41,32 @@
             padding-bottom: 70px;
         }
 
-        /* ===== PWA INSTALL BUTTON STYLES ===== */
+        .top-bar {
+            background-color: #f8f8f8;
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 0 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover { color: var(--daraz-orange); }
+
+        /* ===== PWA INSTALL BUTTON IN HEADER ===== */
         .pwa-install-header-btn {
             background: white;
             color: var(--daraz-orange);
@@ -63,6 +91,7 @@
         .pwa-install-header-btn:hover {
             background: #fff5ed;
             transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
 
         .pwa-install-header-btn .badge-new {
@@ -73,6 +102,7 @@
             border-radius: 10px;
             font-weight: 800;
             animation: pulse-badge 1.5s ease-in-out infinite;
+            text-transform: uppercase;
         }
 
         @keyframes pulse-badge {
@@ -80,7 +110,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Glass button */
         .pwa-install-header-btn-alt {
             background: rgba(255,255,255,0.15);
             color: white;
@@ -95,6 +124,8 @@
             gap: 7px;
             transition: all 0.3s;
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .pwa-install-header-btn-alt.show {
@@ -104,6 +135,72 @@
         .pwa-install-header-btn-alt:hover {
             background: rgba(255,255,255,0.25);
             border-color: rgba(255,255,255,0.6);
+            transform: scale(1.05);
+        }
+
+        /* ===== INSTALL BANNER ON HOME PAGE ===== */
+        .install-banner-home {
+            background: linear-gradient(135deg, #F57224, #FF8A5C);
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 114, 36, 0.3);
+        }
+
+        .install-banner-home.show {
+            display: flex;
+        }
+
+        .install-banner-home .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .install-banner-home .banner-icon {
+            font-size: 40px;
+            background: rgba(255,255,255,0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .install-banner-home .banner-text h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .install-banner-home .banner-text p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .install-banner-home .install-btn-main {
+            background: white;
+            color: var(--daraz-orange);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .install-banner-home .install-btn-main:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         /* ===== FLOATING INSTALL FAB ===== */
@@ -117,44 +214,23 @@
             height: 56px;
             border-radius: 50%;
             border: none;
-            box-shadow: 0 4px 20px rgba(245,114,36,0.4);
+            box-shadow: 0 4px 20px rgba(245, 114, 36, 0.4);
             cursor: pointer;
             font-size: 24px;
             z-index: 9998;
             display: none;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
         }
 
         .pwa-fab.show {
             display: flex;
         }
 
-        /* ===== HOME INSTALL BANNER ===== */
-        .install-banner-home {
-            background: linear-gradient(135deg, #F57224, #FF8A5C);
-            border-radius: 12px;
-            padding: 20px 25px;
-            margin-bottom: 20px;
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
-            box-shadow: 0 4px 15px rgba(245,114,36,0.3);
-        }
-
-        .install-banner-home.show {
-            display: flex;
-        }
-
-        .install-banner-home .install-btn-main {
-            background: white;
-            color: var(--daraz-orange);
-            border: none;
-            padding: 10px 28px;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
+        .pwa-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(245, 114, 36, 0.6);
         }
 
         /* ===== INSTALLED BADGE ===== */
@@ -170,7 +246,6 @@
             gap: 4px;
         }
 
-        /* ===== HEADER ===== */
         header {
             background-color: var(--daraz-orange);
             position: sticky;
@@ -223,6 +298,7 @@
             padding: 0 18px;
             color: var(--daraz-orange);
             cursor: pointer;
+            font-size: 16px;
         }
 
         .header-actions {
@@ -276,6 +352,11 @@
             gap: 4px;
         }
 
+        .user-pill .user-name-text {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
         .main-container {
             max-width: 1200px;
             margin: 15px auto;
@@ -285,7 +366,67 @@
         .page-view { display: none; }
         .page-view.active { display: block; }
 
-        /* ===== PRODUCTS ===== */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .banner-slider {
+            background: linear-gradient(135deg, #FF512F, #DD2476);
+            border-radius: 8px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            color: white;
+        }
+
+        .banner-text h2 { font-size: 32px; font-weight: 800; }
+
+        .app-download-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .categories-bar {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: transform 0.2s;
+        }
+
+        .category-item:hover { transform: translateY(-3px); }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: #FFF3ED;
+            color: var(--daraz-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px auto;
+            font-size: 20px;
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -301,6 +442,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .product-img {
@@ -317,6 +464,9 @@
             overflow: hidden; 
             line-height: 1.3; 
             font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
         .product-price { 
             color: var(--daraz-orange); 
@@ -333,17 +483,57 @@
             padding: 8px;
             cursor: pointer;
             font-weight: bold;
+            transition: background 0.2s;
         }
 
         .add-btn:hover { background: var(--daraz-orange-dark); }
 
-        /* ===== CART ===== */
         .card-panel {
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: #e0e0e0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .status-box {
+            background: #FFF3ED;
+            border: 1px dashed var(--daraz-orange);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--daraz-orange);
         }
 
         .cart-item {
@@ -354,13 +544,14 @@
             border-bottom: 1px solid #eee;
         }
 
+        .cart-item-title { font-size: 14px; font-weight: 600; }
         .cart-item-remove {
             color: #e74c3c;
             cursor: pointer;
+            font-size: 14px;
             margin-left: 10px;
         }
 
-        /* ===== MOBILE NAV ===== */
         .mobile-nav {
             display: none;
             position: fixed;
@@ -387,21 +578,283 @@
         .mobile-nav-item.active { color: var(--daraz-orange); }
         .mobile-nav-item i { font-size: 18px; margin-bottom: 3px; }
 
-        .mobile-nav { display: flex; }
+        .login-required-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
 
-        /* ===== RESPONSIVE ===== */
+        .login-required-modal .modal-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .login-required-modal .modal-card i {
+            font-size: 55px;
+            color: var(--daraz-orange);
+            margin-bottom: 10px;
+        }
+
+        .login-required-modal .modal-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .login-required-modal .modal-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .login-required-modal .modal-card .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn-login-now {
+            background: var(--daraz-orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-login-now:hover { background: var(--daraz-orange-dark); }
+
+        .btn-cancel-login {
+            background: #e0e0e0;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cancel-login:hover { background: #ccc; }
+
+        /* ========== LOGIN FORM STYLES ========== */
+        .login-form-container {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .login-form-container .login-title {
+            text-align: center;
+            color: var(--daraz-orange);
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .login-form-container .login-title i {
+            margin-right: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group label i {
+            color: var(--daraz-orange);
+            width: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--daraz-orange);
+            box-shadow: 0 0 0 4px rgba(245, 114, 36, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--daraz-orange);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: var(--daraz-orange-dark);
+        }
+
+        .login-btn i {
+            margin-right: 8px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .login-footer a {
+            color: var(--daraz-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== USER PROFILE STYLES ========== */
+        .user-profile-card {
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 30px 25px;
+        }
+
+        .user-profile-card .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--daraz-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-profile-card .user-full-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #212121;
+            margin-bottom: 5px;
+        }
+
+        .user-profile-card .user-email {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .user-profile-card .user-status {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0 20px;
+            color: #2e7d32;
+            font-size: 13px;
+            border-left: 4px solid #4caf50;
+        }
+
+        .user-profile-card .user-status i {
+            margin-right: 8px;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+
+        .logout-btn i {
+            margin-right: 8px;
+        }
+
+        /* ========== WELCOME TOAST ========== */
+        .welcome-toast {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideInRight 0.5s ease;
+            max-width: 350px;
+            font-size: 14px;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(4, 1fr); }
+            .hero-section { grid-template-columns: 1fr; }
+            .app-download-card { display: none; }
+        }
+
         @media (max-width: 768px) {
+            .desktop-only { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .mobile-nav { display: flex; }
+            
             .pwa-install-header-btn .btn-text,
             .pwa-install-header-btn-alt .btn-text {
                 display: none;
             }
-            .pwa-install-header-btn { padding: 6px 10px; }
-            .pwa-install-header-btn-alt { padding: 5px 10px; }
+            .pwa-install-header-btn { 
+                padding: 6px 10px; 
+            }
+            .pwa-install-header-btn-alt { 
+                padding: 5px 10px; 
+            }
+            
             .install-banner-home {
                 flex-direction: column;
                 text-align: center;
                 gap: 15px;
+            }
+            .install-banner-home .banner-left {
+                flex-direction: column;
             }
             .header-container {
                 flex-wrap: wrap;
@@ -415,32 +868,37 @@
         }
 
         @media (max-width: 480px) {
-            .header-actions { gap: 6px; }
-            .user-pill .user-name-text { display: none; }
-            .user-pill { padding: 4px 8px; }
-        }
-
-        /* ===== TOAST ===== */
-        .welcome-toast {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            background: #27ae60;
-            color: white;
-            padding: 14px 22px;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            z-index: 9999;
-            animation: slideInRight 0.5s ease;
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            .header-actions {
+                gap: 6px;
+            }
+            .user-pill .user-name-text {
+                display: none;
+            }
+            .user-pill {
+                padding: 4px 8px;
+            }
+            .pwa-install-header-btn .badge-new {
+                font-size: 7px;
+                padding: 1px 5px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar desktop-only">
+        <div class="top-bar-container">
+            <a href="#">SAVE MORE ON APP</a>
+            <a href="#">SELL ON DARAZ</a>
+            <a href="#">HELP & SUPPORT</a>
+            <a href="#" id="top-login-btn" onclick="showPage('account-page')">LOGIN / SIGN UP</a>
+            <!-- Installed Badge (hidden by default) -->
+            <span id="installed-badge-top" class="installed-badge" style="display:none;">
+                <i class="fa-solid fa-check-circle"></i> Installed
+            </span>
+        </div>
+    </div>
 
     <!-- HEADER -->
     <header>
@@ -450,19 +908,19 @@
             </div>
 
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch(event)">
+                <input type="text" id="search-input" placeholder="Search in DealHub..." onkeyup="handleSearch(event)">
                 <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
             <div class="header-actions">
-                <!-- BUTTON 1: White with NEW badge -->
+                <!-- ===== PWA INSTALL BUTTON 1: White with NEW Badge ===== -->
                 <button id="pwa-header-btn" class="pwa-install-header-btn" onclick="installPWA()">
                     <i class="fa-solid fa-download"></i>
                     <span class="btn-text">Install App</span>
                     <span class="badge-new">NEW</span>
                 </button>
 
-                <!-- BUTTON 2: Glass-morphism -->
+                <!-- ===== PWA INSTALL BUTTON 2: Glass-morphism ===== -->
                 <button id="pwa-header-btn-alt" class="pwa-install-header-btn-alt" onclick="installPWA()">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                     <span class="btn-text">Install</span>
@@ -472,7 +930,7 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-badge" id="cart-count">0</span>
                 </div>
-                <div class="user-pill" onclick="showPage('account-page')">
+                <div class="user-pill" id="header-user-btn" onclick="showPage('account-page')">
                     <span class="user-avatar" id="user-avatar-letter">👤</span>
                     <span class="user-name-text" id="header-user-text">Login</span>
                 </div>
@@ -491,46 +949,180 @@
         <!-- HOME PAGE -->
         <div id="home-page" class="page-view active">
             
-            <!-- INSTALL BANNER -->
+            <!-- PWA Install Banner on Home Page -->
             <div id="install-banner-home" class="install-banner-home">
-                <div>
-                    <h3>🚀 Get DealHub App</h3>
-                    <p>Faster shopping & offline access!</p>
+                <div class="banner-left">
+                    <div class="banner-icon">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <div class="banner-text">
+                        <h3>🚀 Get DealHub App</h3>
+                        <p>Faster shopping, offline access, and exclusive deals!</p>
+                    </div>
                 </div>
                 <button class="install-btn-main" onclick="installPWA()">
                     <i class="fa-solid fa-download"></i> Install Now
                 </button>
             </div>
 
-            <h3 style="margin-bottom: 15px;">Featured Products</h3>
+            <div class="hero-section">
+                <div class="banner-slider">
+                    <div class="banner-text">
+                        <h2>FLASH SALE</h2>
+                        <p>Limited Time Offer | Mega Discounts Available</p>
+                    </div>
+                    <i class="fa-solid fa-bolt" style="font-size: 90px; opacity: 0.2;"></i>
+                </div>
+
+                <div class="app-download-card">
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size: 36px; color: var(--daraz-orange);"></i>
+                    <h4 style="margin-top: 5px;">TRY DealHub APP</h4>
+                    <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
+                    <!-- QR Code section - NO install button here -->
+                </div>
+            </div>
+
+            <!-- CATEGORIES -->
+            <div class="categories-bar">
+                <div class="category-item" onclick="openCategoryPage('Mobiles')">
+                    <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
+                    <span>Mobiles</span>
+                </div>
+                <div class="category-item" onclick="openCategoryPage('Fashion')">
+                    <div class="category-icon"><i class="fa-solid fa-shirt"></i></div>
+                    <span>Fashion</span>
+                </div>
+                <div class="category-item" onclick="openCategoryPage('Electronics')">
+                    <div class="category-icon"><i class="fa-solid fa-laptop"></i></div>
+                    <span>Electronics</span>
+                </div>
+                <div class="category-item" onclick="openCategoryPage('Home')">
+                    <div class="category-icon"><i class="fa-solid fa-house"></i></div>
+                    <span>Home</span>
+                </div>
+                <div class="category-item" onclick="openCategoryPage('Beauty')">
+                    <div class="category-icon"><i class="fa-solid fa-pump-soap"></i></div>
+                    <span>Beauty</span>
+                </div>
+                <div class="category-item" onclick="openCategoryPage('Sports')">
+                    <div class="category-icon"><i class="fa-solid fa-futbol"></i></div>
+                    <span>Sports</span>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 15px;">Featured Products (Total <span id="total-count">0</span> Items)</h3>
             <div class="products-grid" id="home-products-container"></div>
+        </div>
+
+        <!-- CATEGORIES PAGE -->
+        <div id="categories-page" class="page-view">
+            <div class="card-panel">
+                <h2>All Product Categories</h2>
+                <p style="color: #666; margin-bottom: 20px;">Browse products by clicking on any category (50 Items each!)</p>
+                <div class="categories-bar" style="box-shadow: none;">
+                    <div class="category-item" onclick="openCategoryPage('Mobiles')">
+                        <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
+                        <span>Mobiles</span>
+                    </div>
+                    <div class="category-item" onclick="openCategoryPage('Fashion')">
+                        <div class="category-icon"><i class="fa-solid fa-shirt"></i></div>
+                        <span>Fashion</span>
+                    </div>
+                    <div class="category-item" onclick="openCategoryPage('Electronics')">
+                        <div class="category-icon"><i class="fa-solid fa-laptop"></i></div>
+                        <span>Electronics</span>
+                    </div>
+                    <div class="category-item" onclick="openCategoryPage('Home')">
+                        <div class="category-icon"><i class="fa-solid fa-house"></i></div>
+                        <span>Home</span>
+                    </div>
+                    <div class="category-item" onclick="openCategoryPage('Beauty')">
+                        <div class="category-icon"><i class="fa-solid fa-pump-soap"></i></div>
+                        <span>Beauty</span>
+                    </div>
+                    <div class="category-item" onclick="openCategoryPage('Sports')">
+                        <div class="category-icon"><i class="fa-solid fa-futbol"></i></div>
+                        <span>Sports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SINGLE CATEGORY PAGE -->
+        <div id="single-category-page" class="page-view">
+            <button class="back-btn" onclick="showPage('categories-page')"><i class="fa-solid fa-arrow-left"></i> All Categories</button>
+            <div class="card-panel">
+                <h2 id="category-page-title" style="color: var(--daraz-orange); margin-bottom: 5px;"></h2>
+                <p style="color: #666; margin-bottom: 20px;">Showing items available in this category</p>
+                <div class="products-grid" id="category-products-container"></div>
+            </div>
         </div>
 
         <!-- CART PAGE -->
         <div id="cart-page" class="page-view">
             <div class="card-panel">
-                <h2>Your Cart</h2>
+                <h2>Your Shopping Cart</h2>
                 <div id="cart-items-list" style="margin-top: 15px;">
-                    <p style="color: #888;">Cart is empty.</p>
+                    <p style="color: #888;">Your cart is empty.</p>
                 </div>
                 <div style="margin-top: 20px; text-align: right;">
                     <h3>Total: <span id="cart-total" style="color: var(--daraz-orange);">Rs. 0</span></h3>
-                    <button onclick="checkout()" style="background: var(--daraz-orange); color: white; border: none; padding: 12px 24px; font-weight: bold; border-radius: 4px; cursor: pointer;">
-                        Checkout
+                    <button id="checkout-btn" onclick="startOrderProcess()" style="background: var(--daraz-orange); color: white; border: none; padding: 12px 24px; font-weight: bold; border-radius: 4px; margin-top: 10px; cursor: pointer;">
+                        Proceed to Checkout
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ACCOUNT PAGE -->
+        <!-- ========== ACCOUNT PAGE WITH LOGIN FORM ========== -->
         <div id="account-page" class="page-view">
-            <div class="card-panel">
-                <h2>Account</h2>
-                <p style="color:#666;">Login to add items to cart</p>
-                <button onclick="login()" style="background:var(--daraz-orange);color:white;border:none;padding:10px 30px;border-radius:4px;font-weight:bold;cursor:pointer;margin-top:10px;">
-                    <i class="fa-solid fa-sign-in-alt"></i> Login
-                </button>
-                <button onclick="logout()" style="background:#e74c3c;color:white;border:none;padding:10px 30px;border-radius:4px;font-weight:bold;cursor:pointer;margin-top:10px;display:none;" id="logout-btn">
+
+            <!-- LOGIN FORM -->
+            <div class="card-panel login-form-container" id="login-box">
+                <h2 class="login-title">
+                    <i class="fa-solid fa-user-circle"></i> Login
+                </h2>
+                
+                <form onsubmit="performLogin(event)">
+                    <div class="form-group">
+                        <label for="login-name"><i class="fa-solid fa-user"></i> Full Name</label>
+                        <input type="text" id="login-name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                        <input type="email" id="login-email" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required minlength="4">
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <i class="fa-solid fa-sign-in-alt"></i> Login
+                    </button>
+                    
+                    <div class="login-footer">
+                        Don't have an account? <a href="#" onclick="alert('Sign up feature coming soon!')">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- USER PROFILE -->
+            <div class="card-panel user-profile-card" id="user-profile-box" style="display: none;">
+                <div class="profile-avatar" id="profile-avatar-letter">U</div>
+                
+                <div class="user-full-name" id="logged-user-name">User Name</div>
+                <div class="user-email" id="logged-user-email">user@email.com</div>
+                
+                <div class="user-status">
+                    <i class="fa-solid fa-check-circle"></i> 
+                    Account is active and saved in LocalStorage
+                </div>
+                
+                <button onclick="performLogout()" class="logout-btn">
                     <i class="fa-solid fa-sign-out-alt"></i> Logout
                 </button>
             </div>
@@ -538,11 +1130,41 @@
 
     </div>
 
+    <!-- ORDER MODAL -->
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal-card">
+            <i class="fa-solid fa-box-open" id="order-icon" style="font-size: 50px; color: var(--daraz-orange);"></i>
+            <h3 style="margin-top: 10px;">Order Status</h3>
+            <div class="status-box" id="order-status-text">Order process ho raha hai...</div>
+            <p style="font-size: 12px; color: #777;" id="order-subtext">Khabrayen nahi, aapka order tayyar ho raha hai!</p>
+            <button id="close-modal-btn" onclick="closeOrderModal()" style="display: none; background: var(--daraz-orange); color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; margin-top: 15px; cursor: pointer; width: 100%;">
+                Done / Complete
+            </button>
+        </div>
+    </div>
+
+    <!-- LOGIN REQUIRED MODAL -->
+    <div class="login-required-modal" id="login-required-modal">
+        <div class="modal-card">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Login Required!</h3>
+            <p>Product add karne ke liye pehle login karna zaroori hai. Kripya login karein.</p>
+            <div class="btn-group">
+                <button class="btn-login-now" onclick="redirectToLogin()">Login Now</button>
+                <button class="btn-cancel-login" onclick="closeLoginRequiredModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MOBILE NAV -->
     <div class="mobile-nav">
         <div class="mobile-nav-item active" id="nav-home" onclick="showPage('home-page')">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
+        </div>
+        <div class="mobile-nav-item" id="nav-categories" onclick="showPage('categories-page')">
+            <i class="fa-solid fa-list-check"></i>
+            <span>Categories</span>
         </div>
         <div class="mobile-nav-item" id="nav-cart" onclick="showPage('cart-page')">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -556,161 +1178,130 @@
 
     <script>
         // ============================================================
-        // PRODUCT DATA
+        // CATEGORY DATA
         // ============================================================
-        const products = [];
-        const categories = ['Mobiles', 'Fashion', 'Electronics', 'Home', 'Beauty', 'Sports'];
-        const images = [
-            'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300',
-            'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300',
-            'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300',
-            'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300',
-            'https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300',
-            'https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300'
+        const categoriesData = [
+            {
+                category: "Mobiles",
+                products: [
+                    { name: "Samsung Galaxy S24 Ultra", img: "https://cellmart.pk/wp-content/uploads/2024/07/S24-Ultra-Yellow-cellmart.jpg" },
+                    { name: "Apple iPhone 15 Pro Max", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhTZ-efkLzcxE6fa6Vpjh4UcUoNDXyp8Qs-NV7_CemCFy0EXzYyPK7L6FJ&s=10" },
+                    { name: "OnePlus 12 5G", img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300" },
+                    { name: "Xiaomi Redmi Note 13", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Vivo V30 5G", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
+                    { name: "Realme 12 Pro+", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" }
+                ]
+            },
+            {
+                category: "Fashion",
+                products: [
+                    { name: "Designer Cotton T-Shirt", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
+                    { name: "Premium Denim Jeans", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" },
+                    { name: "Leather Jacket Men", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" },
+                    { name: "Sports Running Shoes", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
+                    { name: "Polarized Sunglasses", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300" },
+                    { name: "Leather Wallet", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300" }
+                ]
+            },
+            {
+                category: "Electronics",
+                products: [
+                    { name: "Smart Watch Series 9", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300" },
+                    { name: "Gaming Mouse RGB", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300" },
+                    { name: "Mechanical Keyboard", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
+                    { name: "Bluetooth Speaker", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" },
+                    { name: "HD Web Camera", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS27-CTIn782c2kFjbOYgyrMH-5vABnFh1kwR8-xAt8PQ&s=10" },
+                    { name: "USB Flash Drive 128GB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PR-Y87RvL2A7pP7EEcYWzF1o7u6CcNbGEhARIOQa2U7fBaV3pRRTdM0&s=10" }
+                ]
+            },
+            {
+                category: "Home",
+                products: [
+                    { name: "Stainless Steel Flask", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
+                    { name: "LED Desk Lamp", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" },
+                    { name: "Non-Stick Frying Pan", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2bimFGy209k7n_K65pEpvqRY-KW_YK16QhhtzYjBSg&s=10w=300" },
+                    { name: "Cotton Bed Sheet Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlafai2V0B_EC7i5YYCSkvqnOTFf9yGzQX_iwbNbEwNqF8Q469FR3YV6kL&s=10w=300" },
+                    { name: "LED Strip Lights RGB", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiVEPcYk83qZdyR66MBIsPYvtgGzwqI8rvTkJYbjFolyFgX7crF1fvQOCV&s=10w=300" },
+                    { name: "Kitchen Knife Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEizYz_-xBZclybmN6QUXb4-Hl3vBN8F9NlElTsvtWowGXOc3NFY2JIF5i&s=10" }
+                ]
+            },
+            {
+                category: "Beauty",
+                products: [
+                    { name: "Organic Face Wash", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwSd9ARkXWUcZj_EDf82MKOq8LIL94WCwCtEBsxxI2wgqQCsP0PQWBt8uh&s=10w=300" },
+                    { name: "Moisturizing Cream", img: "https://saeedghani.pk/cdn/shop/files/Cream50g_1024x1024.webp?v=1776061512w=300" },
+                    { name: "Hair Serum Shine", img: "https://springs.com.pk/cdn/shop/files/8961014263428.gif?v=1767202216w=300" },
+                    { name: "Matte Lipstick Set", img: "https://zenixstore.pk/cdn/shop/files/6_1756301435.webp?v=1757067909&width=1946w=300" },
+                    { name: "Perfume 100ml", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO6MKROU9SOJ4dtorhiJ6VbRUzWG-WW8BCjlp8v2VZF-JsXrhI71fRQBDN&s=10w=300" },
+                    { name: "Sunscreen SPF 50", img: "https://bbabysuleman.com/cdn/shop/files/vitamincsunscreenwebpic_a7d0e4b1-bb7a-4726-8c60-57bb211f791b.jpg?v=1775907206&width=1946" }
+                ]
+            },
+            {
+                category: "Sports",
+                products: [
+                    { name: "Leather Football", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Non-Slip Yoga Mat", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Badminton Racket", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Dumbbell Set 5kg", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=300" },
+                    { name: "Speed Skipping Rope", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Resistance Bands", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" }
+                ]
+            }
         ];
-        const names = ['Premium Product', 'Smart Device', 'Lifestyle Item', 'Essential Gear', 'Trendy Style', 'Value Pack'];
-
-        let id = 1;
-        for (let i = 0; i < 24; i++) {
-            products.push({
-                id: id++,
-                title: names[i % names.length] + ' ' + (i + 1),
-                price: Math.floor(Math.random() * 4500) + 299,
-                category: categories[i % categories.length],
-                img: images[i % images.length]
-            });
-        }
 
         // ============================================================
-        // CART
+        // GENERATE PRODUCTS
         // ============================================================
+        let products = [];
+        let globalId = 1;
+
+        categoriesData.forEach(cat => {
+            for (let i = 1; i <= 50; i++) {
+                const productData = cat.products[(i - 1) % cat.products.length];
+                const price = Math.floor(Math.random() * 4500) + 299;
+                
+                products.push({
+                    id: globalId++,
+                    title: productData.name,
+                    price: price,
+                    category: cat.category,
+                    img: productData.img
+                });
+            }
+        });
+
+        // LocalStorage
         let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
 
-        function addToCart(id) {
-            const user = localStorage.getItem('dealhub_user');
-            if (!user) {
-                alert('Please login first!');
-                showPage('account-page');
-                return;
-            }
-            const item = products.find(p => p.id === id);
-            if (item) {
-                cartItems.push(item);
-                localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
-                updateCartUI();
-                showToast('🛒 ' + item.title + ' added!');
-            }
-        }
-
-        function removeFromCart(index) {
-            cartItems.splice(index, 1);
-            localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = cartItems.length;
-            const list = document.getElementById('cart-items-list');
-            if (cartItems.length === 0) {
-                list.innerHTML = '<p style="color:#888;">Cart is empty.</p>';
-                document.getElementById('cart-total').innerText = 'Rs. 0';
-                return;
-            }
-            list.innerHTML = '';
-            let total = 0;
-            cartItems.forEach((item, idx) => {
-                total += item.price;
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <div>${item.title}</div>
-                        <div>
-                            Rs. ${item.price}
-                            <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})"></i>
-                        </div>
-                    </div>
-                `;
-            });
-            document.getElementById('cart-total').innerText = 'Rs. ' + total;
-        }
-
-        function checkout() {
-            if (cartItems.length === 0) {
-                alert('Cart is empty!');
-                return;
-            }
-            alert('✅ Order placed successfully!');
-            cartItems = [];
-            localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
-            updateCartUI();
-            showPage('home-page');
-        }
-
         // ============================================================
-        // LOGIN
-        // ============================================================
-        function login() {
-            const name = prompt('Enter your name:');
-            if (name && name.trim()) {
-                localStorage.setItem('dealhub_user', JSON.stringify({ name: name.trim() }));
-                updateUserUI();
-                showToast('👋 Welcome ' + name.trim() + '!');
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem('dealhub_user');
-            updateUserUI();
-            showToast('Logged out successfully');
-        }
-
-        function updateUserUI() {
-            const user = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
-            const avatar = document.getElementById('user-avatar-letter');
-            const text = document.getElementById('header-user-text');
-            const logoutBtn = document.getElementById('logout-btn');
-
-            if (user) {
-                avatar.textContent = user.name.charAt(0).toUpperCase();
-                text.textContent = user.name;
-                logoutBtn.style.display = 'inline-block';
-            } else {
-                avatar.textContent = '👤';
-                text.textContent = 'Login';
-                logoutBtn.style.display = 'none';
-            }
-        }
-
-        // ============================================================
-        // PWA INSTALL - FIXED FOR MOBILE
+        // PWA INSTALL STATE
         // ============================================================
         let deferredPrompt = null;
         let isAppInstalled = false;
 
-        // Check if already installed
-        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-            isAppInstalled = true;
-        }
-
-        // Listen for install prompt
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            showInstallButtons();
+        // ============================================================
+        // INITIALIZE APP
+        // ============================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('total-count').innerText = products.length;
+            checkLoginStatus();
+            updateCartUI();
+            renderHomeProducts();
+            setupPWAInstall();
+            checkIfInstalled();
+            registerSW();
         });
 
-        // Listen for app installed
-        window.addEventListener('appinstalled', () => {
-            isAppInstalled = true;
-            hideAllInstallButtons();
-            showToast('✅ DealHub installed successfully!');
-        });
-
-        function showInstallButtons() {
-            if (isAppInstalled) return;
-            document.getElementById('pwa-header-btn').classList.add('show');
-            document.getElementById('pwa-header-btn-alt').classList.add('show');
-            document.getElementById('pwa-fab').classList.add('show');
-            document.getElementById('install-banner-home').classList.add('show');
+        // ============================================================
+        // CHECK IF APP IS ALREADY INSTALLED
+        // ============================================================
+        function checkIfInstalled() {
+            if (window.matchMedia('(display-mode: standalone)').matches || 
+                window.navigator.standalone === true) {
+                isAppInstalled = true;
+                hideAllInstallButtons();
+                showInstalledBadge();
+            }
         }
 
         function hideAllInstallButtons() {
@@ -720,22 +1311,99 @@
             document.getElementById('install-banner-home').classList.remove('show');
         }
 
+        function showInstalledBadge() {
+            const badge = document.getElementById('installed-badge-top');
+            if (badge) badge.style.display = 'inline-flex';
+        }
+
+        // ============================================================
+        // SERVICE WORKER (PWA)
+        // ============================================================
+        function registerSW() {
+            if ('serviceWorker' in navigator) {
+                // Simple inline service worker
+                const swCode = `
+                    self.addEventListener('install', e => {
+                        e.waitUntil(self.skipWaiting());
+                    });
+                    self.addEventListener('activate', e => {
+                        e.waitUntil(self.clients.claim());
+                    });
+                    self.addEventListener('fetch', e => {
+                        e.respondWith(fetch(e.request).catch(() => {
+                            return new Response('Offline', { status: 503 });
+                        }));
+                    });
+                `;
+                try {
+                    const blob = new Blob([swCode], { type: 'application/javascript' });
+                    const swUrl = URL.createObjectURL(blob);
+                    navigator.serviceWorker.register(swUrl)
+                        .then(() => console.log('✅ Service Worker registered!'))
+                        .catch(err => console.log('SW Error:', err));
+                } catch (e) {
+                    console.log('SW registration skipped');
+                }
+            }
+        }
+
+        // ============================================================
+        // PWA INSTALL - Setup and Button Handlers
+        // ============================================================
+        function setupPWAInstall() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallButtons();
+            });
+
+            // Handle app installed
+            window.addEventListener('appinstalled', () => {
+                isAppInstalled = true;
+                hideAllInstallButtons();
+                showInstalledBadge();
+                showToast('✅ DealHub App installed successfully!');
+            });
+
+            // If no install prompt after 3 seconds, show buttons anyway
+            setTimeout(() => {
+                if (!isAppInstalled && !deferredPrompt) {
+                    showInstallButtons();
+                    // Only show toast once
+                    if (!document.querySelector('.welcome-toast')) {
+                        showToast('📱 Tap "Install App" to add DealHub to home screen');
+                    }
+                }
+            }, 3000);
+        }
+
+        function showInstallButtons() {
+            if (isAppInstalled) return;
+            document.getElementById('pwa-header-btn').classList.add('show');
+            document.getElementById('pwa-header-btn-alt').classList.add('show');
+            document.getElementById('pwa-fab').classList.add('show');
+            document.getElementById('install-banner-home').classList.add('show');
+        }
+
         function installPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((result) => {
-                    if (result.outcome === 'accepted') {
-                        console.log('User accepted install');
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                        isAppInstalled = true;
+                        hideAllInstallButtons();
+                        showInstalledBadge();
+                        showToast('🎉 DealHub installed successfully!');
                     } else {
-                        console.log('User dismissed install');
+                        console.log('User dismissed the install prompt');
                         showToast('📱 Open Chrome menu → "Add to Home Screen"');
                     }
                     deferredPrompt = null;
                 });
             } else {
-                // Fallback for browsers that don't support beforeinstallprompt
+                // Fallback
                 showToast('📱 Open Chrome menu → "Add to Home Screen"');
-                // Try native install if available
                 if (navigator.install && typeof navigator.install === 'function') {
                     navigator.install();
                 }
@@ -743,46 +1411,93 @@
         }
 
         // ============================================================
-        // SERVICE WORKER - Inline registration
-        // ============================================================
-        if ('serviceWorker' in navigator) {
-            // Create a simple inline service worker
-            const swCode = `
-                self.addEventListener('install', e => {
-                    e.waitUntil(self.skipWaiting());
-                });
-                self.addEventListener('activate', e => {
-                    e.waitUntil(self.clients.claim());
-                });
-                self.addEventListener('fetch', e => {
-                    e.respondWith(fetch(e.request).catch(() => {
-                        return new Response('Offline', { status: 503 });
-                    }));
-                });
-            `;
-            
-            // Try to register a service worker from a blob URL
-            try {
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(swUrl)
-                    .then(() => console.log('SW registered!'))
-                    .catch(err => console.log('SW registration failed:', err));
-            } catch (e) {
-                console.log('SW registration skipped:', e);
-            }
-        }
-
-        // ============================================================
-        // UI FUNCTIONS
+        // TOAST FUNCTION
         // ============================================================
         function showToast(message) {
             const existing = document.querySelector('.welcome-toast');
             if (existing) existing.remove();
+            
             const toast = document.createElement('div');
             toast.className = 'welcome-toast';
             toast.innerHTML = message;
             document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 5000);
+        }
+
+        // ============================================================
+        // LOGIN FUNCTIONS
+        // ============================================================
+        function checkLoginStatus() {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            const avatarElement = document.getElementById('user-avatar-letter');
+            const userNameText = document.getElementById('header-user-text');
+            const topLoginBtn = document.getElementById('top-login-btn');
+            const loginBox = document.getElementById('login-box');
+            const profileBox = document.getElementById('user-profile-box');
+
+            if (userData && userData.name) {
+                const firstLetter = userData.name.charAt(0).toUpperCase();
+                avatarElement.textContent = firstLetter;
+                userNameText.textContent = userData.name;
+                topLoginBtn.textContent = userData.name + " (Account)";
+                
+                document.getElementById('profile-avatar-letter').textContent = firstLetter;
+                document.getElementById('logged-user-name').textContent = userData.name;
+                document.getElementById('logged-user-email').textContent = userData.email;
+                
+                loginBox.style.display = 'none';
+                profileBox.style.display = 'block';
+                
+                showWelcomeToast(userData.name);
+            } else {
+                avatarElement.textContent = "👤";
+                userNameText.textContent = "Login";
+                topLoginBtn.textContent = "LOGIN / SIGN UP";
+                loginBox.style.display = 'block';
+                profileBox.style.display = 'none';
+            }
+        }
+
+        function performLogin(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('login-name').value.trim();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            
+            if (!name || !email || !password) {
+                alert('Please fill all fields!');
+                return;
+            }
+            
+            const userData = { name, email, password };
+            localStorage.setItem('dealhub_user', JSON.stringify(userData));
+            checkLoginStatus();
+            showPage('home-page');
+            alert('✅ Welcome ' + name + '! You have successfully logged in.');
+        }
+
+        function performLogout() {
+            localStorage.removeItem('dealhub_user');
+            checkLoginStatus();
+            showPage('home-page');
+            alert('You have been logged out successfully.');
+        }
+
+        function showWelcomeToast(name) {
+            const existing = document.querySelector('.welcome-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'welcome-toast';
+            toast.innerHTML = `<i class="fa-solid fa-hand-wave" style="margin-right:10px;"></i> Welcome back, <strong>${name}</strong>! 👋`;
+            document.body.appendChild(toast);
+            
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transition = 'opacity 0.5s';
@@ -790,88 +1505,206 @@
             }, 4000);
         }
 
-        function renderProducts() {
-            const container = document.getElementById('home-products-container');
-            container.innerHTML = '';
-            products.slice(0, 18).forEach(product => {
-                container.innerHTML += `
-                    <div class="product-card">
+        function showLoginRequiredModal() {
+            document.getElementById('login-required-modal').style.display = 'flex';
+        }
+
+        function closeLoginRequiredModal() {
+            document.getElementById('login-required-modal').style.display = 'none';
+        }
+
+        function redirectToLogin() {
+            closeLoginRequiredModal();
+            showPage('account-page');
+        }
+
+        // ============================================================
+        // CART FUNCTIONS
+        // ============================================================
+        function addToCartDirect(id) {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            if (!userData) {
+                showLoginRequiredModal();
+                return;
+            }
+            const item = products.find(p => p.id === id);
+            if (item) {
+                cartItems.push(item);
+                saveCart();
+                updateCartUI();
+                showCartToast(item.title);
+            }
+        }
+
+        function showCartToast(title) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed; bottom: 150px; right: 20px;
+                background: #27ae60; color: white;
+                padding: 10px 16px; border-radius: 8px; font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 9999;
+                animation: slideInRight 0.5s ease; max-width: 300px;
+            `;
+            toast.innerHTML = `🛒 ${title} added to cart!`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        function startOrderProcess() {
+            const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
+            if (!userData) {
+                showLoginRequiredModal();
+                return;
+            }
+            if(cartItems.length === 0) {
+                alert('Pehle cart me koi item add karein!');
+                return;
+            }
+            const modal = document.getElementById('order-modal');
+            const statusText = document.getElementById('order-status-text');
+            const closeBtn = document.getElementById('close-modal-btn');
+            const icon = document.getElementById('order-icon');
+            modal.style.display = 'flex';
+            closeBtn.style.display = 'none';
+            statusText.innerText = "Order process ho raha hai...";
+            icon.className = "fa-solid fa-gear fa-spin";
+            setTimeout(() => {
+                statusText.innerText = "Packing ho rahi hai...";
+                icon.className = "fa-solid fa-box-open";
+            }, 2500);
+            setTimeout(() => {
+                statusText.innerText = "Aapka order raste me hai...";
+                icon.className = "fa-solid fa-truck-fast";
+            }, 5000);
+            setTimeout(() => {
+                statusText.innerText = "Apna order le jao! 🎉";
+                icon.className = "fa-solid fa-circle-check";
+                icon.style.color = "#27ae60";
+                closeBtn.style.display = 'block';
+                cartItems = [];
+                saveCart();
+                updateCartUI();
+            }, 7500);
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            saveCart();
+            updateCartUI();
+        }
+
+        function saveCart() {
+            localStorage.setItem('dealhub_cart', JSON.stringify(cartItems));
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cartItems.length;
+            const cartList = document.getElementById('cart-items-list');
+            if(cartItems.length === 0) {
+                cartList.innerHTML = '<p style="color: #888;">Your cart is empty.</p>';
+                document.getElementById('cart-total').innerText = 'Rs. 0';
+                return;
+            }
+            cartList.innerHTML = '';
+            let total = 0;
+            cartItems.forEach((item, idx) => {
+                total += item.price;
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+                row.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.img}" style="width:45px; height:45px; object-fit:cover; border-radius:4px;">
                         <div>
-                            <img src="${product.img}" class="product-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22150%22 y=%22150%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2220%22%3E${product.title}%3C/text%3E%3C/svg%3E'">
-                            <div class="product-info">
-                                <div class="product-title">${product.title}</div>
-                                <div class="product-price">Rs. ${product.price}</div>
-                            </div>
+                            <div class="cart-item-title">${item.title}</div>
+                            <span style="font-size:11px; color:#777;">Category: ${item.category}</span>
                         </div>
-                        <button class="add-btn" onclick="addToCart(${product.id})">Add To Cart</button>
+                    </div>
+                    <div style="display:flex; align-items:center;">
+                        <div style="font-weight:bold; color: var(--daraz-orange);">Rs. ${item.price}</div>
+                        <i class="fa-solid fa-trash cart-item-remove" onclick="removeFromCart(${idx})" title="Remove Item"></i>
                     </div>
                 `;
+                cartList.appendChild(row);
+            });
+            document.getElementById('cart-total').innerText = `Rs. ${total}`;
+        }
+
+        function renderHomeProducts() {
+            const homeContainer = document.getElementById('home-products-container');
+            homeContainer.innerHTML = '';
+            const featured = products.slice(0, 24);
+            featured.forEach(product => {
+                homeContainer.appendChild(createProductCard(product));
             });
         }
 
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div>
+                    <img src="${product.img}" class="product-img" alt="${product.title}" onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
+                    <div class="product-info">
+                        <div class="product-title">${product.title}</div>
+                        <div class="product-price">Rs. ${product.price}</div>
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addToCartDirect(${product.id})">Add To Cart</button>
+            `;
+            return card;
+        }
+
+        function openCategoryPage(catName) {
+            document.getElementById('category-page-title').innerText = catName + " Category";
+            const container = document.getElementById('category-products-container');
+            container.innerHTML = '';
+            const filtered = products.filter(p => p.category.toLowerCase() === catName.toLowerCase());
+            filtered.forEach(product => {
+                container.appendChild(createProductCard(product));
+            });
+            showPage('single-category-page');
+        }
+
         function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.mobile-nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.mobile-nav-item').forEach(item => item.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            if (pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
-            if (pageId === 'cart-page') document.getElementById('nav-cart').classList.add('active');
-            if (pageId === 'account-page') document.getElementById('nav-account').classList.add('active');
-            window.scrollTo(0, 0);
+            if(pageId === 'home-page') document.getElementById('nav-home').classList.add('active');
+            if(pageId === 'categories-page' || pageId === 'single-category-page') document.getElementById('nav-categories').classList.add('active');
+            if(pageId === 'cart-page') document.getElementById('nav-cart').classList.add('active');
+            if(pageId === 'account-page') document.getElementById('nav-account').classList.add('active');
+            window.scrollTo(0,0);
         }
 
         function handleSearch(e) {
-            if (e.key === 'Enter') triggerSearch();
+            if(e.key === 'Enter') triggerSearch();
         }
 
         function triggerSearch() {
             const query = document.getElementById('search-input').value.toLowerCase().trim();
-            if (!query) return;
-            const filtered = products.filter(p => p.title.toLowerCase().includes(query));
-            const container = document.getElementById('home-products-container');
+            if(!query) return;
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            document.getElementById('category-page-title').innerText = `Search Results for "${query}" (${filtered.length} found)`;
+            const container = document.getElementById('category-products-container');
             container.innerHTML = '';
-            if (filtered.length === 0) {
-                container.innerHTML = '<p style="color:#888;padding:20px;">No products found.</p>';
+            if(filtered.length === 0) {
+                container.innerHTML = '<p style="color:#888;">Koi product nahi mila.</p>';
             } else {
                 filtered.forEach(product => {
-                    container.innerHTML += `
-                        <div class="product-card">
-                            <div>
-                                <img src="${product.img}" class="product-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22150%22 y=%22150%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2220%22%3E${product.title}%3C/text%3E%3C/svg%3E'">
-                                <div class="product-info">
-                                    <div class="product-title">${product.title}</div>
-                                    <div class="product-price">Rs. ${product.price}</div>
-                                </div>
-                            </div>
-                            <button class="add-btn" onclick="addToCart(${product.id})">Add To Cart</button>
-                        </div>
-                    `;
+                    container.appendChild(createProductCard(product));
                 });
             }
-            showPage('home-page');
+            showPage('single-category-page');
         }
 
-        // ============================================================
-        // INIT
-        // ============================================================
-        renderProducts();
-        updateCartUI();
-        updateUserUI();
-
-        // Auto-show install buttons after 2 seconds (if not already shown)
-        setTimeout(() => {
-            if (!isAppInstalled && !deferredPrompt) {
-                // For browsers that don't fire beforeinstallprompt, show fallback
-                showInstallButtons();
-                // Also show a gentle reminder
-                if (!document.querySelector('.welcome-toast')) {
-                    showToast('📱 Tap "Install App" to add DealHub to home screen');
-                }
-            }
-        }, 3000);
-
-        console.log('✅ DealHub PWA loaded successfully!');
-        console.log('📱 To install: Look for "Install App" button in header');
-        console.log('🔄 If button not visible, open Chrome menu → "Add to Home Screen"');
+        function closeOrderModal() {
+            document.getElementById('order-modal').style.display = 'none';
+            showPage('home-page');
+        }
     </script>
 </body>
 </html>
