@@ -1,24 +1,56 @@
 {
-  "name": "BiteRush",
-  "short_name": "BiteRush",
-  "description": "Order your favorite crispy, crunchy & delicious meals!",
-  "start_url": ".",
+  "name": "DealHub - Shopping App",
+  "short_name": "DealHub",
+  "description": "Best online shopping experience with DealHub",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#1C1819",
-  "theme_color": "#E4002B",
+  "background_color": "#F57224",
+  "theme_color": "#F57224",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "./image/favicon.jpg",
+      "src": "/image/favicon-192x192.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./image/favicon.jpg",
+      "src": "/image/favicon-512x512.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/image/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["shopping", "ecommerce", "lifestyle"],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Go to Home",
+      "url": "/?source=home",
+      "icons": [{ "src": "/image/home-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Categories",
+      "short_name": "Categories",
+      "description": "Browse Categories",
+      "url": "/?source=categories",
+      "icons": [{ "src": "/image/categories-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Cart",
+      "short_name": "Cart",
+      "description": "View Cart",
+      "url": "/?source=cart",
+      "icons": [{ "src": "/image/cart-icon.png", "sizes": "96x96" }]
     }
   ]
 }
