@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>DealHub</title>
     
-    <!-- ========== PWA META TAGS (CRITICAL FOR INSTALLATION) ========== -->
+     <!-- ========== PWA META TAGS (CRITICAL FOR INSTALLATION) ========== -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="image/icon-192x192.png">
     
@@ -593,34 +593,6 @@
             .header-actions { gap: 8px; }
             .user-pill .user-name-text { max-width: 50px; }
         }
-         /* Your existing styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
-        .header { background: #F57224; color: white; padding: 15px; border-radius: 8px; text-align: center; }
-        .card { background: white; padding: 15px; border-radius: 8px; margin: 10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        button { background: #F57224; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
-        
-        /* Install Banner */
-        #install-banner {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            width: 90%;
-            max-width: 400px;
-            z-index: 9999;
-            animation: slideUp 0.5s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateX(-50%) translateY(30px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
     </style>
 </head>
 <body>
@@ -643,18 +615,16 @@
             </div>
 
 
-    <!-- Install Banner -->
-    <div id="install-banner">
-        <div style="display:flex;align-items:center;gap:12px;flex:1;">
-            <i class="fa-solid fa-mobile-screen" style="font-size:28px;color:#F57224;"></i>
-            <div>
-                <div style="font-weight:bold;font-size:14px;">Install DealHub App</div>
-                <div style="font-size:12px;color:#666;">Add to home screen for faster access</div>
+    <div id="installBanner">
+        <div class="install-banner-left">
+            <div class="install-banner-icon">
+                <i class="fa-solid fa-utensils"></i>
+            </div>
+            <div class="install-banner-info">
+                <h4>Install BiteRush</h4>
+                <p>Get faster access & offline mode</p>
             </div>
         </div>
-        <button id="install-btn" style="background:#F57224;color:white;border:none;padding:8px 16px;border-radius:8px;font-weight:bold;font-size:13px;cursor:pointer;">Install</button>
-        <button id="close-banner" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 5px;">×</button>
-    </div>
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch(event)">
                 <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -1356,6 +1326,46 @@
             showPage('home-page');
         }
         
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUser = loadUser();
+            if (savedUser) {
+                updateAuthUI();
+            }
+
+            renderCategories();
+            renderProducts(products);
+
+            setTimeout(() => {
+                showInstallBanner();
+            }, 1000);
+
+            document.getElementById('installBtn').addEventListener('click', handleInstall);
+
+            document.getElementById('modal-overlay').addEventListener('click', closeLoginModal);
+        });
+
+        // ==================== PWA EVENTS ====================
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
+                document.getElementById('installBanner').classList.add('show');
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installBanner').classList.remove('show');
+            deferredPrompt = null;
+            showToast('✅ BiteRush installed successfully!', 'success');
+        });
+
+        // ==================== SERVICE WORKER ====================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('✅ SW registered'))
+                .catch(err => console.log('❌ SW failed'));
+        }
     </script>
 </body>
 </html>
