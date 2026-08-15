@@ -1,5 +1,5 @@
 // Service Worker
-const CACHE_NAME = 'dealhub-v4.0.0';
+const CACHE_NAME = 'dealhub-v5.0.0';
 const OFFLINE_URL = 'offline.html';
 
 const FILES_TO_CACHE = [
