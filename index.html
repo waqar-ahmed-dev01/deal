@@ -40,64 +40,54 @@
             padding-bottom: 70px;
         }
 
-        /* ===== TOP BAR WITH INSTALL OPTION ===== */
-        .top-bar {
-            background-color: #f8f8f8;
-            font-size: 12px;
-            padding: 4px 0;
-            border-bottom: 1px solid #e2e2e2;
-        }
-
-        .top-bar-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: flex-end;
-            gap: 20px;
-            padding: 0 15px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .top-bar a {
-            color: #666;
-            text-decoration: none;
-        }
-
-        .top-bar a:hover { color: var(--daraz-orange); }
-
-        /* ===== PWA INSTALL BUTTON IN TOP BAR ===== */
-        .pwa-install-top-btn {
-            background: var(--daraz-orange);
-            color: white !important;
-            border: none;
-            border-radius: 20px;
-            padding: 4px 16px;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s;
-            text-decoration: none !important;
-        }
-
-        .pwa-install-top-btn:hover {
-            background: var(--daraz-orange-dark) !important;
-            transform: scale(1.05);
-            color: white !important;
-        }
-
-        .pwa-install-top-btn i {
-            font-size: 13px;
-        }
-
         /* ===== PWA INSTALL BUTTON IN HEADER ===== */
         .pwa-install-header-btn {
+            background: white;
+            color: var(--daraz-orange);
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .pwa-install-header-btn:hover {
+            background: #fff5ed;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .pwa-install-header-btn i {
+            font-size: 16px;
+        }
+
+        .pwa-install-header-btn .badge-new {
+            background: #e74c3c;
+            color: white;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ===== HEADER INSTALL BUTTON (ALTERNATIVE STYLE) ===== */
+        .pwa-install-header-btn-alt {
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 20px;
             padding: 5px 14px;
             font-size: 12px;
@@ -110,14 +100,10 @@
             white-space: nowrap;
         }
 
-        .pwa-install-header-btn:hover {
+        .pwa-install-header-btn-alt:hover {
             background: rgba(255, 255, 255, 0.3);
             border-color: white;
             transform: scale(1.05);
-        }
-
-        .pwa-install-header-btn i {
-            font-size: 14px;
         }
 
         /* ===== INSTALL BANNER ON HOME PAGE ===== */
@@ -257,11 +243,32 @@
             gap: 4px;
         }
 
-        .top-bar-container .installed-badge {
-            margin-left: 10px;
+        /* ===== ORIGINAL STYLES ===== */
+        .top-bar {
+            background-color: #f8f8f8;
+            font-size: 12px;
+            padding: 4px 0;
+            border-bottom: 1px solid #e2e2e2;
         }
 
-        /* ===== ORIGINAL STYLES ===== */
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 0 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover { color: var(--daraz-orange); }
+
         header {
             background-color: var(--daraz-orange);
             position: sticky;
@@ -320,7 +327,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             color: white;
         }
 
@@ -842,7 +849,7 @@
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* ===== BOTTOM INSTALL BANNER (old style) ===== */
+        /* ========== PWA INSTALL BANNER (old style) ========== */
         #pwa-install-banner {
             position: fixed;
             bottom: 80px;
@@ -881,10 +888,8 @@
             .desktop-only { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .mobile-nav { display: flex; }
-            .pwa-install-header-btn span { display: none; }
-            .pwa-install-header-btn { padding: 5px 10px; }
-            .pwa-install-top-btn span { display: none; }
-            .pwa-install-top-btn { padding: 4px 10px; }
+            .pwa-install-header-btn span.btn-text { display: none; }
+            .pwa-install-header-btn { padding: 6px 12px; }
             .install-banner-home {
                 flex-direction: column;
                 text-align: center;
@@ -893,33 +898,47 @@
             .install-banner-home .banner-left {
                 flex-direction: column;
             }
+            .header-container {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .search-box {
+                order: 3;
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-actions {
+                gap: 8px;
+            }
+            .user-pill .user-name-text {
+                display: none;
+            }
+            .user-pill {
+                padding: 4px 8px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR with Install Button -->
+    <!-- TOP BAR -->
     <div class="top-bar desktop-only">
         <div class="top-bar-container">
             <a href="#">SAVE MORE ON APP</a>
             <a href="#">SELL ON DARAZ</a>
             <a href="#">HELP & SUPPORT</a>
             <a href="#" id="top-login-btn" onclick="showPage('account-page')">LOGIN / SIGN UP</a>
-            
-            <!-- PWA INSTALL BUTTON IN TOP BAR -->
-            <button id="pwa-top-btn" class="pwa-install-top-btn" onclick="installPWA()" style="display:none;">
-                <i class="fa-solid fa-download"></i>
-                <span>Install App</span>
-            </button>
-            
-            <!-- Installed Badge -->
+            <!-- Installed Badge (hidden by default) -->
             <span id="installed-badge-top" class="installed-badge" style="display:none;">
                 <i class="fa-solid fa-check-circle"></i> Installed
             </span>
         </div>
     </div>
 
-    <!-- HEADER with Install Button -->
+    <!-- HEADER -->
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
@@ -932,10 +951,17 @@
             </div>
 
             <div class="header-actions">
-                <!-- PWA INSTALL BUTTON IN HEADER -->
+                <!-- PWA Install Button in Header (STYLE 1 - White with orange text) -->
                 <button id="pwa-header-btn" class="pwa-install-header-btn" onclick="installPWA()" style="display:none;">
                     <i class="fa-solid fa-download"></i>
-                    <span>Install App</span>
+                    <span class="btn-text">Install App</span>
+                    <span class="badge-new">NEW</span>
+                </button>
+
+                <!-- PWA Install Button in Header (STYLE 2 - Transparent with white border) -->
+                <button id="pwa-header-btn-alt" class="pwa-install-header-btn-alt" onclick="installPWA()" style="display:none;">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <span class="btn-text">Install</span>
                 </button>
 
                 <div class="cart-icon" onclick="showPage('cart-page')">
@@ -992,7 +1018,7 @@
                     <h4 style="margin-top: 5px;">TRY DealHub APP</h4>
                     <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
-                    <!-- NO INSTALL BUTTON HERE - Removed as requested -->
+                    <!-- QR Code section - NO install button here -->
                 </div>
             </div>
 
@@ -1098,19 +1124,16 @@
                 </h2>
                 
                 <form onsubmit="performLogin(event)">
-                    <!-- Full Name -->
                     <div class="form-group">
                         <label for="login-name"><i class="fa-solid fa-user"></i> Full Name</label>
                         <input type="text" id="login-name" placeholder="Enter your full name" required>
                     </div>
                     
-                    <!-- Email -->
                     <div class="form-group">
                         <label for="login-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
                         <input type="email" id="login-email" placeholder="Enter your email address" required>
                     </div>
                     
-                    <!-- Password -->
                     <div class="form-group">
                         <label for="login-password"><i class="fa-solid fa-lock"></i> Password</label>
                         <input type="password" id="login-password" placeholder="Enter your password" required minlength="4">
@@ -1126,7 +1149,7 @@
                 </form>
             </div>
 
-            <!-- USER PROFILE - Shows Name, Email, and Logout Button -->
+            <!-- USER PROFILE -->
             <div class="card-panel user-profile-card" id="user-profile-box" style="display: none;">
                 <div class="profile-avatar" id="profile-avatar-letter">U</div>
                 
@@ -1321,9 +1344,8 @@
         }
 
         function hideAllInstallButtons() {
-            // Hide all install buttons
-            document.getElementById('pwa-top-btn').style.display = 'none';
             document.getElementById('pwa-header-btn').style.display = 'none';
+            document.getElementById('pwa-header-btn-alt').style.display = 'none';
             document.getElementById('pwa-fab').classList.remove('show');
             document.getElementById('install-banner-home').classList.remove('show');
             const oldBanner = document.getElementById('pwa-install-banner');
@@ -1368,11 +1390,9 @@
         function showInstallButtons() {
             if (isAppInstalled) return;
             
-            // Show top bar button
-            document.getElementById('pwa-top-btn').style.display = 'inline-flex';
-            
-            // Show header button
+            // Show BOTH header buttons (two different styles)
             document.getElementById('pwa-header-btn').style.display = 'flex';
+            document.getElementById('pwa-header-btn-alt').style.display = 'flex';
             
             // Show FAB
             document.getElementById('pwa-fab').classList.add('show');
