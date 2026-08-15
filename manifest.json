@@ -1,7 +1,7 @@
 {
   "name": "DealHub Shopping App",
   "short_name": "DealHub",
-  "description": "DealHub - Online Shopping App",
+  "description": "DealHub - Best Online Shopping",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F57224",
@@ -9,7 +9,6 @@
   "orientation": "portrait",
   "scope": "/",
   "lang": "en",
-  "dir": "ltr",
   "categories": ["shopping", "ecommerce"],
   "icons": [
     {
@@ -59,31 +58,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Home",
-      "short_name": "Home",
-      "description": "Go to Home",
-      "url": "/",
-      "icons": [{ "src": "image/icon-96x96.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "Cart",
-      "short_name": "Cart",
-      "description": "View Cart",
-      "url": "/?page=cart",
-      "icons": [{ "src": "image/icon-96x96.png", "sizes": "96x96" }]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "image/screenshot-1.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Home Screen"
     }
   ]
 }
