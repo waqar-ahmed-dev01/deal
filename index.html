@@ -593,6 +593,34 @@
             .header-actions { gap: 8px; }
             .user-pill .user-name-text { max-width: 50px; }
         }
+         /* Your existing styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .header { background: #F57224; color: white; padding: 15px; border-radius: 8px; text-align: center; }
+        .card { background: white; padding: 15px; border-radius: 8px; margin: 10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        button { background: #F57224; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        
+        /* Install Banner */
+        #install-banner {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 400px;
+            z-index: 9999;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateX(-50%) translateY(30px); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -613,7 +641,25 @@
             <div class="logo" onclick="showPage('home-page')">
                 <i class="fa-solid fa-bag-shopping"></i> <span class="desktop-only">DealHub</span>
             </div>
+<div class="card">
+        <h3>Products</h3>
+        <p>Welcome to DealHub! Click the install button below to add to home screen.</p>
+        <br>
+        <button onclick="alert('Product added to cart!')">Add to Cart</button>
+    </div>
 
+    <!-- Install Banner -->
+    <div id="install-banner">
+        <div style="display:flex;align-items:center;gap:12px;flex:1;">
+            <i class="fa-solid fa-mobile-screen" style="font-size:28px;color:#F57224;"></i>
+            <div>
+                <div style="font-weight:bold;font-size:14px;">Install DealHub App</div>
+                <div style="font-size:12px;color:#666;">Add to home screen for faster access</div>
+            </div>
+        </div>
+        <button id="install-btn" style="background:#F57224;color:white;border:none;padding:8px 16px;border-radius:8px;font-weight:bold;font-size:13px;cursor:pointer;">Install</button>
+        <button id="close-banner" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 5px;">×</button>
+    </div>
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Search..." onkeyup="handleSearch(event)">
                 <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -652,11 +698,7 @@
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://daraz.pk" alt="QR" style="margin-top:4px;width:80px;height:80px;">
                 </div>
             </div>
-<div id="install-btn-container">
-    <button id="install-btn" onclick="installPWA()">
-        📲 Install DealHub App
-    </button>
-</div>
+
             <!-- CATEGORIES -->
             <div class="categories-bar">
                 <div class="category-item" onclick="openCategoryPage('Mobiles')">
@@ -1318,6 +1360,65 @@
             document.getElementById('order-modal').style.display = 'none';
             showPage('home-page');
         }
+        // ========================================
+        // SERVICE WORKER REGISTRATION
+        // ========================================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('✅ SW Registered:', reg))
+                .catch(err => console.log('❌ SW Error:', err));
+        }
+
+        // ========================================
+        // PWA INSTALL PROMPT
+        // ========================================
+        let deferredPrompt;
+        const banner = document.getElementById('install-banner');
+        const installBtn = document.getElementById('install-btn');
+        const closeBtn = document.getElementById('close-banner');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            banner.style.display = 'flex';
+            console.log('✅ Install prompt available');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') {
+                    banner.style.display = 'none';
+                }
+                deferredPrompt = null;
+            } else {
+                // For browsers that don't support beforeinstallprompt
+                alert('Open Chrome menu and tap "Add to Home Screen"');
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            banner.style.display = 'none';
+        });
+
+        // App installed successfully
+        window.addEventListener('appinstalled', () => {
+            banner.style.display = 'none';
+            alert('✅ DealHub installed successfully!');
+        });
+
+        // Check if already in standalone mode
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            banner.style.display = 'none';
+        }
+        // Console mein yeh check karein
+if ('serviceWorker' in navigator) {
+    console.log('✅ Service Worker Supported');
+}
+if ('beforeinstallprompt' in window) {
+    console.log('✅ Install Prompt Supported');
+}
     </script>
 </body>
 </html>
