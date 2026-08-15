@@ -1360,58 +1360,6 @@
             document.getElementById('order-modal').style.display = 'none';
             showPage('home-page');
         }
-        // ========================================
-        // SERVICE WORKER REGISTRATION
-        // ========================================
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(reg => console.log('✅ SW Registered:', reg))
-                .catch(err => console.log('❌ SW Error:', err));
-        }
-
-        // ========================================
-        // PWA INSTALL PROMPT
-        // ========================================
-        let deferredPrompt;
-        const banner = document.getElementById('install-banner');
-        const installBtn = document.getElementById('install-btn');
-        const closeBtn = document.getElementById('close-banner');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            banner.style.display = 'flex';
-            console.log('✅ Install prompt available');
-        });
-
-        installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const result = await deferredPrompt.userChoice;
-                if (result.outcome === 'accepted') {
-                    banner.style.display = 'none';
-                }
-                deferredPrompt = null;
-            } else {
-                // For browsers that don't support beforeinstallprompt
-                alert('Open Chrome menu and tap "Add to Home Screen"');
-            }
-        });
-
-        closeBtn.addEventListener('click', () => {
-            banner.style.display = 'none';
-        });
-
-        // App installed successfully
-        window.addEventListener('appinstalled', () => {
-            banner.style.display = 'none';
-            alert('✅ DealHub installed successfully!');
-        });
-
-        // Check if already in standalone mode
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            banner.style.display = 'none';
-        }
         
     </script>
 </body>
