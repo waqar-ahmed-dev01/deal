@@ -1,6 +1,6 @@
 // Service Worker for Daraz Clone PWA
 
-const CACHE_NAME = 'daraz-cache-v3';
+const CACHE_NAME = 'daraz-cache-v4';
 const STATIC_ASSETS = [
   '.',
   'favicon.jpeg',
