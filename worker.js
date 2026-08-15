@@ -1,7 +1,7 @@
 // service-worker.js - DealHub PWA Service Worker
 
 // Cache name with version
-const CACHE_NAME = 'dealhub-v5.0.0';
+const CACHE_NAME = 'dealhub-v1.0.0';
 
 // Files to cache on install
 const STATIC_ASSETS = [
@@ -17,7 +17,7 @@ const STATIC_ASSETS = [
 ];
 
 // Dynamic cache for product images and API data
-const DYNAMIC_CACHE = 'dealhub-dynamic-v2';
+const DYNAMIC_CACHE = 'dealhub-dynamic-v1';
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
