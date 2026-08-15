@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
-    <link rel="icon" href="./image/favicon.jpeg">
+    <link rel="icon" href="./image/favicon.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DealHub</title>
@@ -132,7 +132,7 @@
             padding: 2px 6px;
         }
 
-        /* ========== NEW: User Avatar with First Letter ========== */
+        /* ========== USER AVATAR ========== */
         .user-avatar {
             width: 32px;
             height: 32px;
@@ -249,17 +249,38 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .product-img {
             width: 100%;
             height: 150px;
             object-fit: cover;
+            background: #f0f0f0;
         }
 
         .product-info { padding: 10px; }
-        .product-title { font-size: 13px; height: 36px; overflow: hidden; line-height: 1.3; font-weight: 600; }
-        .product-price { color: var(--daraz-orange); font-size: 15px; font-weight: bold; margin-top: 5px; }
+        .product-title { 
+            font-size: 13px; 
+            height: 36px; 
+            overflow: hidden; 
+            line-height: 1.3; 
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-price { 
+            color: var(--daraz-orange); 
+            font-size: 15px; 
+            font-weight: bold; 
+            margin-top: 5px; 
+        }
 
         .add-btn {
             width: 100%;
@@ -456,7 +477,7 @@
     <header>
         <div class="header-container">
             <div class="logo" onclick="showPage('home-page')">
-                <i class="fa-solid fa-bag-shopping"></i>🛍️ DealHub 
+                <i class="fa-solid fa-bag-shopping"></i> DealHub 
             </div>
 
             <div class="search-box">
@@ -469,7 +490,6 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span class="cart-badge" id="cart-count">0</span>
                 </div>
-                <!-- ========== USER PILL WITH FIRST LETTER AVATAR ========== -->
                 <div class="user-pill" id="header-user-btn" onclick="showPage('account-page')">
                     <span class="user-avatar" id="user-avatar-letter">👤</span>
                     <span class="user-name-text" id="header-user-text">Login</span>
@@ -492,13 +512,13 @@
 
                 <div class="app-download-card">
                     <i class="fa-solid fa-mobile-screen-button" style="font-size: 36px; color: var(--daraz-orange);"></i>
-                    <h4 style="margin-top: 5px;">TRY DARAZ APP</h4>
+                    <h4 style="margin-top: 5px;">TRY DealHub  APP</h4>
                     <p style="font-size: 11px; color: #777;">Exclusive Vouchers</p>
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://daraz.pk" alt="QR Code" style="margin-top: 5px;">
                 </div>
             </div>
 
-            <!-- ========== CATEGORIES WITH ICONS (NICHE WALI JAGAH) ========== -->
+            <!-- CATEGORIES WITH ICONS -->
             <div class="categories-bar">
                 <div class="category-item" onclick="openCategoryPage('Mobiles')">
                     <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
@@ -534,7 +554,6 @@
             <div class="card-panel">
                 <h2>All Product Categories</h2>
                 <p style="color: #666; margin-bottom: 20px;">Browse products by clicking on any category (50 Items each!)</p>
-                <!-- ========== CATEGORIES WITH ICONS (NICHE WALI JAGAH) ========== -->
                 <div class="categories-bar" style="box-shadow: none;">
                     <div class="category-item" onclick="openCategoryPage('Mobiles')">
                         <div class="category-icon"><i class="fa-solid fa-mobile-button"></i></div>
@@ -657,66 +676,66 @@
 
     <script>
         // ============================================================
-        // CATEGORY DATA WITH SPECIFIC IMAGES FOR EACH PRODUCT NAME
+        // CATEGORY DATA WITH SPECIFIC IMAGES FOR EACH PRODUCT
         // ============================================================
         const categoriesData = [
             {
                 category: "Mobiles",
                 products: [
-                    { name: "5G Smartphone", img: "https://harmanhouse.com/wp-content/uploads/2021/01/Samsung-Galaxy-S21-Pink.jpg" },
-                    { name: "Wireless Earbuds", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" },
-                    { name: "Fast Charger 65W", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt_dFvetFidN3isxx8ulSkX0MvDFNRCUTa_7yQIukyM5EtyVOjPY6DxWF-&s=10" },
-                    { name: "Power Bank 20000mAh", img: "https://www.borofone.com/wp-content/uploads/2022/05/borofone-bj14a-freeway-power-bank-20000mah-packaging.jpg" },
-                    { name: "Screen Protector Glass", img: "https://www.dablew.pk/images/product_gallery/dablew-image-8225.jpg" },
-                    { name: "Silicone Back Cover", img: "https://cellwala.pk/cdn/shop/files/9cf9526c-6cca-4dbc-bd58-9042e059bf92.jpg?v=1743761899" },
-                    { name: "Bluetooth Headphones", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" },
-                    { name: "Type-C Cable 2m", img: "https://img.drz.lazcdn.com/static/pk/p/419c9983fa90d8954ed8027667099893.jpg_720x720q80.jpg" },
-                    { name: "Selfie Stick Tripod", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzQ_U9kEYKTgISAdswWFfA2mcBscYVkrUxmDcdvF9MJaEw6Y6gT7mjEM&s=10" },
-                    { name: "Gaming Finger Sleeves", img: "https://static-01.daraz.pk/p/9d3aa8c46433f6f406dd5b54b61ce915.jpg" }
+                    { name: "Samsung Galaxy S24 Ultra", img: "https://images.unsplash.com/photo-1610945265297-0e5f25b1ad69?w=300" },
+                    { name: "Apple iPhone 15 Pro Max", img: "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=300" },
+                    { name: "OnePlus 12 5G", img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=300" },
+                    { name: "Xiaomi Redmi Note 13 Pro", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Vivo V30 5G", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
+                    { name: "Realme 12 Pro+", img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" },
+                    { name: "Google Pixel 8 Pro", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Oppo Find X7 Ultra", img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=300" },
+                    { name: "Samsung Galaxy Z Fold 5", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=300" },
+                    { name: "Apple iPhone 15 Plus", img: "https://images.unsplash.com/photo-1696446701796-da61225697cc?w=300" }
                 ]
             },
             {
                 category: "Fashion",
                 products: [
-                    { name: "Cotton T-Shirt", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
+                    { name: "Designer Cotton T-Shirt", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
+                    { name: "Premium Denim Jeans", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" },
+                    { name: "Leather Jacket Men", img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300" },
+                    { name: "Sports Running Shoes", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
                     { name: "Polarized Sunglasses", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300" },
-                    { name: "Denim Jeans Pants", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
-                    { name: "Casual Running Shoes", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
                     { name: "Leather Wallet", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300" },
                     { name: "Analog Wrist Watch", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" },
-                    { name: "Unisex Hoodie", img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" },
-                    { name: "Sports Cap", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300" },
-                    { name: "Leather Belt", img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300" },
-                    { name: "Sneakers White", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" }
+                    { name: "Unisex Winter Hoodie", img: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=300" },
+                    { name: "Sports Baseball Cap", img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300" },
+                    { name: "Premium Sneakers White", img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=300" }
                 ]
             },
             {
                 category: "Electronics",
                 products: [
-                    { name: "Smart Watch Fitness", img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" },
-                    { name: "RGB Gaming Mouse", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300" },
+                    { name: "Smart Watch Series 9", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300" },
+                    { name: "Gaming Mouse RGB", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=300" },
                     { name: "Mechanical Keyboard", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
-                    { name: "Portable Bluetooth Speaker", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" },
-                    { name: "HD Web Camera 1080p", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
-                    { name: "USB Flash Drive 64GB", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
+                    { name: "Bluetooth Speaker", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" },
+                    { name: "HD Web Camera", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
+                    { name: "USB Flash Drive 128GB", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
+                    { name: "Gaming Headset Pro", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" },
+                    { name: "WiFi Router 6", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
                     { name: "Laptop Cooling Pad", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
-                    { name: "Noise Cancel Headset", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" },
-                    { name: "Wi-Fi Router 300Mbps", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" },
-                    { name: "HDMI Cable 4K", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" }
+                    { name: "4K HDMI Cable", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" }
                 ]
             },
             {
                 category: "Home",
                 products: [
-                    { name: "Stainless Vacuum Flask", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
-                    { name: "Electric Desk Lamp", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" },
+                    { name: "Stainless Steel Flask", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
+                    { name: "LED Desk Lamp", img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" },
                     { name: "Non-Stick Frying Pan", img: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=300" },
                     { name: "Cotton Bed Sheet Set", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
-                    { name: "LED Room Strip Lights", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
+                    { name: "LED Strip Lights RGB", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
                     { name: "Kitchen Knife Set", img: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=300" },
-                    { name: "Wall Clock Modern", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
+                    { name: "Modern Wall Clock", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
                     { name: "Ceramic Coffee Mug", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" },
-                    { name: "Water Bottle 1L", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
+                    { name: "Water Bottle 1.5L", img: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300" },
                     { name: "Storage Box Organizer", img: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=300" }
                 ]
             },
@@ -724,28 +743,28 @@
                 category: "Beauty",
                 products: [
                     { name: "Organic Face Wash", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
-                    { name: "Moisturizing Skin Cream", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
+                    { name: "Moisturizing Cream", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
                     { name: "Hair Serum Shine", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300" },
-                    { name: "Matte Lipstick Longstay", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
-                    { name: "Perfume Fragrance 100ml", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
-                    { name: "Sunscreen Gel SPF50", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
-                    { name: "Facial Scrub Exfoliator", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
-                    { name: "Hair Dryer 2000W", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300" },
-                    { name: "Eyeliner Waterproof", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
+                    { name: "Matte Lipstick Set", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
+                    { name: "Perfume 100ml", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
+                    { name: "Sunscreen SPF 50", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
+                    { name: "Facial Scrub", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" },
+                    { name: "Hair Dryer Pro", img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300" },
+                    { name: "Waterproof Eyeliner", img: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=300" },
                     { name: "Aloe Vera Gel", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300" }
                 ]
             },
             {
                 category: "Sports",
                 products: [
-                    { name: "Leather Football Size 5", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Leather Football", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
                     { name: "Non-Slip Yoga Mat", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
-                    { name: "Badminton Racket Set", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBmbViR07NVQ4vFyyXxV97rs9vgtzO8XlOLUXtLJ8zC5KKbwRAGEaFUwJ&s=10" },
+                    { name: "Badminton Racket", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
                     { name: "Dumbbell Set 5kg", img: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=300" },
-                    { name: "Skipping Rope Speed", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
-                    { name: "Resistance Bands Set", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
-                    { name: "Cricket Tennis Ball Pack", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
-                    { name: "Gym Water Bottle", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Speed Skipping Rope", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Resistance Bands", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
+                    { name: "Cricket Tennis Ball", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" },
+                    { name: "Sports Water Bottle", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
                     { name: "Sports Wristband", img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=300" },
                     { name: "Cricket Bat Willow", img: "https://images.unsplash.com/photo-1614632537190-23e4146777db?w=300" }
                 ]
@@ -753,7 +772,7 @@
         ];
 
         // ============================================================
-        // GENERATE PRODUCTS WITH SPECIFIC IMAGES
+        // GENERATE PRODUCTS
         // ============================================================
         let products = [];
         let globalId = 1;
@@ -765,7 +784,7 @@
                 
                 products.push({
                     id: globalId++,
-                    title: `${productData.name} Vol.${i}`,
+                    title: `${productData.name}`,
                     price: price,
                     category: cat.category,
                     img: productData.img
@@ -776,7 +795,7 @@
         // LocalStorage Persisted State
         let cartItems = JSON.parse(localStorage.getItem('daraz_cart') || '[]');
 
-        // Initialize App & Persistence Check
+        // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('total-count').innerText = products.length;
             checkLoginStatus();
@@ -785,7 +804,7 @@
         });
 
         // ============================================================
-        // LOGIN WITH FIRST LETTER AVATAR
+        // LOGIN FUNCTIONS
         // ============================================================
         function checkLoginStatus() {
             const savedUser = localStorage.getItem('daraz_logged_user');
@@ -797,7 +816,6 @@
             const profileBox = document.getElementById('user-profile-box');
 
             if (savedUser) {
-                // Get first letter of username
                 const firstLetter = savedUser.charAt(0).toUpperCase();
                 avatarElement.textContent = firstLetter;
                 userNameText.textContent = savedUser;
@@ -845,7 +863,7 @@
         }
 
         // ============================================================
-        // ADD TO CART WITH LOGIN CHECK
+        // CART FUNCTIONS
         // ============================================================
         function addToCartDirect(id) {
             const savedUser = localStorage.getItem('daraz_logged_user');
@@ -952,7 +970,7 @@
             card.className = 'product-card';
             card.innerHTML = `
                 <div>
-                    <img src="${product.img}" class="product-img" alt="${product.title}">
+                    <img src="${product.img}" class="product-img" alt="${product.title}" onerror="this.src='https://placehold.co/300x300/F57224/white?text=${encodeURIComponent(product.title)}'">
                     <div class="product-info">
                         <div class="product-title">${product.title}</div>
                         <div class="product-price">Rs. ${product.price}</div>
@@ -1010,444 +1028,6 @@
             document.getElementById('order-modal').style.display = 'none';
             showPage('home-page');
         }
-        // PWA Installer for Daraz Clone
-
-(function() {
-  'use strict';
-
-  // Check if PWA can be installed
-  let deferredPrompt = null;
-  let isPWAInstalled = false;
-
-  // Create Install Banner
-  function createInstallBanner() {
-    // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      isPWAInstalled = true;
-      return;
-    }
-
-    // Check if banner already exists
-    if (document.getElementById('pwa-install-banner')) {
-      return;
-    }
-
-    const banner = document.createElement('div');
-    banner.id = 'pwa-install-banner';
-    banner.style.cssText = `
-      position: fixed;
-      bottom: 80px;
-      left: 0;
-      right: 0;
-      background: white;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 9999;
-      border-top: 3px solid #F57224;
-      animation: slideUp 0.5s ease-out;
-    `;
-
-    // Add slide-up animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideUp {
-        from { transform: translateY(100%); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-      }
-      @keyframes slideDown {
-        from { transform: translateY(0); opacity: 1; }
-        to { transform: translateY(100%); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    banner.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
-        <img src="favicon.jpg" alt="Daraz" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover;">
-        <div>
-          <div style="font-weight: 700; font-size: 16px; color: #212121;">Daraz Store</div>
-          <div style="font-size: 12px; color: #757575;">Install app for better experience</div>
-        </div>
-      </div>
-      <div style="display: flex; gap: 8px;">
-        <button id="pwa-install-btn" style="
-          background: #F57224;
-          color: white;
-          border: none;
-          padding: 8px 20px;
-          border-radius: 6px;
-          font-weight: 600;
-          font-size: 14px;
-          cursor: pointer;
-          transition: background 0.2s;
-        ">Install</button>
-        <button id="pwa-dismiss-btn" style="
-          background: transparent;
-          color: #757575;
-          border: none;
-          padding: 8px 12px;
-          font-size: 18px;
-          cursor: pointer;
-        ">✕</button>
-      </div>
-    `;
-
-    document.body.appendChild(banner);
-
-    // Install button handler
-    document.getElementById('pwa-install-btn').addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const result = await deferredPrompt.userChoice;
-        if (result.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-          hideBanner();
-          isPWAInstalled = true;
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-      } else {
-        // Fallback: Show instructions
-        showInstallInstructions();
-      }
-    });
-
-    // Dismiss button handler
-    document.getElementById('pwa-dismiss-btn').addEventListener('click', () => {
-      hideBanner();
-      // Store dismissal in localStorage to not show again for some time
-      localStorage.setItem('pwa_banner_dismissed', Date.now().toString());
-    });
-  }
-
-  function hideBanner() {
-    const banner = document.getElementById('pwa-install-banner');
-    if (banner) {
-      banner.style.animation = 'slideDown 0.3s ease-in forwards';
-      setTimeout(() => banner.remove(), 300);
-    }
-  }
-
-  function showInstallInstructions() {
-    // Create a modal with installation instructions
-    const modal = document.createElement('div');
-    modal.id = 'pwa-instruction-modal';
-    modal.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 99999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: fadeIn 0.3s ease-out;
-    `;
-
-    const fadeStyle = document.createElement('style');
-    fadeStyle.textContent = `
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-    `;
-    document.head.appendChild(fadeStyle);
-
-    modal.innerHTML = `
-      <div style="
-        background: white;
-        border-radius: 16px;
-        padding: 30px;
-        max-width: 380px;
-        width: 90%;
-        text-align: center;
-        animation: slideUp 0.3s ease-out;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      ">
-        <div style="font-size: 50px; margin-bottom: 10px;">📱</div>
-        <h2 style="font-size: 20px; margin-bottom: 8px; color: #212121;">Install Daraz Store</h2>
-        <p style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
-          Follow these steps to install the app on your device:
-        </p>
-        <div style="text-align: left; margin-bottom: 20px;">
-          <div style="display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start;">
-            <span style="background: #F57224; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">1</span>
-            <span style="font-size: 14px; color: #444;">Tap the <strong>Share</strong> icon in your browser</span>
-          </div>
-          <div style="display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start;">
-            <span style="background: #F57224; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">2</span>
-            <span style="font-size: 14px; color: #444;">Scroll down and tap <strong>Add to Home Screen</strong></span>
-          </div>
-          <div style="display: flex; gap: 12px; align-items: flex-start;">
-            <span style="background: #F57224; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0;">3</span>
-            <span style="font-size: 14px; color: #444;">Tap <strong>Add</strong> to confirm installation</span>
-          </div>
-        </div>
-        <button id="pwa-instruction-close" style="
-          background: #F57224;
-          color: white;
-          border: none;
-          padding: 10px 30px;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 14px;
-          cursor: pointer;
-          width: 100%;
-        ">Got it!</button>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-
-    document.getElementById('pwa-instruction-close').addEventListener('click', () => {
-      modal.remove();
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.remove();
-    });
-  }
-
-  // Register Service Worker
-  async function registerServiceWorker() {
-    try {
-      if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.register('sw.js', {
-          scope: '.'
-        });
-        console.log('Service Worker registered successfully:', registration);
-
-        // Check for updates
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              // New version available
-              showUpdateNotification();
-            }
-          });
-        });
-
-        return registration;
-      }
-    } catch (error) {
-      console.log('Service Worker registration failed:', error);
-    }
-    return null;
-  }
-
-  function showUpdateNotification() {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: white;
-      padding: 16px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      z-index: 99999;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      animation: slideUp 0.3s ease-out;
-      max-width: 350px;
-      border-left: 4px solid #F57224;
-    `;
-    notification.innerHTML = `
-      <span style="font-size: 24px;">🔄</span>
-      <div style="flex: 1;">
-        <div style="font-weight: 600; font-size: 14px;">New Update Available</div>
-        <div style="font-size: 12px; color: #666;">Refresh to get latest version</div>
-      </div>
-      <button onclick="location.reload()" style="
-        background: #F57224;
-        color: white;
-        border: none;
-        padding: 4px 14px;
-        border-radius: 4px;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 13px;
-      ">Refresh</button>
-    `;
-    document.body.appendChild(notification);
-    setTimeout(() => notification.remove(), 15000);
-  }
-
-  // Handle beforeinstallprompt event
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    console.log('PWA installation prompt available');
-
-    // Check if banner was dismissed recently (within 24 hours)
-    const dismissed = localStorage.getItem('pwa_banner_dismissed');
-    if (dismissed) {
-      const dismissedTime = parseInt(dismissed);
-      const hoursSinceDismiss = (Date.now() - dismissedTime) / (1000 * 60 * 60);
-      if (hoursSinceDismiss < 24) {
-        return;
-      }
-    }
-
-    // Show install banner after a delay
-    setTimeout(createInstallBanner, 3000);
-  });
-
-  // Handle app installed event
-  window.addEventListener('appinstalled', () => {
-    console.log('PWA installed successfully!');
-    isPWAInstalled = true;
-    hideBanner();
-
-    // Show success message
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 30px 40px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      z-index: 99999;
-      text-align: center;
-      animation: slideUp 0.3s ease-out;
-    `;
-    successMsg.innerHTML = `
-      <div style="font-size: 60px; margin-bottom: 10px;">🎉</div>
-      <h2 style="font-size: 20px; margin-bottom: 5px;">Installed Successfully!</h2>
-      <p style="color: #666; font-size: 14px;">Daraz Store is now on your home screen</p>
-      <button onclick="this.parentElement.remove()" style="
-        margin-top: 15px;
-        background: #F57224;
-        color: white;
-        border: none;
-        padding: 8px 30px;
-        border-radius: 6px;
-        font-weight: 600;
-        cursor: pointer;
-      ">Great!</button>
-    `;
-    document.body.appendChild(successMsg);
-    setTimeout(() => successMsg.remove(), 5000);
-
-    // Track installation
-    if (window.gtag) {
-      gtag('event', 'pwa_installed', { event_category: 'PWA' });
-    }
-  });
-
-  // Handle online/offline status
-  window.addEventListener('online', () => {
-    const statusMsg = document.createElement('div');
-    statusMsg.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #27ae60;
-      color: white;
-      padding: 10px 24px;
-      border-radius: 8px;
-      z-index: 9999;
-      font-weight: 600;
-      font-size: 14px;
-      animation: slideUp 0.3s ease-out;
-    `;
-    statusMsg.textContent = '🟢 Back Online!';
-    document.body.appendChild(statusMsg);
-    setTimeout(() => statusMsg.remove(), 3000);
-  });
-
-  window.addEventListener('offline', () => {
-    const statusMsg = document.createElement('div');
-    statusMsg.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #e74c3c;
-      color: white;
-      padding: 10px 24px;
-      border-radius: 8px;
-      z-index: 9999;
-      font-weight: 600;
-      font-size: 14px;
-      animation: slideUp 0.3s ease-out;
-    `;
-    statusMsg.textContent = '🔴 You are offline - Some features may not work';
-    document.body.appendChild(statusMsg);
-    setTimeout(() => statusMsg.remove(), 5000);
-  });
-
-  // Initialize PWA features
-  async function initPWA() {
-    // Register service worker
-    await registerServiceWorker();
-
-    // Check if already installed as PWA
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      isPWAInstalled = true;
-      console.log('App is running in standalone mode');
-    }
-
-    // Add installation check in menu
-    addPWAButtonToMenu();
-
-    console.log('PWA Installer initialized');
-  }
-
-  function addPWAButtonToMenu() {
-    // Add a "Install App" button in the header or account section
-    // Only if not already installed
-    if (!window.matchMedia('(display-mode: standalone)').matches) {
-      // Add to account page if available
-      const accountSection = document.querySelector('#account-page .card-panel');
-      if (accountSection) {
-        const installLink = document.createElement('div');
-        installLink.style.cssText = `
-          margin-top: 15px;
-          padding: 10px;
-          background: #FFF3ED;
-          border-radius: 8px;
-          text-align: center;
-          cursor: pointer;
-          color: #F57224;
-          font-weight: 600;
-          font-size: 14px;
-        `;
-        installLink.innerHTML = `
-          <i class="fa-solid fa-download"></i> Install Daraz App
-        `;
-        installLink.addEventListener('click', () => {
-          if (deferredPrompt) {
-            deferredPrompt.prompt();
-          } else {
-            showInstallInstructions();
-          }
-        });
-        accountSection.appendChild(installLink);
-      }
-    }
-  }
-
-  // Start PWA initialization when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPWA);
-  } else {
-    initPWA();
-  }
-
-})();
     </script>
 </body>
 </html>
