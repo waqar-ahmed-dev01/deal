@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
-     <meta charset="UTF-8">
-    <link rel="icon" href="./image/favicon.jpg">
-    <link rel="manifest" href="./manifest.json">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <link rel="icon" href="./image/favicon.jpeg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealHub</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="BiteRush">
-    <meta name="theme-color" content="#E4002B">
+    <meta name="apple-mobile-web-app-title" content="DealHub">
+    <link rel="apple-touch-icon" href="/image/favicon-192x192.png">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>DealHub</title>
+    <meta name="theme-color" content="#F57224">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-   
-      
+    
     <style>
         :root {
             --daraz-orange: #F57224;
@@ -675,105 +678,6 @@
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .mobile-nav { display: flex; }
         }
-         /* ========== INSTALL BANNER ========== */
-        #installBanner {
-            display: none;
-            background: white;
-            margin: 10px 12px;
-            padding: 12px 16px;
-            border-radius: 16px;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            border: 1px solid #e8e8e8;
-            animation: slideDown 0.5s ease;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            gap: 10px;
-        }
-
-        #installBanner.show {
-            display: flex;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .install-banner-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .install-banner-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--kfc-red);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(228, 0, 43, 0.3);
-        }
-
-        .install-banner-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .install-banner-info h4 {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .install-banner-info p {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 1px;
-        }
-
-        .install-banner-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .btn-install-native {
-            background: var(--kfc-red);
-            color: white;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .btn-install-native:active {
-            transform: scale(0.95);
-            background: var(--kfc-dark-red);
-        }
-
-        .btn-dismiss-native {
-            background: transparent;
-            border: none;
-            color: #999;
-            padding: 6px 8px;
-            font-size: 1rem;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -794,18 +698,7 @@
             <div class="logo" onclick="showPage('home-page')">
                 <i class="fa-solid fa-bag-shopping"></i> DealHub
             </div>
-<div id="installBanner">
-        <div class="install-banner-left">
-            <div class="install-banner-icon">
-                <i class="fa-solid fa-utensils"></i>
-            </div>
-            <div class="install-banner-info">
-                <h4>Install BiteRush</h4>
-                <p>Get faster access & offline mode</p>
-            </div>
-        </div>
-        
-    </div>
+
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Search in DealHub..." onkeyup="handleSearch(event)">
                 <button onclick="triggerSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -823,14 +716,7 @@
             </div>
         </div>
     </header>
-<div class="install-banner-right">
-            <button class="btn-install-native" id="installBtn">
-                <i class="fa-solid fa-download"></i> Install
-            </button>
-            <button class="btn-dismiss-native" onclick="dismissInstallBanner()">
-                <i class="fa-solid fa-times"></i>
-            </button>
-        </div>
+
     <!-- MAIN CONTENT -->
     <div class="main-container">
 
@@ -1049,9 +935,7 @@
         </div>
     </div>
 
-
     <script>
-        
         // ============================================================
         // CATEGORY DATA
         // ============================================================
@@ -1171,7 +1055,48 @@
             }
         }
 
-        
+        // ============================================================
+        // PWA INSTALL
+        // ============================================================
+        let deferredPrompt;
+
+        function setupPWAInstall() {
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                showInstallBanner();
+            });
+        }
+
+        function showInstallBanner() {
+            if (document.getElementById('pwa-install-banner')) return;
+            
+            const banner = document.createElement('div');
+            banner.id = 'pwa-install-banner';
+            banner.innerHTML = `
+                <div style="display:flex;align-items:center;gap:10px;flex:1;">
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size:24px;color:#F57224;"></i>
+                    <div>
+                        <div style="font-weight:bold;font-size:13px;">Install DealHub App</div>
+                        <div style="font-size:11px;color:#666;">Get faster shopping experience</div>
+                    </div>
+                </div>
+                <button onclick="installPWA()" style="background:#F57224;color:white;border:none;padding:6px 14px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:13px;">Install</button>
+                <button onclick="this.parentElement.remove()" style="background:transparent;border:none;font-size:20px;cursor:pointer;color:#999;padding:0 4px;">&times;</button>
+            `;
+            document.body.appendChild(banner);
+        }
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    const banner = document.getElementById('pwa-install-banner');
+                    if (banner) banner.remove();
+                });
+            }
+        }
 
         // ============================================================
         // LOGIN FUNCTIONS - FULL NAME + EMAIL + PASSWORD
@@ -1449,49 +1374,6 @@
             document.getElementById('order-modal').style.display = 'none';
             showPage('home-page');
         }
-        
-       // ==================== INIT ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUser = loadUser();
-            if (savedUser) {
-                updateAuthUI();
-            }
-
-            renderCategories();
-            renderProducts(products);
-
-            setTimeout(() => {
-                showInstallBanner();
-            }, 1000);
-
-            document.getElementById('installBtn').addEventListener('click', handleInstall);
-
-            document.getElementById('modal-overlay').addEventListener('click', closeLoginModal);
-        });
-
-        // ==================== PWA EVENTS ====================
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
-                document.getElementById('installBanner').classList.add('show');
-            }
-        });
-
-        window.addEventListener('appinstalled', () => {
-            document.getElementById('installBanner').classList.remove('show');
-            deferredPrompt = null;
-            showToast('✅ BiteRush installed successfully!', 'success');
-        });
-
-        // ==================== SERVICE WORKER ====================
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('✅ SW registered'))
-                .catch(err => console.log('❌ SW failed'));
-        }
     </script>
-    
-    
 </body>
 </html>
