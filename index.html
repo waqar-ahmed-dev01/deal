@@ -44,7 +44,6 @@
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            padding-bottom: 80px;
         }
 
         /* Stop background scrolling when login is active */
@@ -161,6 +160,75 @@
             font-size: 10px;
             cursor: pointer;
             font-weight: bold;
+        }
+
+        /* ========== PWA INSTALL BANNER - HEADER KE NICHE ========== */
+        .install-banner {
+            display: none;
+            background: linear-gradient(135deg, var(--bg-card), #1a1a3e);
+            padding: 10px 16px;
+            border-bottom: 2px solid var(--daraz-orange);
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 0;
+        }
+
+        .install-banner.show {
+            display: flex;
+        }
+
+        .install-banner .install-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .install-banner .install-text i {
+            font-size: 20px;
+            color: var(--daraz-orange);
+        }
+
+        .install-banner .install-text .app-name {
+            color: var(--daraz-orange);
+            font-weight: 700;
+        }
+
+        .install-banner .install-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .install-banner button {
+            background: var(--daraz-orange);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(245, 114, 36, 0.3);
+            transition: transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .install-banner button:active {
+            transform: scale(0.95);
+        }
+
+        .install-banner .close-banner {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 4px;
         }
 
         /* ========== LOGIN OVERLAY ========== */
@@ -763,75 +831,6 @@
             font-weight: bold;
         }
 
-        /* ========== PWA INSTALL BANNER - STICKY BOTTOM ========== */
-        .install-banner {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, var(--bg-card), #1a1a3e);
-            padding: 12px 20px;
-            border-top: 2px solid var(--daraz-orange);
-            align-items: center;
-            justify-content: space-between;
-            z-index: 5000;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
-            max-width: 430px;
-            margin: 0 auto;
-        }
-
-        .install-banner.show {
-            display: flex;
-        }
-
-        .install-banner .install-text {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .install-banner .install-text i {
-            font-size: 24px;
-            color: var(--daraz-orange);
-        }
-
-        .install-banner .install-text .app-name {
-            color: var(--daraz-orange);
-            font-weight: 700;
-        }
-
-        .install-banner button {
-            background: var(--daraz-orange);
-            border: none;
-            color: white;
-            font-weight: bold;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 14px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(245, 114, 36, 0.4);
-            transition: transform 0.2s;
-            flex-shrink: 0;
-        }
-
-        .install-banner button:active {
-            transform: scale(0.95);
-        }
-
-        .install-banner .close-banner {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0 4px;
-            flex-shrink: 0;
-        }
-
         /* ========== TOAST ========== */
         .toast {
             position: fixed;
@@ -864,9 +863,6 @@
         /* ========== RESPONSIVE ========== */
         @media (max-width: 430px) {
             .app-container {
-                max-width: 100%;
-            }
-            .install-banner {
                 max-width: 100%;
             }
         }
@@ -933,6 +929,18 @@
                 </div>
             </div>
         </header>
+
+        <!-- ========== PWA INSTALL BANNER - HEADER KE NICHE ========== -->
+        <div id="installBanner" class="install-banner">
+            <div class="install-text">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>Install <span class="app-name">DealHub</span> App</span>
+            </div>
+            <div class="install-actions">
+                <button id="installBtn"><i class="fa-solid fa-download"></i> Install</button>
+                <button class="close-banner" onclick="closeInstallBanner()">&times;</button>
+            </div>
+        </div>
 
         <!-- ========== SEARCH ========== -->
         <div class="search-container">
@@ -1039,18 +1047,6 @@
                     <button class="btn-login-now" onclick="redirectToLogin()">Login Now</button>
                     <button class="btn-cancel-login" onclick="closeLoginRequiredModal()">Cancel</button>
                 </div>
-            </div>
-        </div>
-
-        <!-- ========== PWA INSTALL BANNER - STICKY BOTTOM ========== -->
-        <div id="installBanner" class="install-banner">
-            <div class="install-text">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <span>Install <span class="app-name">DealHub</span> App</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;">
-                <button id="installBtn"><i class="fa-solid fa-download"></i> Install</button>
-                <button class="close-banner" onclick="closeInstallBanner()">&times;</button>
             </div>
         </div>
 
