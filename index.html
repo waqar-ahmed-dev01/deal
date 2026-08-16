@@ -122,104 +122,93 @@
             40% { transform: scale(1); }
         }
 
-        /* ========== INSTALL BANNER ========== */
-        #installBanner {
+        /* ========== INSTALL BUTTON BELOW HEADER ========== */
+        #installBar {
+            background: linear-gradient(135deg, #F57224, #FF6B35);
+            padding: 10px 15px;
             display: none;
-            background: white;
-            margin: 10px 12px;
-            padding: 12px 16px;
-            border-radius: 16px;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            border: 1px solid #e8e8e8;
-            animation: slideDown 0.5s ease;
+            box-shadow: 0 4px 15px rgba(245, 114, 36, 0.3);
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 999;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
-        #installBanner.show {
+        #installBar.show {
             display: flex;
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .install-banner-left {
+        .install-bar-left {
             display: flex;
             align-items: center;
             gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .install-banner-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--daraz-orange);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
             color: white;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(245, 114, 36, 0.3);
         }
 
-        .install-banner-info {
-            flex: 1;
-            min-width: 0;
+        .install-bar-left i {
+            font-size: 1.8rem;
+            background: rgba(255,255,255,0.2);
+            padding: 8px;
+            border-radius: 12px;
         }
 
-        .install-banner-info h4 {
-            font-size: 0.85rem;
+        .install-bar-left .install-text h4 {
+            font-size: 0.95rem;
             font-weight: 700;
-            color: var(--text-main);
+            margin-bottom: 2px;
         }
 
-        .install-banner-info p {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            margin-top: 1px;
+        .install-bar-left .install-text p {
+            font-size: 0.7rem;
+            opacity: 0.9;
         }
 
-        .install-banner-right {
+        .install-bar-right {
             display: flex;
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
         }
 
-        .btn-install-native {
-            background: var(--daraz-orange);
-            color: white;
+        .btn-install-bar {
+            background: white;
+            color: var(--daraz-orange);
             border: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-install-native:active {
+        .btn-install-bar:active {
             transform: scale(0.95);
-            background: var(--daraz-orange-dark);
         }
 
-        .btn-dismiss-native {
-            background: transparent;
+        .btn-install-bar i {
+            font-size: 0.9rem;
+        }
+
+        .btn-dismiss-bar {
+            background: rgba(255,255,255,0.2);
             border: none;
-            color: #999;
-            padding: 6px 8px;
-            font-size: 1rem;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 50%;
             cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-dismiss-bar:active {
+            background: rgba(255,255,255,0.3);
         }
 
         /* ========== TOP BAR ========== */
@@ -852,10 +841,13 @@
             .desktop-only { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .mobile-nav { display: flex; }
+            .install-bar-left .install-text h4 { font-size: 0.8rem; }
+            .install-bar-left .install-text p { font-size: 0.6rem; }
+            .btn-install-bar { padding: 6px 14px; font-size: 0.75rem; }
         }
 
         @media all and (display-mode: standalone) {
-            #installBanner {
+            #installBar {
                 display: none !important;
             }
             .toast {
@@ -879,22 +871,20 @@
         </div>
     </div>
 
-    <!-- ========== INSTALL BANNER ========== -->
-    <div id="installBanner">
-        <div class="install-banner-left">
-            <div class="install-banner-icon">
-                <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <div class="install-banner-info">
-                <h4>Install DealHub</h4>
-                <p>Get faster access & offline mode</p>
+    <!-- ========== INSTALL BAR - HEADER KE NICHE ========== -->
+    <div id="installBar">
+        <div class="install-bar-left">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <div class="install-text">
+                <h4>📱 Install DealHub App</h4>
+                <p>Faster shopping • Offline mode • Exclusive deals</p>
             </div>
         </div>
-        <div class="install-banner-right">
-            <button class="btn-install-native" id="installBtn">
-                <i class="fa-solid fa-download"></i> Install
+        <div class="install-bar-right">
+            <button class="btn-install-bar" id="installBarBtn">
+                <i class="fa-solid fa-download"></i> Install Now
             </button>
-            <button class="btn-dismiss-native" onclick="dismissInstallBanner()">
+            <button class="btn-dismiss-bar" onclick="dismissInstallBar()">
                 <i class="fa-solid fa-times"></i>
             </button>
         </div>
@@ -1178,23 +1168,23 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ==================== INSTALL BANNER ====================
+        // ==================== INSTALL BAR ====================
         let deferredPrompt = null;
 
         function isAppInstalled() {
             return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
         }
 
-        function showInstallBanner() {
-            const banner = document.getElementById('installBanner');
-            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
-                banner.classList.add('show');
+        function showInstallBar() {
+            const bar = document.getElementById('installBar');
+            if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBar')) {
+                bar.classList.add('show');
             }
         }
 
-        function dismissInstallBanner() {
-            document.getElementById('installBanner').classList.remove('show');
-            localStorage.setItem('dismissedInstall', 'true');
+        function dismissInstallBar() {
+            document.getElementById('installBar').classList.remove('show');
+            localStorage.setItem('dismissedInstallBar', 'true');
         }
 
         async function handleInstall() {
@@ -1202,7 +1192,7 @@
                 deferredPrompt.prompt();
                 const choiceResult = await deferredPrompt.userChoice;
                 if (choiceResult.outcome === 'accepted') {
-                    document.getElementById('installBanner').classList.remove('show');
+                    document.getElementById('installBar').classList.remove('show');
                     showToast('✅ DealHub installed successfully!', 'success');
                 }
                 deferredPrompt = null;
@@ -1222,13 +1212,13 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            if (!isAppInstalled() && !localStorage.getItem('dismissedInstall')) {
-                document.getElementById('installBanner').classList.add('show');
+            if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBar')) {
+                document.getElementById('installBar').classList.add('show');
             }
         });
 
         window.addEventListener('appinstalled', () => {
-            document.getElementById('installBanner').classList.remove('show');
+            document.getElementById('installBar').classList.remove('show');
             deferredPrompt = null;
             showToast('✅ DealHub installed successfully!', 'success');
         });
@@ -1331,8 +1321,8 @@
             checkLoginStatus();
             updateCartUI();
             renderHomeProducts();
-            document.getElementById('installBtn').addEventListener('click', handleInstall);
-            setTimeout(showInstallBanner, 1000);
+            document.getElementById('installBarBtn').addEventListener('click', handleInstall);
+            setTimeout(showInstallBar, 500);
         });
 
         // ==================== LOGIN FUNCTIONS ====================
