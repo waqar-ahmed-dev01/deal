@@ -122,7 +122,7 @@
             40% { transform: scale(1); }
         }
 
-        /* ========== INSTALL BUTTON BELOW HEADER ========== */
+        /* ========== INSTALL BAR - HEADER KE NICHE ========== */
         #installBar {
             background: linear-gradient(135deg, #F57224, #FF6B35);
             padding: 10px 15px;
@@ -135,6 +135,12 @@
             z-index: 999;
             gap: 10px;
             flex-wrap: wrap;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         #installBar.show {
@@ -1168,7 +1174,7 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // ==================== INSTALL BAR ====================
+        // ==================== INSTALL BAR - PROPER PWA INSTALL ====================
         let deferredPrompt = null;
 
         function isAppInstalled() {
@@ -1177,8 +1183,11 @@
 
         function showInstallBar() {
             const bar = document.getElementById('installBar');
+            // Bar tabhi dikhao jab app install nahi hai aur user ne dismiss nahi kiya
             if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBar')) {
                 bar.classList.add('show');
+            } else {
+                bar.classList.remove('show');
             }
         }
 
@@ -1187,16 +1196,29 @@
             localStorage.setItem('dismissedInstallBar', 'true');
         }
 
+        // ==================== MAIN INSTALL FUNCTION ====================
         async function handleInstall() {
+            console.log('Install button clicked!');
+            console.log('deferredPrompt:', deferredPrompt);
+            
             if (deferredPrompt) {
+                // Show the native install prompt
                 deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
                 const choiceResult = await deferredPrompt.userChoice;
+                console.log('User choice:', choiceResult);
+                
                 if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install');
                     document.getElementById('installBar').classList.remove('show');
                     showToast('✅ DealHub installed successfully!', 'success');
+                } else {
+                    console.log('User dismissed the install');
+                    showToast('Installation cancelled', 'warning');
                 }
                 deferredPrompt = null;
             } else {
+                // Agar browser ne prompt nahi diya toh user ko guide karein
                 showToast('Please use "Add to Home Screen" from browser menu', 'warning');
             }
         }
@@ -1209,18 +1231,50 @@
         }
 
         // ==================== PWA EVENTS ====================
+        // 'beforeinstallprompt' event - browser install prompt ready hai
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('beforeinstallprompt event fired!');
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
             e.preventDefault();
+            // Stash the event so it can be triggered later
             deferredPrompt = e;
+            
+            // Update UI to show the install button
             if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBar')) {
                 document.getElementById('installBar').classList.add('show');
+                console.log('Install bar shown');
             }
         });
 
+        // App successfully installed
         window.addEventListener('appinstalled', () => {
+            console.log('appinstalled event fired!');
             document.getElementById('installBar').classList.remove('show');
             deferredPrompt = null;
             showToast('✅ DealHub installed successfully!', 'success');
+        });
+
+        // ==================== DOM READY ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            
+            // Install button click handler
+            const installBtn = document.getElementById('installBarBtn');
+            if (installBtn) {
+                installBtn.addEventListener('click', handleInstall);
+                console.log('Install button listener added');
+            } else {
+                console.log('Install button not found!');
+            }
+            
+            // Initialize app
+            document.getElementById('total-count').innerText = products.length;
+            checkLoginStatus();
+            updateCartUI();
+            renderHomeProducts();
+            
+            // Check if app is already installed and hide bar if needed
+            setTimeout(showInstallBar, 1000);
         });
 
         // ==================== CATEGORY DATA ====================
@@ -1315,16 +1369,6 @@
         // ==================== LOCAL STORAGE ====================
         let cartItems = JSON.parse(localStorage.getItem('dealhub_cart') || '[]');
 
-        // ==================== INIT ====================
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('total-count').innerText = products.length;
-            checkLoginStatus();
-            updateCartUI();
-            renderHomeProducts();
-            document.getElementById('installBarBtn').addEventListener('click', handleInstall);
-            setTimeout(showInstallBar, 500);
-        });
-
         // ==================== LOGIN FUNCTIONS ====================
         function checkLoginStatus() {
             const userData = JSON.parse(localStorage.getItem('dealhub_user') || 'null');
@@ -1346,7 +1390,6 @@
                 
                 loginBox.style.display = 'none';
                 profileBox.style.display = 'block';
-                showToast('Welcome back, ' + userData.name + '! 👋', 'success');
             } else {
                 avatarElement.textContent = "👤";
                 userNameText.textContent = "Login";
