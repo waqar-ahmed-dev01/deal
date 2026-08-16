@@ -162,8 +162,8 @@
             font-weight: bold;
         }
 
-        /* ========== PWA INSTALL BANNER - HEADER KE NICHE ========== */
-        .install-banner {
+        /* ========== PWA INSTALL BANNER - TOP (Header Ke Niche) ========== */
+        .install-banner-top {
             display: none;
             background: linear-gradient(135deg, var(--bg-card), #1a1a3e);
             padding: 10px 16px;
@@ -174,11 +174,11 @@
             margin: 0;
         }
 
-        .install-banner.show {
+        .install-banner-top.show {
             display: flex;
         }
 
-        .install-banner .install-text {
+        .install-banner-top .install-text {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -188,26 +188,26 @@
             flex: 1;
         }
 
-        .install-banner .install-text i {
+        .install-banner-top .install-text i {
             font-size: 20px;
             color: var(--daraz-orange);
         }
 
-        .install-banner .install-text .app-name {
+        .install-banner-top .install-text .app-name {
             color: var(--daraz-orange);
             font-weight: 700;
         }
 
-        .install-banner .install-actions {
+        .install-banner-top .install-actions {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .install-banner button {
+        .install-banner-top button {
             background: var(--daraz-orange);
             border: none;
-            color: rgb(0, 0, 0);
+            color: white;
             font-weight: bold;
             padding: 6px 14px;
             border-radius: 20px;
@@ -218,15 +218,89 @@
             white-space: nowrap;
         }
 
-        .install-banner button:active {
+        .install-banner-top button:active {
             transform: scale(0.95);
         }
 
-        .install-banner .close-banner {
-            background: orange;
+        .install-banner-top .close-banner {
+            background: transparent;
             border: none;
             color: var(--text-muted);
             font-size: 18px;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+
+        /* ========== PWA INSTALL BANNER - BOTTOM (Sticky) ========== */
+        .install-banner-bottom {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--bg-card), #1a1a3e);
+            padding: 12px 20px;
+            border-top: 2px solid var(--daraz-orange);
+            align-items: center;
+            justify-content: space-between;
+            z-index: 5000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+            max-width: 430px;
+            margin: 0 auto;
+        }
+
+        .install-banner-bottom.show {
+            display: flex;
+        }
+
+        .install-banner-bottom .install-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .install-banner-bottom .install-text i {
+            font-size: 24px;
+            color: var(--daraz-orange);
+        }
+
+        .install-banner-bottom .install-text .app-name {
+            color: var(--daraz-orange);
+            font-weight: 700;
+        }
+
+        .install-banner-bottom .install-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .install-banner-bottom button {
+            background: var(--daraz-orange);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(245, 114, 36, 0.4);
+            transition: transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .install-banner-bottom button:active {
+            transform: scale(0.95);
+        }
+
+        .install-banner-bottom .close-banner {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
             cursor: pointer;
             padding: 0 4px;
         }
@@ -482,6 +556,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             padding: 0 16px 16px 16px;
+            padding-bottom: 80px;
         }
 
         .product-card {
@@ -865,6 +940,9 @@
             .app-container {
                 max-width: 100%;
             }
+            .install-banner-bottom {
+                max-width: 100%;
+            }
         }
 
         /* Scrollbar styling */
@@ -930,15 +1008,15 @@
             </div>
         </header>
 
-        <!-- ========== PWA INSTALL BANNER - HEADER KE NICHE ========== -->
-        <div id="installBanner" class="install-banner">
+        <!-- ========== PWA INSTALL BANNER - TOP (Header Ke Niche) ========== -->
+        <div id="installBannerTop" class="install-banner-top">
             <div class="install-text">
                 <i class="fa-solid fa-mobile-screen-button"></i>
                 <span>Install <span class="app-name">DealHub</span> App</span>
             </div>
             <div class="install-actions">
-                <button id="installBtn"><i class="fa-solid fa-download"></i> Install</button>
-                <button class="close-banner" onclick="closeInstallBanner()">&times;</button>
+                <button onclick="installPWA()"><i class="fa-solid fa-download"></i> Install</button>
+                <button class="close-banner" onclick="closeInstallBanner('top')">&times;</button>
             </div>
         </div>
 
@@ -1050,6 +1128,18 @@
             </div>
         </div>
 
+        <!-- ========== PWA INSTALL BANNER - BOTTOM (Sticky) ========== -->
+        <div id="installBannerBottom" class="install-banner-bottom">
+            <div class="install-text">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>Install <span class="app-name">DealHub</span> App</span>
+            </div>
+            <div class="install-actions">
+                <button onclick="installPWA()"><i class="fa-solid fa-download"></i> Install</button>
+                <button class="close-banner" onclick="closeInstallBanner('bottom')">&times;</button>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -1157,8 +1247,8 @@
         const productCount = document.getElementById('productCount');
         const cartItemsList = document.getElementById('cartItemsList');
         const cartTotal = document.getElementById('cartTotal');
-        const installBanner = document.getElementById('installBanner');
-        const installBtn = document.getElementById('installBtn');
+        const installBannerTop = document.getElementById('installBannerTop');
+        const installBannerBottom = document.getElementById('installBannerBottom');
 
         // ============================================================
         // LOGIN FUNCTIONS
@@ -1416,8 +1506,12 @@
             document.getElementById('loginRequiredModal').classList.remove('show');
         }
 
-        function closeInstallBanner() {
-            installBanner.classList.remove('show');
+        function closeInstallBanner(position) {
+            if (position === 'top') {
+                installBannerTop.classList.remove('show');
+            } else {
+                installBannerBottom.classList.remove('show');
+            }
         }
 
         // ============================================================
@@ -1445,29 +1539,34 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installBanner.classList.add('show');
+            installBannerTop.classList.add('show');
+            installBannerBottom.classList.add('show');
         });
 
-        installBtn.addEventListener('click', async () => {
+        function installPWA() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                const choice = await deferredPrompt.userChoice;
-                if (choice.outcome === 'accepted') {
-                    installBanner.classList.remove('show');
-                }
-                deferredPrompt = null;
+                deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') {
+                        installBannerTop.classList.remove('show');
+                        installBannerBottom.classList.remove('show');
+                    }
+                    deferredPrompt = null;
+                });
             } else {
                 showToast('Install via browser menu (Add to Home Screen)');
             }
-        });
+        }
 
         window.addEventListener('appinstalled', () => {
-            installBanner.classList.remove('show');
+            installBannerTop.classList.remove('show');
+            installBannerBottom.classList.remove('show');
             deferredPrompt = null;
         });
 
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-            installBanner.classList.remove('show');
+            installBannerTop.classList.remove('show');
+            installBannerBottom.classList.remove('show');
         }
 
         // ============================================================
