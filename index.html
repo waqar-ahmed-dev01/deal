@@ -1183,7 +1183,6 @@
 
         function showInstallBar() {
             const bar = document.getElementById('installBar');
-            // Bar tabhi dikhao jab app install nahi hai aur user ne dismiss nahi kiya
             if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBar')) {
                 bar.classList.add('show');
             } else {
@@ -1202,21 +1201,26 @@
             console.log('deferredPrompt:', deferredPrompt);
             
             if (deferredPrompt) {
-                // Show the native install prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                const choiceResult = await deferredPrompt.userChoice;
-                console.log('User choice:', choiceResult);
-                
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install');
-                    document.getElementById('installBar').classList.remove('show');
-                    showToast('✅ DealHub installed successfully!', 'success');
-                } else {
-                    console.log('User dismissed the install');
-                    showToast('Installation cancelled', 'warning');
+                try {
+                    // Show the native install prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    const choiceResult = await deferredPrompt.userChoice;
+                    console.log('User choice:', choiceResult);
+                    
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install');
+                        document.getElementById('installBar').classList.remove('show');
+                        showToast('✅ DealHub installed successfully!', 'success');
+                    } else {
+                        console.log('User dismissed the install');
+                        showToast('Installation cancelled', 'warning');
+                    }
+                    deferredPrompt = null;
+                } catch (error) {
+                    console.log('Install error:', error);
+                    showToast('Please use browser menu to install', 'warning');
                 }
-                deferredPrompt = null;
             } else {
                 // Agar browser ne prompt nahi diya toh user ko guide karein
                 showToast('Please use "Add to Home Screen" from browser menu', 'warning');
