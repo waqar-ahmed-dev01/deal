@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dealhub-v6';
+const CACHE_NAME = 'dealhub-v7';
 const urlsToCache = ['/', '/index.html', '/manifest.json', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', event => {
