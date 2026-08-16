@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ur">
 <head>
-    <link rel="icon" href="./image/favicon.jpeg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- PWA Meta Tags -->
+    <!-- ========== PWA META TAGS ========== -->
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,6 +12,8 @@
     <link rel="apple-touch-icon" href="icon-192.png">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#F57224">
+    <meta name="application-name" content="DealHub">
+    <meta name="apple-mobile-web-app-orientations" content="portrait">
     
     <title>DealHub - Shop Smart</title>
     
@@ -125,7 +126,7 @@
         /* ========== INSTALL BANNER - HEADER KE NICHE ========== */
         #installBanner {
             background: linear-gradient(135deg, #F57224, #FF6B35);
-            padding: 10px 15px;
+            padding: 12px 16px;
             display: none;
             align-items: center;
             justify-content: space-between;
@@ -140,7 +141,7 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
+            from { transform: translateY(-60px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
@@ -1199,7 +1200,7 @@
             const banner = document.getElementById('installBanner');
             if (!isAppInstalled() && !localStorage.getItem('dismissedInstallBanner')) {
                 banner.classList.add('show');
-                console.log('Install banner shown');
+                console.log('✅ Install banner shown');
             } else {
                 banner.classList.remove('show');
             }
